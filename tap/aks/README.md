@@ -162,7 +162,6 @@ Open the `tap-values.yaml` and replace the variables with the values which are a
 - `TANZU_NET_PASSWORD`: The password for the `tanzu-net` user ( between single quotes `'` ).
 - `KP_DEFAULT_ACR_SERVER`: The server part of the `acr` registry created in `step 2`. (for example `fancyregistryname.azurecr.io` ( the `uri` without the repository section ) ).
 - `KP_DEFAULT_ACR_REPOSITORY`: The repository used for the workloads. In this example we will use `tap`.
-- `FQDN_TAP_GUI`: Leave this unchanged, for now ( leave the entire `app_config` section under the `tap_gui` section commented out, for now ).
 
 ---
 

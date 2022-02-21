@@ -127,14 +127,23 @@ Preparing for installation of `tap`.
 
 Open the `tap-values.yaml` and replace the variables with the values which are applicable to your setup:
 
-- `KP_DEFAULT_REPOSITORY`: The `uri` to the image repository to be used for `build-service` ( the registry that was created in `step 2` ).
-- `KP_DEFAULT_REPOSITORY_USERNAME`: The username for the `acr` repository ( in the case of an `acr` registry this is usually `00000000-0000-0000-0000-000000000000` ).
-- `KP_DEFAULT_REPOSITORY_PASSWORD`: Run `az acr login --name fancyregistryname --expose-token`. Copy the `accessToken` value.
-- `TANZU_NET_USERNAME`: The `tanzu-net` username to be used to access https://network.tanzu.vmware.com/ ( between single quotes `'` ).
-- `TANZU_NET_PASSWORD`: The password for the `tanzu-net` user ( between single quotes `'` ).
-- `KP_DEFAULT_ACR_SERVER`: The server part of the `acr` registry created in `step 2`. (for example `fancyregistryname.minikubecr.io` ( the `uri` without the repository section ) ).
-- `KP_DEFAULT_ACR_REPOSITORY`: The repository used for the workloads. In this example we will use `tap`.
-- `FQDN_TAP_GUI`: Leave this unchanged, for now ( leave the entire `app_config` section under the `tap_gui` section commented out, for now ).
+- `PROFILE-VALUE`: `full` or `dev-light`
+- `KP-DEFAULT-REPO`: is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. For example ( examples of the format for commonly used registries, update values to meet your repository ):
+  - Harbor: `my-harbor.io/my-project/build-service`
+  - Dockerhub: `my-dockerhub-user/build-service` or `index.docker.io/my-user/build-service`
+  - Google Cloud Registry `gcr.io/my-project/build-service`
+- `KP-DEFAULT-REPO-USERNAME`: The username that can write to the `KP-DEFAULT-REPO` repository
+- `KP-DEFAULT-REPO-PASSWORD`: The password for the user that can write to the `KP-DEFAULT-REPO` repository
+- `TANZU-NET-USERNAME`: Your tanzu net username ( https://network.tanzu.vmware.com )
+- `TANZU-NET-USERNAME`: Password for your tanzu net user
+- `SERVER-NAME`: is the hostname of the registry server ( the nodes on which `tap` is going to be installed needs to be able to resolve this hostname ( check this in particular when using `.local` domains ( add an entry to the `hosts` file on the nodes ) ) ). For example:
+  - `Harbor`: my-harbor.io
+  - `Dockerhub`: https://index.docker.io/v1/
+  - `Google Cloud Registry`: gcr.io
+- `REPO-NAME`: The location where the workload images will be stored in the registry. Images will be written to `<SERVER-NAME>/<REPO-NAME>/<workload-name>`. For example:
+  - `Harbor`: my-project/supply-chain
+  - `Dockerhub`: my-dockerhub-user
+  - `Google Cloud Registry`: my-project/supply-chain
 
 ---
 
@@ -192,53 +201,27 @@ Wait until installation is finished
 
 ![](images/tap-install.png)
 
-Check if all `pods` are in `RUNNING` state
-
-`kubectl get pods -A`
-
 Check if all `apps` are `Reconcile succeeded`
 
 `kubectl get apps -A`
 
-Find the endpoint for the `tap-gui` service
+Check if all `pods` are in `RUNNING` state
 
-`kubectl get svc -A | grep LoadBalancer`
+`kubectl get pods -A`
 
-or ( to directly get the ip-address of the `tap-gui` endpoint )
+*Assuming that minikube is running on a vm*
 
-`kubectl get svc -A | grep LoadBalancer | grep tap-gui | awk '{print $5}'`
+To access the `tap-gui` start a port forward on the minikube host.
 
-Update `tap-values.yaml`, uncomment the entire `app_config` section under the `tap_gui` section and prefix the `.nip.io` part of the `url` of the `baseUrl` and `origin` lines with the ip address found in the previous stap ( only replace the `ip-address`, *not* the portnumber ).
+Find the pod which is running `tap-gui` using `kubectl get pods -A`
 
-So, if the ip found in the previous step is `11.22.33.44`, change the following section of the `tap-values.yaml` from:
+Create a tunnel using:
 
-```
-#  app_config:
-#    app:
-#      baseUrl: http://.nip.io:7000
-#    backend:
-#        baseUrl: http://.nip.io:7000
-#        cors:
-#          origin: http://.nip.io:7000
-```
+`kubectl port-forward server-5d9c7c458f-5scdt 7000:7000 -n tap-gui`
 
-... to ...
+SSH into the minikube host with a tunnel for port 7000 ( `-L7000:localhost:7000` )
 
-```
-  app_config:
-    app:
-      baseUrl: http://11.22.33.44.nip.io:7000
-    backend:
-        baseUrl: http://11.22.33.44.nip.io:7000
-        cors:
-          origin: http://11.22.33.44.nip.io:7000
-```
-
-Update the `tap` installation with the new values:
-
-`tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.1 -n tap-install -f tap-values.yaml`
-
-After updating `tap`, point your browser to the `ip-address` used in the previous step(s)
+Point the browser on the computer from where you ssh-ed into the minikube host ( with the port 7000 tunnel ) to `http://localhost:7000`
 
 ![](images/tap-gui.png)
 
