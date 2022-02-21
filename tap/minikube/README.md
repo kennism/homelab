@@ -1,6 +1,6 @@
 # Install/Configure Tanzu Application Platform `tap` on `minikube`
 
-### This document describes how to install/configure `tap` ( [Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform) ) version `1.0.1` on an `minikube` cluster ( and run a demo workload ).
+### This document describes how to install/configure `tap` ( [Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform) ) version `1.0.1` on a `minikube` cluster ( and run a demo workload ).
 
 ---
 
@@ -12,6 +12,8 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 - A [VMware Tanzu Network](https://network.tanzu.vmware.com) account ( to download tools and sign EULAs ).
 - Access to a `container image registry`, such as [Harbor](https://goharbor.io) or [Docker Hub](https://hub.docker.com) with at least 10 GB of available storage for application images, base images, and runtime dependencies.
 - If the `git based repository` and/or `container image registry` are hosted locally ( no SaaS ), make sure there's a `dns` available with a `dns` record for those services ( an entry in the `hosts` file will not work ).
+- a vm with minikube installed on it
+- kubectl installed
 
 ---
 
@@ -36,18 +38,6 @@ List which pods are running on the clusters:
 ---
 
 ### Step 2
-
-Create an `acr` container registry on `minikube`.
-
-In the `acr` section of the `minikube` console ( https://portal.minikube.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.ContainerRegistry%2Fregistries ). Click on `Create` and go through the wizard.
-
-Or use this `cli` command to create a `public` registry through the command line.
-
-`az acr create --resource-group tap-demo --name tapdemomkennis1 --sku Standard --admin-enabled true`
-
----
-
-### Step 3
 
 Download and install `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz` ( the variant that matches your operating system ) from ( https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/ ).
 
