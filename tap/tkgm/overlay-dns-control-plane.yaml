@@ -1,0 +1,16 @@
+#@ load("@ytt:overlay", "overlay")
+#@ load("@ytt:data", "data")
+
+#@overlay/match by=overlay.subset({"kind":"VSphereMachineTemplate", "metadata": {"name": data.values.CLUSTER_NAME+"-control-plane"}})
+---
+spec:
+  template:
+    spec:
+      network:
+        devices:
+        #@overlay/match by=overlay.all, expects="1+"
+        -
+          #@overlay/match missing_ok=True
+          nameservers: ["192.168.1.1"]
+          #@overlay/match missing_ok=True
+          searchDomains: ["tanzu.local"]

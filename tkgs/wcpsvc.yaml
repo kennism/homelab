@@ -1,0 +1,42 @@
+logging:
+  level: info
+  maxsizemb: 10
+# By default, WCP Agent VM OVF URL points to the ovf bundled in vCSA, served
+# through lighttpd web server. To override it, set kubevmconfig.ovfurl param.
+#kubevm:
+#  ovfurl: 'https://this_vc_pnid:5480/wcpagent/photon-ova-%%SIZE%%.ovf'
+#  apiserverport: 6443
+#  authproxyport: 443
+rhttpproxy_port: 443
+enable_debug: false
+clusterconfig:
+  minmasters: 2
+  maxmasters: 2
+  disable_ssl: false
+  namespace_graceful_disable_duration: 300
+  upgrade_precheck_timeout: 300
+# force_upgrade_clusters:
+  force_version_for_enable: v1\.20\..*
+  logging_fluentbit_enabled: false
+# logging_fluentbit_rsyslog: ""
+  # log_forwarding_disabled_clusters accepts case-insensitive
+  # CSV string as cluster MoRef
+# log_forwarding_disabled_clusters:
+  controlplane_vm_disk_provisioning: "thin"
+  controlplane_vm_anti_affine: false
+csisetting:
+   csi_enabled: true
+hdcsconfig:
+  ovf_url: 'file:///storage/lifecycle/vmware-hdcs'
+  # password_rotate_days should be set between 3 and 180
+  # default value 60 is set in case of an invalid value
+  password_rotate_days: 60
+autoupgradeconfig:
+  num_of_clusters_upgradable_in_parallel: 5
+  # The auto_upgrade_poll_interval indcated in seconds,
+  # polls the upgrade and cluster status till it goes to
+  # READY state
+  auto_upgrade_poll_interval: 300
+appplatform_config:
+  allow_all_services: false
+nsx_password:

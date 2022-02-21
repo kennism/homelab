@@ -1,0 +1,68 @@
+profile: [PROFILE-VALUE]
+excluded_packages:
+  - learningcenter.tanzu.vmware.com
+  - workshops.learningcenter.tanzu.vmware.com
+
+ceip_policy_disclosed: true
+
+buildservice:
+  kp_default_repository: [KP-DEFAULT-REPO]
+  kp_default_repository_username: [KP-DEFAULT-REPO-USERNAME]
+  kp_default_repository_password: [KP-DEFAULT-REPO-PASSWORD]
+  tanzunet_username: [TANZU-NET-USERNAME]
+  tanzunet_password: [TANZU-NET-PASSWORD]
+  ca_cert_data: |
+    -----BEGIN CERTIFICATE-----
+    b64-encoded repo certificate only for private repositories
+    when using a SaaS based repository the entire ca_cert_data section is not needed
+    -----END CERTIFICATE-----
+
+supply_chain: basic
+
+ootb_supply_chain_basic:
+  registry:
+    server: [SERVER-NAME]
+    repository: [REPO-NAME]
+  gitops:
+    ssh_secret: ""
+
+learningcenter:
+  ingressDomain: "learning.tanzu.local"
+
+grype:
+  namespace: "test"
+  targetImagePullSecret: "registry-credentials"
+
+cnrs:
+  domain_name: tanzu.local
+
+contour:
+  envoy:
+    service:
+      type: LoadBalancer
+
+tap_gui:
+  service_type: LoadBalancer
+  app_config:
+    auth:
+      environment: development
+      providers:
+        okta:
+          development:
+            clientId: someSecretClientId
+            clientSecret: someSecretClientSecret
+            audience: oktaUrl
+    app:
+      baseUrl: https://tap.tanzu.local
+    integrations:
+      github:
+        - host: github.com
+          token: someSecretToken
+    catalog:
+      locations:
+        - type: url
+          target: https://fqdn/to/catalog-info.yaml
+    backend:
+        baseUrl: https://tap.tanzu.local
+        cors:
+          origin: https://tap.tanzu.local

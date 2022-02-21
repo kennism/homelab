@@ -1,0 +1,17 @@
+apiVersion: run.tanzu.vmware.com/v1
+kind: TanzuKubernetesCluster
+metadata:
+  name: tkgs-workload
+  namespace: tkgs0
+spec:
+  distribution:
+    version: v1.21
+  topology:
+    controlPlane:
+      class: best-effort-small
+      count: 1
+      storageClass: tanzu-storage-policy
+    workers:
+      class: best-effort-small
+      count: 1
+      storageClass: tanzu-storage-policy

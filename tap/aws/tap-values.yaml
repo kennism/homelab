@@ -1,0 +1,46 @@
+profile: full
+
+ceip_policy_disclosed: true
+
+buildservice:
+  kp_default_repository: KP_DEFAULT_REPOSITORY
+  kp_default_repository_username: KP_DEFAULT_REPOSITORY_USERNAME
+  kp_default_repository_password: KP_DEFAULT_REPOSITORY_PASSWORD
+  tanzunet_username: TANZU_NET_USERNAME
+  tanzunet_password: TANZU_NET_PASSWORD
+  descriptor_name: tap-1.0.0-full
+  enable_automatic_dependency_updates: false
+
+excluded_packages:
+  - learningcenter.tanzu.vmware.com
+  - workshops.learningcenter.tanzu.vmware.com
+
+supply_chain: basic
+
+ootb_supply_chain_basic:
+  registry:
+    server: KP_DEFAULT_ECR_SERVER
+    repository: KP_DEFAULT_ECR_REPOSITORY
+  gitops:
+    ssh_secret: ""
+
+#cnrs:
+#  domain_name: .nip.io
+
+#learningcenter:
+#  ingressDomain: .nip.io
+
+contour:
+  envoy:
+    service:
+      type: LoadBalancer
+
+tap_gui:
+  service_type: LoadBalancer
+#  app_config:
+#    app:
+#      baseUrl: http://.nip.io:7000
+#    backend:
+#        baseUrl: http://.nip.io:7000
+#        cors:
+#          origin: http://.nip.io:7000
