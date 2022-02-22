@@ -12,8 +12,9 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 - A [VMware Tanzu Network](https://network.tanzu.vmware.com) account ( to download tools and sign EULAs ).
 - Access to a `container image registry`, such as [Harbor](https://goharbor.io) or [Docker Hub](https://hub.docker.com) with at least 10 GB of available storage for application images, base images, and runtime dependencies.
 - If the `git based repository` and/or `container image registry` are hosted locally ( no SaaS ), make sure there's a `dns` available with a `dns` record for those services ( an entry in the `hosts` file will not work ).
-- a vm with minikube installed on it
-- kubectl installed
+- `minikube` installed
+- `kubectl` installed
+- A web browser running on the *same* host ( or VM ) as `minikube` is running
 
 ---
 
@@ -209,19 +210,15 @@ Check if all `pods` are in `RUNNING` state
 
 `kubectl get pods -A`
 
-*Assuming that minikube is running on a vm*
-
-To access the `tap-gui` start a port forward on the minikube host.
+To access the `tap-gui` start a `port-forward` on the `minikube` host.
 
 Find the pod which is running `tap-gui` using `kubectl get pods -A`
 
-Create a tunnel using:
+Expose the `tap-gui` service
 
 `kubectl port-forward server-5d9c7c458f-5scdt 7000:7000 -n tap-gui`
 
-SSH into the minikube host with a tunnel for port 7000 ( `-L7000:localhost:7000` )
-
-Point the browser on the computer from where you ssh-ed into the minikube host ( with the port 7000 tunnel ) to `http://localhost:7000`
+Open a web browser on the same host ( or VM ) as where `minikube` is running and point it to `http://localhost:7000`
 
 ![](images/tap-gui.png)
 
@@ -230,8 +227,17 @@ Click through the four menu items on the left and see if they all show up withou
 ---
 ### Step 8
 
-Enable `learning center`.
+Access `learning-center`.
 
+`kubectl get pods -A`
+
+To access the `tap-gui` start a `port-forward` on the `minikube` host.
+
+Find the pod which is running `tap-gui` using `kubectl get pods -A`
+
+Expose the `tap-gui` service
+
+`kubectl port-forward server-5d9c7c458f-5scdt 7000:7000 -n tap-gui`
 Find the `ip-address` of the `envoy` service
 
 `kubectl get svc -A | grep LoadBalancer`
