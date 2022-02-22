@@ -269,7 +269,7 @@ After updating `tap`, point your browser to the `ip-address` used in the previou
 
 ![](images/tap-gui.png)
 
-Click through the four menu items on the left and see if they all show up without error(s).
+Click through the menu items on the left and see if they all show up without error(s).
 
 ---
 ### Step 8
@@ -326,7 +326,7 @@ Update the `tap` installation with the new values:
 
 Use `kubectl get apps -A` to verify that the `learningcenter` and `learningcenter-workshops` apps are `Reconcile succeeded`
 
-Use `kubectl get trainingportals` to find the `url` of the `learning-center` ui.
+Use `kubectl get trainingportal.learningcenter.tanzu.vmware.com` to find the `url` of the `learning-center` ui.
 
 ![](images/tap-learning-center-endpoint.png)
 

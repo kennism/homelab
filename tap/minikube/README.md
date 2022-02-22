@@ -143,7 +143,7 @@ For example:
   - `Harbor`: my-project/supply-chain
   - `Dockerhub`: my-dockerhub-user
   - `Google Cloud Registry`: my-project/supply-chain
-- `Find`/`Replace` every occurance of `aa.bb.cc.dd` with the `ip-address` return by the `minikube ip` command.
+- `Find`/`Replace` every occurrence of `aa.bb.cc.dd` with the `ip-address` return by the `minikube ip` command.
 
 ------------------
 
@@ -208,11 +208,11 @@ Check if all `pods` are in `RUNNING` state
 
 `kubectl get pods -A`
 
-Open a web browser on the same host ( or VM ) as where `minikube` is running and point it to the url specified as `tap_gui` -> `app_config` -> `app` -> `baseUrl` ( in the form of http://tap-gui.11.22.33.44.nip.io )
+Open a web browser on the same host ( or VM ) as where `minikube` is running and point it to the url specified as `tap_gui` -> `app_config` -> `app` -> `baseUrl` in `tap-values.yaml` ( in the form of http://tap-gui.11.22.33.44.nip.io )
 
 ![](images/tap-gui.png)
 
-Click through the four menu items on the left and see if they all show up without error(s).
+Click through the menu items on the left and see if they all show up without error(s).
 
 ---
 ### Step 8
@@ -221,7 +221,7 @@ Access `learning-center`.
 
 Use `kubectl get apps -A` to verify that the `learningcenter` and `learningcenter-workshops` apps are `Reconcile succeeded`
 
-Use `kubectl get trainingportals` to find the `url` of the `learning-center` ui.
+Use `kubectl get trainingportal.learningcenter.tanzu.vmware.com` to find the `url` of the `learning-center` ui.
 
 ![](images/tap-learning-center-endpoint.png)
 
@@ -257,9 +257,9 @@ Create required `serviceaccount`, `role` and `rolebinding` in the `dev` namespac
 
 `kubectl apply -f namespace-rbac-config.yaml -n dev`
 
-Create a secret for the workload to be able to push images to the workload repository ( replace the `docker-server` url and `docker-password` with the values which are applicable for your situation ):
+Create a secret for the workload to be able to push images to the workload repository ( replace the `docker-server`, `docker-username` and `docker-password` with the values which are applicable for your situation ):
 
-`kubectl create secret docker-registry registry-credentials --docker-server='https://fancyregistryname.minikubecr.io' --docker-username='00000000-0000-0000-0000-000000000000' --docker-password='topSecretPassword' -n dev`
+`kubectl create secret docker-registry registry-credentials --docker-server='https://fancyregistryname.minikubecr.io' --docker-username='dockerUser' --docker-password='topSecretPassword' -n dev`
 
 Deploy the demo `tanzu-java-web-app` workload:
 
