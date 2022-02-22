@@ -128,6 +128,20 @@ Preparing for installation of `tap`.
 
 Open the `tap-values.yaml` and replace the variables with the values which are applicable to your setup:
 
+
+-------------
+
+- `KP_DEFAULT_REPOSITORY`: The `uri` to the image repository to be used for `build-service` ( the registry that was created in `step 2` ). In the `aws` console, go to the `ecr` section ( https://console.aws.amazon.com/ecr/repositories ) and copy-paste the `uri` of the registry to be used for `build-service`.
+- `KP_DEFAULT_REPOSITORY_USERNAME`: The username for the `ecr` repository ( in the case of an `ecr` registry this is usually `AWS` ).
+- `KP_DEFAULT_REPOSITORY_PASSWORD`: The password for the user for the `ecr` repository. Run `aws ecr get-login-password --region AWS_REGION` to get the password ( substitute the `AWS_REGION`, `KP_DEFAULT_REPOSITORY_USERNAME` and `REGISTRY_URI` with values applicable for your situation ).
+- `TANZU_NET_USERNAME`: The `tanzu-net` username to be used to access https://network.tanzu.vmware.com/ ( between single quotes `'` ).
+- `TANZU_NET_PASSWORD`: The password for the `tanzu-net` user ( between single quotes `'` ).
+- `KP_DEFAULT_ECR_SERVER`: The server part of the `ecr` registry created in `step 2`. (for example `123456789.dkr.ecr.eu-west-1.amazonaws.com` ( the `uri` without the repository section ) ).
+- `KP_DEFAULT_ECR_REPOSITORY`: The repository used for the workloads. In this example we will use `tap`.
+
+
+------------------
+
 - `PROFILE-VALUE`: `full` or `dev-light`
 - `KP-DEFAULT-REPO`: is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. For example ( examples of the format for commonly used registries, update values to meet your repository ):
   - Harbor: `my-harbor.io/my-project/build-service`
@@ -210,15 +224,7 @@ Check if all `pods` are in `RUNNING` state
 
 `kubectl get pods -A`
 
-To access the `tap-gui` start a `port-forward` on the `minikube` host.
-
-Find the pod which is running `tap-gui` using `kubectl get pods -A`
-
-Expose the `tap-gui` service
-
-`kubectl port-forward server-5d9c7c458f-5scdt 7000:7000 -n tap-gui`
-
-Open a web browser on the same host ( or VM ) as where `minikube` is running and point it to `http://localhost:7000`
+Open a web browser on the same host ( or VM ) as where `minikube` is running and point it to the url specified as `tap_gui` -> `app_config` -> `app` -> `baseUrl` ( in the form of http://tap-gui.11.22.33.44.nip.io )
 
 ![](images/tap-gui.png)
 
@@ -228,63 +234,6 @@ Click through the four menu items on the left and see if they all show up withou
 ### Step 8
 
 Access `learning-center`.
-
-`kubectl get pods -A`
-
-To access the `tap-gui` start a `port-forward` on the `minikube` host.
-
-Find the pod which is running `tap-gui` using `kubectl get pods -A`
-
-Expose the `tap-gui` service
-
-`kubectl port-forward server-5d9c7c458f-5scdt 7000:7000 -n tap-gui`
-Find the `ip-address` of the `envoy` service
-
-`kubectl get svc -A | grep LoadBalancer`
-
-... or ( to directly get the `ip-address` )
-
-`kubectl get svc -A | grep LoadBalancer | grep envoy | grep tanzu-system-ingress | awk '{print $5}'`
-
-Open `tap-values.yaml` and uncomment the section: 
-
-```
-#cnrs:
-#  domain_name: 34.249.241.129.nip.io
-
-#learningcenter:
-#  ingressDomain: .nip.io
-```
-
-and enter prefix the `.nip.io` domain with the ip address found in the previous step. For example, if the ip address found in the previous step was `11.22.33.44`, enter:
-
-```
-cnrs:
-  domain_name: 11.22.33.44.nip.io
-
-learningcenter:
-  ingressDomain: 11.22.33.44.nip.io
-```
-
-Comment the following section:
-
-```
-excluded_packages:
-  - learningcenter.tanzu.vmware.com
-  - workshops.learningcenter.tanzu.vmware.com
-```
-
-like this:
-
-```
-#excluded_packages:
-#  - learningcenter.tanzu.vmware.com
-#  - workshops.learningcenter.tanzu.vmware.com
-```
-
-Update the `tap` installation with the new values:
-
-`tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.1 -n tap-install -f tap-values.yaml`
 
 Use `kubectl get apps -A` to verify that the `learningcenter` and `learningcenter-workshops` apps are `Reconcile succeeded`
 
