@@ -143,7 +143,7 @@ For example:
   - `Harbor`: my-project/supply-chain
   - `Dockerhub`: my-dockerhub-user
   - `Google Cloud Registry`: my-project/supply-chain
-- `Find`/`Replace` every occurrence of `aa.bb.cc.dd` with the `ip-address` return by the `minikube ip` command.
+- `Find`/`Replace` every occurrence of `aa.bb.cc.dd` with the `ip-address` returned by the `minikube ip` command.
 
 ------------------
 
