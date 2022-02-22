@@ -128,46 +128,30 @@ Preparing for installation of `tap`.
 
 Open the `tap-values.yaml` and replace the variables with the values which are applicable to your setup:
 
-
--------------
-
-- `KP_DEFAULT_REPOSITORY`: The `uri` to the image repository to be used for `build-service` ( the registry that was created in `step 2` ). In the `aws` console, go to the `ecr` section ( https://console.aws.amazon.com/ecr/repositories ) and copy-paste the `uri` of the registry to be used for `build-service`.
-- `KP_DEFAULT_REPOSITORY_USERNAME`: The username for the `ecr` repository ( in the case of an `ecr` registry this is usually `AWS` ).
-- `KP_DEFAULT_REPOSITORY_PASSWORD`: The password for the user for the `ecr` repository. Run `aws ecr get-login-password --region AWS_REGION` to get the password ( substitute the `AWS_REGION`, `KP_DEFAULT_REPOSITORY_USERNAME` and `REGISTRY_URI` with values applicable for your situation ).
+- `KP_DEFAULT_REPOSITORY`: The `uri` to the image repository to be used for `build-service`.
+- `KP_DEFAULT_REPOSITORY_USERNAME`: The username for the repository.
+- `KP_DEFAULT_REPOSITORY_PASSWORD`: The password for the user for the repository.
 - `TANZU_NET_USERNAME`: The `tanzu-net` username to be used to access https://network.tanzu.vmware.com/ ( between single quotes `'` ).
 - `TANZU_NET_PASSWORD`: The password for the `tanzu-net` user ( between single quotes `'` ).
-- `KP_DEFAULT_ECR_SERVER`: The server part of the `ecr` registry created in `step 2`. (for example `123456789.dkr.ecr.eu-west-1.amazonaws.com` ( the `uri` without the repository section ) ).
-- `KP_DEFAULT_ECR_REPOSITORY`: The repository used for the workloads. In this example we will use `tap`.
-
-
-------------------
-
-- `PROFILE-VALUE`: `full` or `dev-light`
-- `KP-DEFAULT-REPO`: is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. For example ( examples of the format for commonly used registries, update values to meet your repository ):
-  - Harbor: `my-harbor.io/my-project/build-service`
-  - Dockerhub: `my-dockerhub-user/build-service` or `index.docker.io/my-user/build-service`
-  - Google Cloud Registry `gcr.io/my-project/build-service`
-- `KP-DEFAULT-REPO-USERNAME`: The username that can write to the `KP-DEFAULT-REPO` repository
-- `KP-DEFAULT-REPO-PASSWORD`: The password for the user that can write to the `KP-DEFAULT-REPO` repository
-- `TANZU-NET-USERNAME`: Your tanzu net username ( https://network.tanzu.vmware.com )
-- `TANZU-NET-USERNAME`: Password for your tanzu net user
-- `SERVER-NAME`: is the hostname of the registry server ( the nodes on which `tap` is going to be installed needs to be able to resolve this hostname ( check this in particular when using `.local` domains ( add an entry to the `hosts` file on the nodes ) ) ). For example:
+- `KP_DEFAULT_REPOSITORY_SERVER`: The server hosting the repository to store the workload images.
+For example:
   - `Harbor`: my-harbor.io
   - `Dockerhub`: https://index.docker.io/v1/
   - `Google Cloud Registry`: gcr.io
-- `REPO-NAME`: The location where the workload images will be stored in the registry. Images will be written to `<SERVER-NAME>/<REPO-NAME>/<workload-name>`. For example:
+- `KP_DEFAULT_REPOSITORY_NAME`: The repository used for the workloads.
+For example:
   - `Harbor`: my-project/supply-chain
   - `Dockerhub`: my-dockerhub-user
   - `Google Cloud Registry`: my-project/supply-chain
+- `Find`/`Replace` every occurance of `aa.bb.cc.dd` with the `ip-address` return by the `minikube ip` command.
 
----
+------------------
 
 ### Step 6
 
 Installation of `tap`.
 
 If you haven’t already done so, set up environment variables for use during the installation by running:
-
 
 ```
 export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
@@ -334,3 +318,17 @@ Click on `runtime dependencies` to view/monitor the live resources this workload
 `tanzu package installed delete tap -n tap-install`
 
 ( don't forget to remove the `minikube` resources as well )
+
+---
+
+### Optional
+
+---
+
+### Opt-out telemetry collection
+
+To turn off telemetry collection on your Tanzu Application Platform installation. Ensure your Kubernetes context is pointing to the cluster where Tanzu Application Platform is installed.
+
+`kubectl apply -f opt-out-telemetry.yaml`
+
+---

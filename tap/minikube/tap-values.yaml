@@ -1,0 +1,51 @@
+profile: full
+
+ceip_policy_disclosed: true
+
+buildservice:
+  kp_default_repository: KP_DEFAULT_REPOSITORY
+  kp_default_repository_username: KP_DEFAULT_REPOSITORY_USERNAME
+  kp_default_repository_password: KP_DEFAULT_REPOSITORY_PASSWORD
+  tanzunet_username: TANZU_NET_USERNAME
+  tanzunet_password: TANZU_NET_PASSWORD
+  descriptor_name: tap-1.0.0-full
+  enable_automatic_dependency_updates: false
+
+supply_chain: basic
+
+ootb_supply_chain_basic:
+  registry:
+    server: KP_DEFAULT_REPOSITORY_SERVER
+    repository: KP_DEFAULT_REPOSITORY_NAME
+  gitops:
+    ssh_secret: ""
+
+cnrs:
+  provider: local
+  domain_name: aa.bb.cc.dd.nip.io
+
+learningcenter:
+  ingressDomain: aa.bb.cc.dd.nip.io
+
+metadata_store:
+  app_service_type: NodePort
+
+contour:
+  envoy:
+    service:
+      type: NodePort
+      nodePorts:
+        http: 30080
+        https: 30443
+
+tap_gui:
+  service_type: ClusterIP
+  ingressEnabled: true
+  ingressDomain: aa.bb.cc.dd.nip.io
+  app_config:
+    app:
+      baseUrl: http://tap-gui.aa.bb.cc.dd.nip.io
+    backend:
+        baseUrl: http://tap-gui.aa.bb.cc.dd.nip.io
+        cors:
+          origin: http://tap-gui.aa.bb.cc.dd.nip.io

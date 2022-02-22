@@ -423,3 +423,18 @@ Click on `runtime dependencies` to view/monitor the live resources this workload
 `tanzu package installed delete tap -n tap-install`
 
 ( don't forget to remove the `azure` resources as well )
+
+---
+
+### Optional
+
+---
+
+### Opt-out telemetry collection
+
+To turn off telemetry collection on your Tanzu Application Platform installation. Ensure your Kubernetes context is pointing to the cluster where Tanzu Application Platform is installed.
+
+`kubectl apply -f opt-out-telemetry.yaml`
+
+---
+
