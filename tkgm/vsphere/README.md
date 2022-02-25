@@ -108,7 +108,7 @@ Check the version of the `tanzu` cli
 `tanzu version`
 
 
-![](images/tanzu-plugin-list.png)
+![](images/tanzu-cli-version.png)
 
 
 ---
