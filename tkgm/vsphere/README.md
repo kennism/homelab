@@ -1,4 +1,4 @@
-# Install/Configure Tanzu Kubernetes Grid `tkgm` ( standalone / multicloud `tkg` ) version `1.4.1` on `vsphere 7`
+# Install/Configure Tanzu Kubernetes Grid `tkgm` ( standalone / multicloud `tkg` ) version `1.5.1` on `vsphere 7`
 
 This document describes how to install/configure the *standalone / multicloud* variant of `tkg` ( [Tanzu Kubernetes Grid](https://tanzu.vmware.com/kubernetes-grid) ) on `vsphere7`.
 
@@ -15,7 +15,6 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 - Access to a `linux` based (virtual)machine with, at least, 4GB memory *available* and the following software installed on it:
   - `docker`
   - `kind` ( https://sigs.k8s.io/kind )
-  - `helm` ( https://helm.sh/ )
 - At least 2 static IP addresses are required from your local LAN network ( 1 for each mgmt cluster management node and 1 for each workload cluster management node ).
 - A `customerconnect` account ( to download some additional tools ( https://customerconnect.vmware.com ) ).
 
@@ -25,30 +24,30 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 Download the following Tanzu Kubernetes components ( https://my.vmware.com/en/web/vmware/downloads/info/slug/infrastructure_operations_management/vmware_tanzu_kubernetes_grid/1_x )
 
 - VMware Tanzu CLI for Linux ( `tanzu-cli-bundle-linux-amd64.tar` )
-- Photon v3 Kubernetes v1.21.2 OVA ( `photon-3-kube-v1.21.2+vmware.1-tkg.3-6345993713475494409.ova` )
-- Ubuntu 2004 Kubernetes v1.21.2 OVA ( `ubuntu-2004-kube-v1.21.2+vmware.1-tkg.2-14542111852555356776.ova` )
-- kubectl cluster cli v1.21.2 for Linux ( `kubectl-linux-v1.21.2+vmware.1.gz` )
+- Photon v3 Kubernetes v1.22.5 OVA ( `photon-3-kube-v1.22.5+vmware.1-tkg.2-790a7a702b7fa129fb96be8699f5baa4.ova` )
+- Ubuntu 2004 Kubernetes v1.22.5 OVA ( `ubuntu-2004-kube-v1.22.5+vmware.1-tkg.2-f838b27ca494fee7083c0340e11ce243.ova` )
+- kubectl cluster cli v1.22.5 for Linux ( `kubectl-linux-v1.22.5+vmware.1.gz` )
 
 ---
 
 ### Step 2
-Import the kubernetes base image(s) template into vsphere.
+Import the kubernetes base image(s) template into `vsphere`.
 
 - In the vsphere Client, go to `Inventory`, right-click on `Tanzu-Datacenter` and select `Deploy OVF template`.
-- Select `Local file`, click the button to upload files, and navigate to the downloaded OVA file on your local machine ( `photon-3-kube-v1.21.2+vmware.1-tkg.3-6345993713475494409.ova` and/or `ubuntu-2004-kube-v1.21.2+vmware.1-tkg.2-14542111852555356776.ova` ).
+- Select `Local file`, click the button to upload files, and navigate to the downloaded OVA file on your local machine ( `photon-3-kube-v1.22.5+vmware.1-tkg.2-790a7a702b7fa129fb96be8699f5baa4.ova` and/or `ubuntu-2004-kube-v1.22.5+vmware.1-tkg.2-f838b27ca494fee7083c0340e11ce243.ova` ).
 - Step through the wizard accepting all the defaults for `Name and folder`, `Compute resource`, `Review details` and accept the `license agreement`.
-- At `Select storage`, make sure to set `Select virtual disk format` to `Thin Provision`.
-- At `Select networks`, select the desired network `Management`.
+- At `Select storage`, make sure to select the correct `datastore` and set `Select virtual disk format` to `Thin Provision`.
+- At `Select networks`, select the destination network `Management`.
 - Review the summary and click `Finish` to complete.
 
 *NOTE: Do not power on the VM*
 
-When the OVA deployment finishes, right-click the VM ( `photon-3-kube-v1.21.2+vmware.1` ) and select `Template` -> `Convert to Template`.
+When the OVA deployment finishes, right-click the VM ( `photon-3-kube-v1.22.5+vmware.1` ) and select `Template` -> `Convert to Template`.
 
 ---
 
 ### Step 3 ( Step can be skipped if Administrator user is used )
-In the vsphere Client, go to `Administration` -> `Access Control` -> `Roles`, and create a new role, for example `TKG`, with the following permissions.
+In the `vsphere` Client, go to `Administration` -> `Access Control` -> `Roles`, and create a new role, for example `TKG`, with the following permissions.
 
 | vsphere Object | Required Permission |
 | --- |--- |
@@ -98,23 +97,31 @@ Copy the downloaded VMware Tanzu CLI for Linux ( `tanzu-cli-bundle-linux-amd64.t
 ---
 
 ### Step 7
-Untar the VMware Tanzu CLI ( `tar xf tanzu-cli-bundle-linux-amd64.tar` )
+Untar the VMware Tanzu CLI ( `tar xf tanzu-cli-bundle-linux-amd64.tar` ) to an empty directory ( for example `~/tanzu-cli` )
 
-Copy the VMware Tanzu CLI binary to a location which is in the system path, for example: `/usr/local/bin` ( `cp /path/to/cli/core/v1.4.1/tanzu-core-linux_amd64 /usr/local/bin/tanzu` ).
+Copy the VMware Tanzu CLI binary to a location which is in the system path, for example: `/usr/local/bin` ( `cp ~/tanzu-cli/cli/core/v0.11.1/tanzu-core-linux_amd64 /usr/local/bin/tanzu` ).
 
 Make the destination file executable ( `chmod a=rx /usr/local/bin/tanzu` )
+
+Check the version of the `tanzu` cli
+
+`tanzu version`
+
+
+![](images/tanzu-plugin-list.png)
+
 
 ---
 
 ### Step 8
-Copy the downloaded kubectl cluster cli for Linux ( `kubectl-linux-v1.21.2+vmware.1.gz` ) file to the linux based environment with `docker` installed on it.
+Copy the downloaded kubectl cluster cli for Linux ( `kubectl-linux-v1.22.5+vmware.1.gz` ) file to the linux based environment with `docker` installed on it.
 
 ---
 
 ### Step 9
-Gunzip the kubectl cluster cli ( `kubectl-linux-v1.21.2+vmware.1.gz` )
+Gunzip the kubectl cluster cli ( `kubectl-linux-v1.22.5+vmware.1.gz` )
 
-Move the extracted file to a location which is in the system path, for example: `/usr/local/bin` ( `mv /path/to/kubectl-linux-v1.21.2+vmware.1 /usr/local/bin/kubectl` ).
+Move the extracted file to a location which is in the system path, for example: `/usr/local/bin` ( `mv /path/to/kubectl-linux-v1.22.5+vmware.1 /usr/local/bin/kubectl` ).
 
 Make the destination file executable ( `chmod a=rx /usr/local/bin/kubectl` )
 
