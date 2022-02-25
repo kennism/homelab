@@ -128,9 +128,25 @@ Make the destination file executable ( `chmod a=rx /usr/local/bin/kubectl` )
 ---
 
 ### Step 10
-Go to the directory where VMware Tanzu CLI was extracted in step 7 ( this directory must contain the directory `cli` ( don't cd into the `cli` directory ) ) and run `tanzu plugin install --local cli all`. Use `tanzu plugin list` to see if the plugins were installed successfully.
+Install the `tanzu-cli` plugins.
 
-![](images/tanzu-plugin-list.png)
+Verify no plugins have been installed yet.
+
+`tanzu plugin list`
+
+![](images/tkg-tanzu-cli-plugin-list-before.png)
+
+Install the plugins.
+
+`tanzu plugin sync`
+
+![](images/tkg-tanzu-cli-plugin-install.png)
+
+Verify the plugins have been installed.
+
+`tanzu plugin list`
+
+![](images/tkg-tanzu-cli-plugin-list-after.png)
 
 ---
 
