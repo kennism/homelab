@@ -55,6 +55,7 @@ In modern Linux systems, attempts to resolve hostnames that have a domain suffix
 - Copy the `ytt` ( https://carvel.dev/ytt ) overlays `overlay-dns-control-plane.yaml` and `overlay-dns-workers.yaml` to the `ytt` template overlay directory ( replace the `infrastructure-vsphere` part of the path in the `cp` command with desired target infrastructure ).
 
 `cp overlay-dns-control-plane.yaml ~/.config/tanzu/tkg/providers/infrastructure-vsphere/ytt`
+
 `cp overlay-dns-workers.yaml ~/.config/tanzu/tkg/providers/infrastructure-vsphere/ytt`
 
 - Edit _both_ overlay files and update the `nameservers` and `searchDomains` fields to match your network setup. The `dns` server(s) specified in the `nameservers` field should be able to resolve hosts within the `.local` domain ( an entry in the `hosts` file will not work, the `dns` needs to have an entry for those hosts ( for example a git repository or a docker images registry with a `.local` domains name should have a `dns` record in the `dns` server(s) provided in the `nameservers` field ) ).
