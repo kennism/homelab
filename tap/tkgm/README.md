@@ -43,7 +43,7 @@ _This needs to be done *before* the cluster is created._
 
 `cp overlay-cert-control-plane-and-workers.yaml ~/.config/tanzu/tkg/providers/infrastructure-vsphere/ytt`
 
-( See: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-cluster-lifecycle-secrets.html#custom-ca )
+( See: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-cluster-lifecycle-secrets.html#custom-ca )
 
 ---
 
@@ -60,7 +60,7 @@ In modern Linux systems, attempts to resolve hostnames that have a domain suffix
 
 - Edit _both_ overlay files and update the `nameservers` and `searchDomains` fields to match your network setup. The `dns` server(s) specified in the `nameservers` field should be able to resolve hosts within the `.local` domain ( an entry in the `hosts` file will not work, the `dns` needs to have an entry for those hosts ( for example a git repository or a docker images registry with a `.local` domains name should have a `dns` record in the `dns` server(s) provided in the `nameservers` field ) ).
 
-( See: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-tanzu-k8s-clusters-config-plans.html#resolve-local )
+( See: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-tanzu-k8s-clusters-config-plans.html#resolve-local )
 
 ---
 

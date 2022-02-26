@@ -184,6 +184,12 @@ On the linux (virtual)machine where the `tanzu CLI` and `docker` are installed r
 
 Create the *management* cluster by running the following command: `tanzu management-cluster create --file /path/to/mgmt-cluster-vpshere-local.yaml -v 9` ( takes approx 15 mins to complete )
 
+After completion, check if the *management* cluster is deployed correctly.
+
+`tanzu cluster list --include-management-cluster`
+
+![](images/tanzu-cluster-list-mgmt.png)
+
 NOTE:
 1) If creation of the *management* cluster fails, make sure you clean up your docker environment *before* the next attempt. For example, using commands like: `kind delete clusters --all` and/or `docker system prune -a` ( *these commands wipe out the entire `kind` clusters and `docker` images/cache/etc. Only execute these commands if you know what you are doing* ).
 2) A Tanzu Kubernetes Grid ( `tkgm` ) *management* cluster can also be created using a UI. Running `tanzu management-cluster create --ui`, opens the installer interface locally, at `http://127.0.0.1:8080` in your default browser.
@@ -203,22 +209,19 @@ Open `workload-cluster-vpshere-local.yaml` and update the following keys to refe
 ### Step 15
 Create the *workload* cluster by running the following command: `tanzu cluster create --file /path/to/workload-cluster-vpshere-local.yaml -v 9` ( takes approx 10 mins to complete )
 
-NOTE:
-1) If creation of the *workload* cluster fails, make sure you clean up your docker environment *before* the next attempt. For example, using commands like: `kind delete clusters --all` and/or `docker system prune -a` ( *these commands wipe out the entire `kind` clusters and `docker` images/cache/etc. Only execute these commands if you know what you are doing* ).
-2) A Tanzu Kubernetes Grid ( `tkgm` ) *workload* cluster can also be created using a UI. Running `tanzu cluster create --ui`, opens the installer interface locally, at `http://127.0.0.1:8080` in your default browser.
-
----
-
-### Step 16
-Check *management* and *workload* clusters are deployed correctly.
+After completion, check if the *workload* cluster is deployed correctly.
 
 `tanzu cluster list --include-management-cluster`
 
-![](images/tanzu-cluster-list.png)
+![](images/tanzu-cluster-list-work.png)
 
-The cluster node's VM's in vsphere
+The cluster node's VM's in `esxi`
 
-![](images/tkgm-vsphere-list.png)
+![](images/tkgm-esxi-list.png)
+
+NOTE:
+1) If creation of the *workload* cluster fails, make sure you clean up your docker environment *before* the next attempt. For example, using commands like: `kind delete clusters --all` and/or `docker system prune -a` ( *these commands wipe out the entire `kind` clusters and `docker` images/cache/etc. Only execute these commands if you know what you are doing* ).
+2) A Tanzu Kubernetes Grid ( `tkgm` ) *workload* cluster can also be created using a UI. Running `tanzu cluster create --ui`, opens the installer interface locally, at `http://127.0.0.1:8080` in your default browser.
 
 ---
 
@@ -287,7 +290,7 @@ Confirm that `cert-manager` is installed correctly ( status: `Reconcile succeede
 NOTES:
 - For debugging purposes, the package can be deleted as follows: `tanzu package installed delete cert-manager --namespace tkg-system`
 - To monitor the state, use command like: `kubectl get app/harbor -n [NAMESPACE] -o jsonpath="{.status.usefulErrorMessage}"` or `kubectl get app/harbor -n [NAMESPACE] -o jsonpath="{.status.deploy.stdout}"` or `kubectl get deployment -n [NAMESPACE]` or `kubectl get pods -n [NAMESPACE]`
-- For more info, see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-packages-cert-manager.html
+- For more info, see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-packages-cert-manager.html
 
 ----
 
@@ -297,7 +300,7 @@ NOTES:
 
 Copy the file `contour-data-values.yaml` to the linux (virtual)machine from where the `tanzu` commands are executed.
 
-For more info on the content of `contour-data-values.yaml` or how to configure it for other platforms, see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-packages-ingress-contour.html
+For more info on the content of `contour-data-values.yaml` or how to configure it for other platforms, see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-packages-ingress-contour.html
 
 Confirm that `contour` is available in your *workload* cluster
 
@@ -384,7 +387,7 @@ Point the browser on the client machine to `http://harbor.tanzu.local/`
 
 ![](images/harbor-welcome.png)
 
-Also see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-packages-harbor-registry.html
+Also see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-packages-harbor-registry.html
 
 
 NOTE:
