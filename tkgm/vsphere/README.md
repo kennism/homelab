@@ -277,9 +277,11 @@ Retrieve the version of the available `cert-manager` package
 
 `tanzu package available list cert-manager.tanzu.vmware.com -A`
 
+![](images/cert-mgr-avail-versions.png)
+
 Install `cert-manager` copy/paste the `package-name` and `version` from the output of the commands in the previous steps
 
-`tanzu package install cert-manager --package-name cert-manager.tanzu.vmware.com --version 1.1.0+vmware.2-tkg.1  --namespace tkg-system`
+`tanzu package install cert-manager --package-name cert-manager.tanzu.vmware.com --version 1.5.3+vmware.2-tkg.1  --namespace tkg-system`
 
 Confirm that `cert-manager` is installed correctly ( status: `Reconcile succeeded` )
 
