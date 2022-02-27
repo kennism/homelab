@@ -273,7 +273,7 @@ Confirm that `cert-manager` is available in your *workload* cluster
 
 `tanzu package available list -A`
 
-Retrieve the version of the available `cert-manager` package
+Retrieve the available version(s) of the `cert-manager` package
 
 `tanzu package available list cert-manager.tanzu.vmware.com -A`
 
