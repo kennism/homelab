@@ -344,6 +344,8 @@ Retrieve the version of the available package:
 
 `tanzu package available list harbor.tanzu.vmware.com -A`
 
+![](images/harbor-available-versions.png)
+
 Open file `harbor-data-values.yaml` and update the following parameters:
 - `harborAdminPassword`
 - `secretKey`
@@ -354,10 +356,9 @@ Open file `harbor-data-values.yaml` and update the following parameters:
 - `registry.secret`
 - `hostname`
 
-
 Install harbor by executing the following command
 
-`tanzu package install harbor --package-name harbor.tanzu.vmware.com --version 2.2.3+vmware.1-tkg.2 --values-file /path/to/harbor-data-values.yaml --namespace=harbor --create-namespace`
+`tanzu package install harbor --package-name harbor.tanzu.vmware.com --version 2.3.3+vmware.1-tkg.1 --values-file /path/to/harbor-data-values.yaml --namespace=harbor --create-namespace`
 
 Use `kubectl -n harbor get pods` to monitor if all the `harbor` related pods start up correctly.
 
