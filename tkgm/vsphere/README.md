@@ -348,10 +348,10 @@ Retrieve the version of the available package:
 
 Open file `harbor-data-values.yaml` and update the following parameters:
 - `harborAdminPassword`
-- `secretKey`
+- `secretKey` ( Must be a string of 16 chars )
 - `database.password`
 - `core.secret`
-- `core.xsrfKey`
+- `core.xsrfKey` ( Must be a string of 32 chars )
 - `jobservice.secret`
 - `registry.secret`
 - `hostname`
