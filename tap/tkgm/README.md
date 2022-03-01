@@ -108,6 +108,8 @@ Verify the deployment completed succesfully
 
 `kubectl get deployments`
 
+![](images/kubectl-get-deployments.png)
+
 Create a service of type `LoadBalancer` for the `nginx` deployment
 
 `kubectl apply -f nginx-service-loadbalancer.yaml`
@@ -115,6 +117,8 @@ Create a service of type `LoadBalancer` for the `nginx` deployment
 Verify the service is created and assigned an `EXTERNAL-IP`
 
 `kubectl get services`
+
+![](images/kubectl-get-services.png)
 
 If `EXTERNAL-IP` remains in state `<pending>`, a loadbalancer needs to be configured. In the next steps loadbalancer `metallb` will be installed/configured on the *workload* cluster.
 
@@ -140,9 +144,13 @@ Verify all pods within the `metallb-system` namespace are running
 
 `kubectl -n metallb-system get pods`
 
+![](images/metallb-pods.png)
+
 Verify that the `nginx` service of type `LoadBalancer` now has an actual IP address ( from the range specified in `metallb-config.yaml` ) listed under `EXTERNAL-IP`
 
 `kubectl get services`
+
+![](images/kubectl-get-services.png)
 
 Point your browser to the ip specified under `EXTERNAL-IP` to verify the endpoint is reachable.
 
@@ -159,15 +167,15 @@ NOTE: `nginx` and/or it's `service` of type `LoadBalancer` are *not* required fo
 ### Step 6
 Switch to the *management* cluster for `tap`.
 
-`kubectl config use-context mkennis-tkg-mgmt-vsphere-admin@mkennis-tkg-mgmt-vsphere`
+`kubectl config use-context mkennis-vsphere-tkg151-tap101-mgmt-admin@mkennis-vsphere-tkg151-tap101-mgmt`
 
 Prevent the *management* cluster from reconciling the `kapp-controller` in the *workload* cluster.
 
-`kubectl patch app/mkennis-tkg-tap0-vsphere-kapp-controller -n default -p '{"spec":{"paused":true}}' --type=merge`
+`kubectl patch app/mkennis-vsphere-tkg151-tap101-work-kapp-controller -n default -p '{"spec":{"paused":true}}' --type=merge`
 
 Switch to the *workload* cluster for `tap`
 
-`kubectl config use-context mkennis-tkg-tap0-vsphere-admin@mkennis-tkg-tap0-vsphere`
+`kubectl config use-context mkennis-vsphere-tkg151-tap101-work-admin@mkennis-vsphere-tkg151-tap101-work`
 
 Get the current deployments for the *workload* cluster and check if `kapp-controller` is deployed.
 
