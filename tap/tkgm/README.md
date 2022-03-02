@@ -219,6 +219,12 @@ Verify the current installed plugins
 
 ![](images/tap-tanzu-plugin-list-before.png)
 
+Make sure the generic tanzu plugins are properly installed
+
+`tanzu plugin sync`
+
+![](images/tap-tanzu-plugin-list-sync.png)
+
 Add the `tap` plugins ( from the `~/tanzu-cli` dir )
 
 `tanzu plugin install --local cli all`
@@ -239,13 +245,13 @@ Create a namespace called `tap-install` for deploying the component packages
 
 `kubectl create ns tap-install`
 
-Create a registry `secret` ( replace `[USERNAME]` and `[PASSWORD]` with the actual credentials for the [VMware Tanzu Network](https://network.tanzu.vmware.com) )
+Create a `secret` for `tap-registry` ( replace `[USERNAME]` and `[PASSWORD]` with the actual credentials for the [VMware Tanzu Network](https://network.tanzu.vmware.com) )
 
 `tanzu secret registry add tap-registry --username '[USERNAME]' --password '[PASSWORD]' --server registry.tanzu.vmware.com --export-to-all-namespaces --yes --namespace tap-install`
 
 Add the `Tanzu Application Platform` package repository to the cluster
 
-`tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.0 --namespace tap-install`
+`tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.1 --namespace tap-install`
 
 Get the status of the `Tanzu Application Platform` package repository, and ensure the status updates to `Reconcile succeeded`
 
