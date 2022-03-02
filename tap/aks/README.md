@@ -418,14 +418,6 @@ Click on `runtime dependencies` to view/monitor the live resources this workload
 
 ---
 
-### Delete tap
-
-`tanzu package installed delete tap -n tap-install`
-
-( don't forget to remove the `azure` resources as well )
-
----
-
 ### Optional
 
 ---
@@ -438,3 +430,10 @@ To turn off telemetry collection on your Tanzu Application Platform installation
 
 ---
 
+### Delete tap
+
+`tanzu package installed delete tap -n tap-install`
+
+( don't forget to remove the `azure` resources as well )
+
+---

@@ -301,7 +301,7 @@ Update the file `tap-values.yaml` to meet your environment:
 ### Step 13
 Install `tap`
 
-`tanzu package install tap -p tap.tanzu.vmware.com -v 1.0.0 --values-file tap-values.yaml -n tap-install`
+`tanzu package install tap -p tap.tanzu.vmware.com -v 1.0.1 --values-file tap-values.yaml -n tap-install`
 
 ( Even though the field `ceip_policy_disclosed` is set to `true`, there might still be an error stating `The field ceip_policy_disclosed in values.yaml must be set to true in order to proceed with the installation`. Check with the commands below if the deployment started ( in that case error can be ignored ) ).
 
@@ -336,7 +336,7 @@ Replace the *entire* `tap_gui` section ( probably two lines ) from your existing
 
 Update `tap` with the new configuration by running:
 
-`tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.0 -n tap-install -f tap-values.yaml`
+`tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.1 -n tap-install -f tap-values.yaml`
  
 ---
 
@@ -429,4 +429,8 @@ To turn off telemetry collection on your Tanzu Application Platform installation
 
 ---
 
+### Delete tap
 
+`tanzu package installed delete tap -n tap-install`
+
+---
