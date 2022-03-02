@@ -257,6 +257,8 @@ Get the status of the `Tanzu Application Platform` package repository, and ensur
 
 `tanzu package repository get tanzu-tap-repository --namespace tap-install`
 
+![](images/tap-repo-reconciled.png)
+
 List the available packages
 
 `tanzu package available list --namespace tap-install`
