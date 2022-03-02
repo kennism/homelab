@@ -321,25 +321,6 @@ and/or ( `ReconcileSucceeded True` indicated `tap` was installed succesfully )
 
 ---
 
-### Step 14
-Configure the Tanzu Application Platform GUI. 
-
-Extract the Blank Software Catalog from the Tanzu Application Network on your Git repository of choice. You'll link to that catalog-info.yaml file when you configure your catalog below. Go to https://network.tanzu.vmware.com navigate to `Tanzu Application Platform` -> `tap-gui-catalogs-latest` -> `Tanzu Application Platform GUI Blank Catalog`.
-
-Obtain the External IP of your LoadBalancer by running:
-
-`kubectl get svc -n tap-gui`
-
-Add the configuration for the `tap-gui` to your `tap-values.yaml` by using the `tap-values-gui-addon.yaml` template.
-
-Replace the *entire* `tap_gui` section ( probably two lines ) from your existing `tap-values.yaml` with the `tap_gui` section from `tap-values-gui-addon.yaml` and replace `[FQDN_OF_GIT_HOST]` and `[FQDN_OF_TAP_HOST]` with your relevant values.
-
-Update `tap` with the new configuration by running:
-
-`tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.1 -n tap-install -f tap-values.yaml`
- 
----
-
 ### Step 15
 
 To find out the endpoint at which the various `tap` services are running ( See columns `EXTERNAL-IP` and `PORT(S)` ):
