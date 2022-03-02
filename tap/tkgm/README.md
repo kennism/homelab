@@ -164,7 +164,7 @@ NOTE: `nginx` and/or it's `service` of type `LoadBalancer` are *not* required fo
 
 ---
 
-### Step 8
+### Step 6
 Before you can install packages, you have to accept the End User License Agreements (EULAs).
 
 To accept EULAs:
@@ -178,14 +178,14 @@ To accept EULAs:
 
 ---
 
-### Step 9
+### Step 7
 Add/update the `Tanzu Application Platform` specific `Tanzu CLI` plugins.
 
 Sign in to `Tanzu Network` and Navigate to `Tanzu Application Platform`. Click the `tanzu-cli-0.10.0` directory and download the CLI bundle corresponding to your operating system. For example, if your client operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
 
 ---
 
-### Step 10
+### Step 8
 Update the Tanzu CLI to the TAP version of the CLI.
 If they exist, delete any CLI files from previous installs by running:
 
@@ -239,7 +239,7 @@ Verify the `tap` plugins are added
 
 ---
 
-### Step 11
+### Step 9
 
 Create a namespace called `tap-install` for deploying the component packages
 
@@ -271,7 +271,7 @@ List version information of `tap`
 
 ---
 
-### Step 12
+### Step 10
 Update the file `tap-values.yaml` to meet your environment:
 
 - `PROFILE-VALUE`: `full` or `dev-light`
@@ -298,7 +298,7 @@ Update the file `tap-values.yaml` to meet your environment:
 
 ---
 
-### Step 13
+### Step 11
 Install `tap`
 
 `tanzu package install tap -p tap.tanzu.vmware.com -v 1.0.1 --values-file tap-values.yaml -n tap-install`
@@ -321,7 +321,7 @@ and/or ( `ReconcileSucceeded True` indicated `tap` was installed succesfully )
 
 ---
 
-### Step 15
+### Step 12
 
 Point your browser to the `url` which was apecified as `tap_gui` -> `app_config` -> `app` -> `baseUrl`
 
@@ -335,7 +335,7 @@ Point your browser to the `url` which was apecified as `tap_gui` -> `app_config`
 
 ---
 
-### Step 16
+### Step 13
 Deploy a workload. From the `Tanzu Application Platform GUI` portal, click on `Create` on the left side of the navigation bar to see the list of available accelerators. And choose `Spring PetClinic`.
 
 ![](images/spring-petclinic-acc.png)
