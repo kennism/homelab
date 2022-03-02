@@ -164,60 +164,6 @@ NOTE: `nginx` and/or it's `service` of type `LoadBalancer` are *not* required fo
 
 ---
 
-### Step 6
-Switch to the *management* cluster for `tap`.
-
-`kubectl config use-context mkennis-vsphere-tkg151-tap101-mgmt-admin@mkennis-vsphere-tkg151-tap101-mgmt`
-
-Prevent the *management* cluster from reconciling the `kapp-controller` in the *workload* cluster.
-
-`kubectl patch app/mkennis-vsphere-tkg151-tap101-work-kapp-controller -n default -p '{"spec":{"paused":true}}' --type=merge`
-
-Switch to the *workload* cluster for `tap`
-
-`kubectl config use-context mkennis-vsphere-tkg151-tap101-work-admin@mkennis-vsphere-tkg151-tap101-work`
-
-Get the current deployments for the *workload* cluster and check if `kapp-controller` is deployed.
-
-`kubectl get deployments -A`
-
-Delete the current `kapp-controller`
-
-`kubectl delete deployment kapp-controller -n tkg-system`
-
-Check if `kapp-controller` deployment is removed.
-
-`kubectl get deployments -A`
-
-Install `kapp-controller` version `0.31.0`
-
-`kubectl apply -f https://github.com/vmware-tanzu/carvel-kapp-controller/releases/download/v0.31.0/release.yml`
-
-Check if `kapp-controller` is deployed.
-
-`kubectl get deployments -A`
-
-Check if the correct verion of `kapp-controller` is installed
-
-`kubectl get deployment kapp-controller -n kapp-controller -o yaml | grep kapp-controller.carvel.dev/version`
-
----
-
-### Step 7
-Install `secretgen-controller` version `0.7.1` ( See: https://github.com/vmware-tanzu/carvel-secretgen-controller )
-
-`kapp deploy -y -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/download/v0.7.1/release.yml`
-
-Check if the `secretgen-controller` started.
-
-`kubectl get pods -A`
-
-Check if the correct version of the `secretgen-controller` was deployed
-
-`kubectl get deployment secretgen-controller -n secretgen-controller -oyaml | grep secretgen-controller.carvel.dev/version`
-
----
-
 ### Step 8
 Before you can install packages, you have to accept the End User License Agreements (EULAs).
 
@@ -247,43 +193,43 @@ If they exist, delete any CLI files from previous installs by running:
 
 Unpack the TAR file in the tanzu directory by running:
 
-`tar -xvf tanzu-framework-linux-amd64.tar -C ~/tanzu`
+`tar -xvf tanzu-framework-linux-amd64.tar -C ~/tanzu-cli`
 
-Navigate to the tanzu directory by running:
-
-`cd $HOME/tanzu`
-
-Set env var `TANZU_CLI_NO_INIT` to `true` to install the local versions of the CLI core and plug-ins you've downloaded:
-
-`export TANZU_CLI_NO_INIT=true`
-
-Update the core CLI by running:
-
-`tanzu update --local cli`
+Copy the file `~/tanzu-cli/cli/core/v0.11.1/tanzu-core-linux_amd64` to a localtion in the system path and rename it to `tanzu`.
 
 Check installation status for the core CLI by running:
 
 `tanzu version`
 
-Expected output: version: `v0.10.0`
+![](images/tanzu-cli-version.png)
 
-List the plug-ins to see if the `imagepullsecret` plug-in was previously installed by running:
+Expected output: version: `v0.11.1`
+
+Navigate to the tanzu directory by running:
+
+`cd $HOME/tanzu-cli`
+
+Set env var `TANZU_CLI_NO_INIT` to `true` to install the local versions of the CLI core and plug-ins you've downloaded:
+
+`export TANZU_CLI_NO_INIT=true`
+
+Verify the current installed plugins
 
 `tanzu plugin list`
 
-If installed, delete it by running:
+![](images/tap-tanzu-plugin-list-before.png)
 
-`tanzu plugin delete imagepullsecret`
-
-Install new plug-in versions by running:
+Add the `tap` plugins ( from the `~/tanzu-cli` dir )
 
 `tanzu plugin install --local cli all`
 
-Check installation status for plug-ins by running:
+![](images/tap-tanzu-plugin-list-install.png)
+
+Verify the `tap` plugins are added
 
 `tanzu plugin list`
 
-![](images/tap-plugins-list.png)
+![](images/tap-tanzu-plugin-list-after.png)
 
 ---
 
