@@ -323,11 +323,7 @@ and/or ( `ReconcileSucceeded True` indicated `tap` was installed succesfully )
 
 ### Step 15
 
-To find out the endpoint at which the various `tap` services are running ( See columns `EXTERNAL-IP` and `PORT(S)` ):
-
-`kubectl get services -A | grep -v none`
-
-![](images/tap-services.png)
+Point your browser to the `url` which was apecified as `tap_gui` -> `app_config` -> `app` -> `baseUrl`
 
 `tap-gui`
 
