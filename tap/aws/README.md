@@ -256,7 +256,7 @@ Find the endpoint for the `tap-gui` service
 
 `kubectl get svc -A | grep LoadBalancer`
 
-or ( to directly get the fqdn of the `tap-gui` endpoint )
+or ( to directly get the `fqdn` of the `tap-gui` endpoint )
 
 `kubectl get svc -A | grep LoadBalancer | grep tap-gui | awk '{print $5}'`
 
@@ -291,13 +291,13 @@ Open `tap-values.yaml` and uncomment the section:
 
 ```
 #cnrs:
-#  domain_name: 34.249.241.129.nip.io
+#  domain_name: .nip.io
 
 #learningcenter:
 #  ingressDomain: .nip.io
 ```
 
-and enter prefix the `.nip.io` domain with the ip address found in the previous step. For example, if the ip address found in the previous step was `11.22.33.44`, enter:
+... and prefix the `.nip.io` domain with the ip address found in the previous step. For example, if the ip address found in the previous step was `11.22.33.44`, enter:
 
 ```
 cnrs:

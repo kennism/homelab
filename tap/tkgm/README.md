@@ -319,6 +319,59 @@ and/or ( `ReconcileSucceeded True` indicated `tap` was installed succesfully )
 
 ![](images/tap-install-done.png)
 
+Check if all `pods` are in `RUNNING` state
+
+`kubectl get pods -A`
+
+Check if all `apps` are `Reconcile succeeded`
+
+`kubectl get apps -A`
+
+Find the endpoint for the `tap-gui` service
+
+`kubectl get svc -A | grep LoadBalancer`
+
+or ( to directly get the `ip` of the `tap-gui` endpoint )
+
+`kubectl get svc -A | grep LoadBalancer | grep tap-gui | awk '{print $5}'`
+
+Update `tap-values.yaml`, uncomment the entire `app_config` section under the `tap_gui` section ...
+
+```
+#  app_config:
+#    app:
+#      baseUrl: http://.nip.io:7000
+#    backend:
+#        baseUrl: http://.nip.io:7000
+#        cors:
+#          origin: http://.nip.io:7000
+
+```
+
+... and prefix the `.nip.io` domain with the `ip` address found in the previous step. For example, if the ip address found in the previous step was `11.22.33.44`, enter:
+
+```
+  app_config:
+    app:
+      baseUrl: http://11.22.33.44.nip.io:7000
+    backend:
+        baseUrl: http://11.22.33.44.nip.io:7000
+        cors:
+          origin: http://11.22.33.44.nip.io:7000
+
+```
+
+Update the `tap` installation with the new values:
+
+`tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.1 -n tap-install -f tap-values.yaml`
+
+After updating `tap`, point your browser to the `fqdn` used in the previous step(s)
+
+![](images/tap-gui.png)
+
+Click through the menu items on the left and see if they all show up without error(s).
+
+
 ---
 
 ### Step 12
@@ -338,6 +391,56 @@ Point your browser to the `url` which was apecified as `tap_gui` -> `app_config`
 ### Step 13
 
 Verify that `learning center` is deployed successfully.
+
+Enable `learning center`.
+
+Find the endpoint for the `envoy` service
+
+`kubectl get svc -A | grep LoadBalancer`
+
+... or ( to get the `ip` directly )
+
+`kubectl get svc -A | grep LoadBalancer | grep envoy | grep tanzu-system-ingress | awk '{print $5}'`
+
+Open `tap-values.yaml` and uncomment the section: 
+
+```
+#cnrs:
+#  domain_name: .nip.io
+
+#learningcenter:
+#  ingressDomain: .nip.io
+```
+
+... and prefix the `.nip.io` domain with the ip address found in the previous step. For example, if the ip address found in the previous step was `11.22.33.44`, enter:
+
+```
+cnrs:
+  domain_name: 11.22.33.44.nip.io
+
+learningcenter:
+  ingressDomain: 11.22.33.44.nip.io
+```
+
+Comment the following section:
+
+```
+excluded_packages:
+  - learningcenter.tanzu.vmware.com
+  - workshops.learningcenter.tanzu.vmware.com
+```
+
+like this:
+
+```
+#excluded_packages:
+#  - learningcenter.tanzu.vmware.com
+#  - workshops.learningcenter.tanzu.vmware.com
+```
+
+Update the `tap` installation with the new values:
+
+`tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.1 -n tap-install -f tap-values.yaml`
 
 Use `kubectl get apps -A` to verify that the `learningcenter` and `learningcenter-workshops` apps are `Reconcile succeeded`
 
