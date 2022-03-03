@@ -336,6 +336,32 @@ Point your browser to the `url` which was apecified as `tap_gui` -> `app_config`
 ---
 
 ### Step 13
+
+Verify that `learning center` is deployed successfully.
+
+Use `kubectl get apps -A` to verify that the `learningcenter` and `learningcenter-workshops` apps are `Reconcile succeeded`
+
+Use `kubectl get trainingportal.learningcenter.tanzu.vmware.com` to find the `fqdn` of the `learning-center` ui:
+
+![](images/tap-learning-center-endpoint.png)
+
+Point your browser to the endpoint:
+
+![](images/tap-learning-center-ui.png)
+
+Click on `Workshop Building Tutorial` to start a workshop
+
+It may take a while ...
+
+![](images/tap-learning-center-workshop-spinner.png)
+
+... before the workshop ui is ready.
+
+![](images/tap-learning-center-workshop-ui.png)
+
+---
+
+### Step 14
 Deploy a workload. From the `Tanzu Application Platform GUI` portal, click on `Create` on the left side of the navigation bar to see the list of available accelerators. And choose `Spring PetClinic`.
 
 ![](images/spring-petclinic-acc.png)
