@@ -132,7 +132,7 @@ Create the required secret
 
 Deploy `metallb`
 
-`kubectl apply -n metallb-system -f https://raw.githubusercontent.com/metallb/metallb/main/manifests/metallb.yaml`
+`kubectl apply -n metallb-system -f https://raw.githubusercontent.com/metallb/metallb/v0.12.1/manifests/metallb.yaml`
 
 Edit `metallb-config.yaml` to update the `adresses` range to meet the network setup.
 
