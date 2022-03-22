@@ -61,10 +61,6 @@ Check if the `artifacts repository` was created successfully
 
 ---
 
-# WORK IN PROGRESS BELOW THIS LINE !!!
-
----
-
 ### Step 3
 
 Download and install `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz` ( the variant that matches your operating system ) from ( https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/ ).
@@ -98,6 +94,10 @@ After completing the install, verify that `kapp-controller` and `secretgen-contr
 `kubectl get pods -A`
 
 ![](images/cluster-essentials-kubectl-pods.png)
+
+---
+
+# WORK IN PROGRESS BELOW THIS LINE !!!
 
 ---
 
