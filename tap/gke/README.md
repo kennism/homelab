@@ -19,17 +19,13 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 
 Setup/configure `gke` cluster, roles and resources. Create the `gke` cluster, roles and resources on `gcloud` by executing the steps below to create a `gke` cluster called `tap`.
 
-*NOTE: Make sure that the available quota for "Standard DSv2 Family vCPUs" is at least 16 ( see: https://portal.gcloud.com/#blade/Microsoft_gcloud_Capacity/QuotaMenuBlade/myQuotas )*
-
 ```
-EGION=europe-west3
+REGION=europe-west3
 CLUSTER_ZONE="$REGION-a"
 CLUSTER_VERSION=$(gcloud container get-server-config --format="yaml(defaultClusterVersion)" --region $REGION | awk '/defaultClusterVersion:/ {print $2}')
 gcloud beta container clusters create tap --region $REGION --cluster-version $CLUSTER_VERSION --machine-type "e2-standard-4" --num-nodes "4" --node-locations $CLUSTER_ZONE --enable-pod-security-policy
 gcloud container clusters get-credentials tap --region $REGION
 ```
-
-*NOTE: when running the `gcloud-cli` in a docker container ( https://docs.microsoft.com/en-us/cli/gcloud/run-gcloud-cli-docker ) make sure to copy `/root/.kube/config` to your local machine where you have `kubectl` installed using, for example, a command similar to this: `docker cp containerid:/root/.kube/config gke-config`*
 
 After completion of the script, check if the context was added to the kube config:
 
@@ -46,7 +42,11 @@ List which pods are running on the clusters:
 
 Apply the psp clusterrolebinding
 
-`kubectl create clusterrolebinding tap-psp-rolebinding --group=system:authenticated --clusterrole=psp:privileged`
+`kubectl create clusterrolebinding tap-psp-rolebinding --group=system:authenticated --clusterrole=gce:podsecuritypolicy:privileged`
+
+---
+
+# WORK IN PROGRESS
 
 ---
 
