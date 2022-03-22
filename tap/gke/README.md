@@ -20,7 +20,7 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 Setup/configure `gke` cluster, roles and resources. Create the `gke` cluster, roles and resources on `gcloud` by executing the steps below to create a `gke` cluster called `tap`.
 
 ```
-REGION=europe-west3
+REGION=europe-west4
 CLUSTER_ZONE="$REGION-a"
 CLUSTER_VERSION=$(gcloud container get-server-config --format="yaml(defaultClusterVersion)" --region $REGION | awk '/defaultClusterVersion:/ {print $2}')
 gcloud beta container clusters create tap --region $REGION --cluster-version $CLUSTER_VERSION --machine-type "e2-standard-4" --num-nodes "4" --node-locations $CLUSTER_ZONE --enable-pod-security-policy
