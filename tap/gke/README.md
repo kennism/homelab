@@ -288,7 +288,7 @@ Open `tap-values.yaml` and uncomment the section:
 
 ```
 #cnrs:
-#  domain_name: 34.249.241.129.nip.io
+#  domain_name: .nip.io
 
 #learningcenter:
 #  ingressDomain: .nip.io
