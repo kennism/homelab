@@ -97,10 +97,6 @@ After completing the install, verify that `kapp-controller` and `secretgen-contr
 
 ---
 
-# WORK IN PROGRESS BELOW THIS LINE !!!
-
----
-
 ### Step 4
 Download and install version `v0.11.1` of `tanzu-framework-linux-amd64.tar` ( the variant that matches your operating system ) from ( https://network.tanzu.vmware.com/products/tanzu-application-platform/ )
 
