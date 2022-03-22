@@ -39,26 +39,29 @@ List which pods are running on the clusters:
 
 ![](images/gcloud-kubectl-pods.png)
 
-
 Apply the psp clusterrolebinding
 
 `kubectl create clusterrolebinding tap-psp-rolebinding --group=system:authenticated --clusterrole=gce:podsecuritypolicy:privileged`
 
 ---
 
-# WORK IN PROGRESS
+### Step 2
+
+Create a container registry on `gcloud`
+
+Use this `cli` command to create an `artifacts repository` which will act as a container registry for `tap`.
+
+`gcloud artifacts repositories create tap-registry --repository-format=docker --location=europe-west4 --description=tap-registry`
+
+Check if the `artifacts repository` was created successfully
+
+`gcloud artifacts repositories list`
+
+![](images/gcloud-artifacts-repository.png)
 
 ---
 
-### Step 2
-
-Create an `acr` container registry on `gcloud`.
-
-In the `acr` section of the `gcloud` console ( https://portal.gcloud.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.ContainerRegistry%2Fregistries ). Click on `Create` and go through the wizard.
-
-Or use this `cli` command to create a `public` registry through the command line.
-
-`az acr create --resource-group tap --name tapdemomkennis1 --sku Standard --admin-enabled true`
+# WORK IN PROGRESS BELOW THIS LINE !!!
 
 ---
 
