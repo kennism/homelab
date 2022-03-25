@@ -63,7 +63,7 @@ Check if the `artifacts repository` was created successfully
 
 ### Step 3
 
-Create a serviceaccount for the registry
+Create a `service account` for the `tap-registry` registry
 
 `gcloud iam service-accounts create tap-svc --display-name='Service account for the TAP registry' --description='Used by TAP to access the registry'`
 
@@ -177,7 +177,7 @@ Open the `tap-values.yaml` and replace the variables with the values which are a
 - `KP_DEFAULT_REPOSITORY_PASSWORD`: The content of the file [project-name]-key-b64.json which was created in `step 3` ( needs to be in one single line ).
 - `TANZU_NET_USERNAME`: The `tanzu-net` username to be used to access https://network.tanzu.vmware.com/ ( between single quotes `'` ).
 - `TANZU_NET_PASSWORD`: The password for the `tanzu-net` user ( between single quotes `'` ).
-- `KP_DEFAULT_ACR_SERVER`: To find the first part of the `uri` ( until the `build-service` section ) in the `gcp` web console, go to: `Artifact Registry` -> `Repositories` -> `tap-registry` and click on the `Copy` button near the breadcrumb.
+- `KP_DEFAULT_ACR_SERVER`: To find the first part of the `uri` ( until the `build-service` section ) in the `gcp` web console, go to: `Artifact Registry` -> `Repositories` -> `tap-registry` and click on the `Copy` button near the breadcrumb. Paste the value as the value for this property.
 - `KP_DEFAULT_ACR_REPOSITORY`: The repository used for the workloads. In this example we will use `tanzu`.
 
 ---
@@ -187,7 +187,6 @@ Open the `tap-values.yaml` and replace the variables with the values which are a
 Installation of `tap`.
 
 If you haven’t already done so, set up environment variables for use during the installation by running:
-
 
 ```
 export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
