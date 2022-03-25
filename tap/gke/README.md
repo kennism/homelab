@@ -47,9 +47,9 @@ Apply the psp clusterrolebinding
 
 ### Step 2
 
-Create a container registry on `gcloud`
+Create a `repository` in the `artifact registry` in `gcp`
 
-Use this `cli` command to create an `artifacts repository` which will act as a container registry for `tap`.
+Use this `cli` command to create an `artifact repository` which will act as a container registry for `tap`.
 
 `gcloud artifacts repositories create tap-registry --repository-format=docker --location=europe-west4 --description=tap-registry`
 
@@ -62,6 +62,26 @@ Check if the `artifacts repository` was created successfully
 ---
 
 ### Step 3
+
+Create a serviceaccount for the registry
+
+`gcloud iam service-accounts create tap-svc --display-name='Service account for the TAP registry' --description='Used by TAP to access the registry'`
+
+Assign the role `Artifact Registry Writer` to the `tap-svc` service account for the `tap-registry` registry ( replace `[project-name]` with the actual project name )
+
+`gcloud artifacts repositories add-iam-policy-binding tap-registry --member='serviceAccount:tap-svc@[project-name].iam.gserviceaccount.com' --role='roles/artifactregistry.writer' --location=europe-west4`
+
+Create a private key for the service account ( replace `[project-name]` with the actual project name )
+
+`gcloud iam service-accounts keys create key.json --iam-account=tap-svc@[project-name].iam.gserviceaccount.com`
+
+Create a b64 encoded version of the key ( replace `[project-name]` with the actual project name )
+
+`base64 [project-name]-key.json > [project-name]-key-b64.json`
+
+---
+
+### Step 4
 
 Download and install `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz` ( the variant that matches your operating system ) from ( https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/ ).
 
@@ -97,7 +117,8 @@ After completing the install, verify that `kapp-controller` and `secretgen-contr
 
 ---
 
-### Step 4
+### Step 5
+
 Download and install version `v0.11.1` of `tanzu-framework-linux-amd64.tar` ( the variant that matches your operating system ) from ( https://network.tanzu.vmware.com/products/tanzu-application-platform/ )
 
 Create a temporary directory and extract the `tanzu-framework-linux-amd64.tar` file here.
@@ -145,23 +166,23 @@ Verify the cli plugins are installed ( for `tap` version `1.0.2` it is expected 
 
 ---
 
-### Step 5
+### Step 6
 
 Preparing for installation of `tap`.
 
 Open the `tap-values.yaml` and replace the variables with the values which are applicable to your setup:
 
-- `KP_DEFAULT_REPOSITORY`: The `uri` to the image repository to be used for `build-service` ( the registry that was created in `step 2` ).
-- `KP_DEFAULT_REPOSITORY_USERNAME`: The username for the `acr` repository ( in the case of an `acr` registry this is usually `00000000-0000-0000-0000-000000000000` ).
-- `KP_DEFAULT_REPOSITORY_PASSWORD`: Run `az acr login --name fancyregistryname --expose-token`. Copy the `accessToken` value.
+- `KP_DEFAULT_REPOSITORY`: The `uri` to the image repository to be used for `build-service` ( the registry that was created in `step 2` ) in the form of `[location]-docker.pkg.dev/[project-name]/tap-registry/build-service`. To find the first part of the `uri` ( until the `build-service` section ) in the `gcp` web console, go to: `Artifact Registry` -> `Repositories` -> `tap-registry` and click on the `Copy` button near the breadcrumb. Paste the value in this property and add `/build-service`
+- `KP_DEFAULT_REPOSITORY_USERNAME`: The username of the service account ( created in `step 3` ) for `tap` to access the repository. In case of authenticating with a `base64 encoded json key`, use value `_json_key_base64`
+- `KP_DEFAULT_REPOSITORY_PASSWORD`: The content of the file [project-name]-key-b64.json which was created in `step 3` ( needs to be in one single line ).
 - `TANZU_NET_USERNAME`: The `tanzu-net` username to be used to access https://network.tanzu.vmware.com/ ( between single quotes `'` ).
 - `TANZU_NET_PASSWORD`: The password for the `tanzu-net` user ( between single quotes `'` ).
-- `KP_DEFAULT_ACR_SERVER`: The server part of the `acr` registry created in `step 2`. (for example `fancyregistryname.gcloudcr.io` ( the `uri` without the repository section ) ).
-- `KP_DEFAULT_ACR_REPOSITORY`: The repository used for the workloads. In this example we will use `tap`.
+- `KP_DEFAULT_ACR_SERVER`: To find the first part of the `uri` ( until the `build-service` section ) in the `gcp` web console, go to: `Artifact Registry` -> `Repositories` -> `tap-registry` and click on the `Copy` button near the breadcrumb.
+- `KP_DEFAULT_ACR_REPOSITORY`: The repository used for the workloads. In this example we will use `tanzu`.
 
 ---
 
-### Step 6
+### Step 7
 
 Installation of `tap`.
 
@@ -205,7 +226,7 @@ List the available `tap` version(s) in this repository:
 
 ---
 
-### Step 7
+### Step 8
 
 Install `tap`
 
@@ -268,7 +289,7 @@ After updating `tap`, point your browser to the `ip-address` used in the previou
 Click through the menu items on the left and see if they all show up without error(s).
 
 ---
-### Step 8
+### Step 9
 
 Enable `learning center`.
 
@@ -344,7 +365,7 @@ It may take a while ...
 
 
 ---
-### Step 9
+### Step 10
 
 Deploy demo workload `tanzu-java-web-app`
 
@@ -380,7 +401,7 @@ Use `tanzu apps workload get tanzu-java-web-app --namespace dev` to get the URL 
 
 ---
 
-### Step 10
+### Step 11
 
 Register demo workload `tanzu-java-web-app` in `tap-gui`
 
