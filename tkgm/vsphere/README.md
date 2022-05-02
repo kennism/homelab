@@ -188,6 +188,12 @@ After completion, check if the *management* cluster is deployed correctly.
 
 ![](images/tanzu-cluster-list-mgmt.png)
 
+Check if the `cluster` and `kubernetes-releases` plugins were installed for the `tanzu` cli
+
+`tanzu plugin list`
+
+![](images/tanzu-cli-list-mgmt.png)
+
 NOTE:
 1) If creation of the *management* cluster fails, make sure you clean up your docker environment *before* the next attempt. For example, using commands like: `kind delete clusters --all` and/or `docker system prune -a` ( *these commands wipe out the entire `kind` clusters and `docker` images/cache/etc. Only execute these commands if you know what you are doing* ).
 2) A Tanzu Kubernetes Grid ( `tkgm` ) *management* cluster can also be created using a UI. Running `tanzu management-cluster create --ui`, opens the installer interface locally, at `http://127.0.0.1:8080` in your default browser.
