@@ -206,7 +206,7 @@ Preparing deployment of *workload* cluster. Make a copy of the yaml that was use
 Open `workload-cluster-vpshere-local.yaml` and update the following keys to refect your setup:
 - `CLUSTER_NAME`: The name of the *workload* cluster. For example: `tkg-workload-vsphere-local`
 - `VSPHERE_CONTROL_PLANE_ENDPOINT`: The static IP on which the `*workload cluster* control plane` will be running ( must be a static IP which is on the same network as the DHCP server but make sure there's no overlap in DHCP range )
-- `VSPHERE_NETWORK`: Set to the `Workload` network
+- `VSPHERE_NETWORK`: Set to the `Workload` network ( if applicable/available )
 
 ---
 
@@ -219,9 +219,9 @@ After completion, check if the *workload* cluster is deployed correctly.
 
 ![](images/tanzu-cluster-list-work.png)
 
-The cluster node's VM's in `esxi`
+The cluster node's VM's in `vsphere`
 
-![](images/tkgm-esxi-list.png)
+![](images/tkgm-vsphere-list.png)
 
 NOTE:
 1) If creation of the *workload* cluster fails, make sure you clean up your docker environment *before* the next attempt. For example, using commands like: `kind delete clusters --all` and/or `docker system prune -a` ( *these commands wipe out the entire `kind` clusters and `docker` images/cache/etc. Only execute these commands if you know what you are doing* ).
