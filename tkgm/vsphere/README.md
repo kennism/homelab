@@ -15,7 +15,7 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 - Access to a `linux` based (virtual)machine with, at least, 4GB memory *available* and the following software installed on it:
   - `docker`
   - `kind` ( https://sigs.k8s.io/kind )
-- At least 2 static IP addresses are required from your local LAN network ( 1 for each mgmt cluster management node and 1 for each workload cluster management node ).
+- At least 2 static `ip address` are required from your local LAN network ( 1 for each mgmt cluster management node and 1 for each workload cluster management node ).
 - A `customerconnect` account ( to download some additional tools ( https://customerconnect.vmware.com ) ).
 
 ---
@@ -168,9 +168,9 @@ In particular, the values of the following keys:
 - `VSPHERE_TLS_THUMBPRINT`: The thumbprint of the `vsphere` SSL certificate. This can be obtained, for example, by running `openssl x509 -in /etc/vmware-vpx/ssl/rui.crt -fingerprint -sha1 -noout | cut -d'=' -f2` on an `ssh` shell on the `vcsa` host *or* copy from browser ( click on `certificate information` -> `details` -> `thumbprint` ( paste thumbprint in caps and a `:` after every second character ( `AA:BB:CC` etc ) ) )
 - `OS_NAME`: Depends on which base image was imported in step 2. Use `ubuntu` for the *ubuntu* based image or `photon` for the *photon* based image.
 - `OS_VERSION`: Depends on which base image was imported in step 2. Use `"20.04"` for the *ubuntu* based image or `"3"` for the *photon* based image.
-- `VSPHERE_CONTROL_PLANE_ENDPOINT`: The static IP on which the `*management cluster* control plane` will be running ( must be a static IP which is on the same network as the DHCP server but make sure there's no overlap in DHCP range )
+- `VSPHERE_CONTROL_PLANE_ENDPOINT`: The static `ip address` on which the `*management cluster* control plane` will be running ( must be a static `ip address` which is on the same network as the DHCP server but make sure there's no overlap in DHCP range )
 - `VSPHERE_NETWORK`: Set to the `Management` network
-- `VSPHERE_SERVER`: The IP address of the `vsphere` server ( `fqdn` does not always seem to work, preferably enter the IP here )
+- `VSPHERE_SERVER`: The `ip address` of the `vsphere` server ( `fqdn` does not always seem to work, preferably enter the `ip address` here )
 - `VSPHERE_PASSWORD`: The password of a `vsphere` adminstrator account. On a linux box, set environment variable `MK_VSPHERE_PASSWORD`: `export MK_VSPHERE_PASSWORD=myTopSecretPassword`. To get the encrypted value run: ``export MK_VSPHERE_PASSWORD_ENC=`echo -n "$MK_VSPHERE_PASSWORD" | base64 -w0`;echo -e "<encoded:$MK_VSPHERE_PASSWORD_ENC>"``
 
 ---
@@ -205,7 +205,7 @@ Preparing deployment of *workload* cluster. Make a copy of the yaml that was use
 
 Open `workload-cluster-vpshere-local.yaml` and update the following keys to refect your setup:
 - `CLUSTER_NAME`: The name of the *workload* cluster. For example: `tkg-workload-vsphere-local`
-- `VSPHERE_CONTROL_PLANE_ENDPOINT`: The static IP on which the `*workload cluster* control plane` will be running ( must be a static IP which is on the same network as the DHCP server but make sure there's no overlap in DHCP range )
+- `VSPHERE_CONTROL_PLANE_ENDPOINT`: The static `ip address` on which the `*workload cluster* control plane` will be running ( must be a static `ip address` which is on the same network as the DHCP server but make sure there's no overlap in DHCP range )
 - `VSPHERE_NETWORK`: Set to the `Workload` network ( if applicable/available )
 
 ---
@@ -444,7 +444,7 @@ Confirm that the `nginx-ingress` ingress was created successfully.
 
 ![](images/kubectl-get-ingress.png)
 
-Add the ip of the workernode to the hosts file of your client machine
+Add the `ip address` of the workernode to the hosts file of your client machine
 
 `192.168.1.195	nginx.tanzu.local`
 
