@@ -33,7 +33,7 @@ Download the following Tanzu Kubernetes components ( https://my.vmware.com/en/we
 ### Step 2
 Import the kubernetes base image(s) template into `vsphere`.
 
-- In the vsphere Client, go to `Inventory`, right-click on `Tanzu-Datacenter` and select `Deploy OVF template`.
+- In the `vsphere` Client, go to `Inventory`, right-click on `Tanzu-Datacenter` and select `Deploy OVF template`.
 - Select `Local file`, click the button to upload files, and navigate to the downloaded OVA file on your local machine ( `photon-3-kube-v1.22.8+vmware.1-tkg.1-d69148b2a4aa7ef6d5380cc365cac8cd.ova` and/or `ubuntu-2004-kube-v1.22.8+vmware.1-tkg.2-5eab4250bf00d5e78c0f04257d03360e.ova` ).
 - Step through the wizard accepting all the defaults for `Name and folder`, `Compute resource`, `Review details` and accept the `license agreement`.
 - At `Select storage`, make sure to select the correct `datastore` and set `Select virtual disk format` to `Thin Provision`.
@@ -49,7 +49,7 @@ When the OVA deployment finishes, right-click the VM ( `photon-3-kube-v1.22.8+vm
 ### Step 3 ( Step can be skipped if Administrator user is used )
 In the `vsphere` Client, go to `Administration` -> `Access Control` -> `Roles`, and create a new role, for example `TKG`, with the following permissions.
 
-| vsphere Object | Required Permission |
+| `vsphere` Object | Required Permission |
 | --- |--- |
 | Cns | Searchable |
 | Datastore | Allocate space<br/>Browse datastore<br/>Low level file operations |
@@ -149,7 +149,7 @@ Verify the plugins have been installed.
 ---
 
 ### Step 11
-In order for the Tanzu CLI to connect to vsphere from the machine on which you run it, you must provide the public key part of an SSH key pair to Tanzu Kubernetes Grid when you deploy the management cluster. If you do not already have one on the machine on which you run the CLI, you can use a tool such as `ssh-keygen` to generate a key pair.
+In order for the Tanzu CLI to connect to `vsphere` from the machine on which you run it, you must provide the public key part of an SSH key pair to Tanzu Kubernetes Grid when you deploy the management cluster. If you do not already have one on the machine on which you run the CLI, you can use a tool such as `ssh-keygen` to generate a key pair.
 
 On the machine on which you will run the Tanzu CLI, run the following `ssh-keygen` command.
 
@@ -165,13 +165,13 @@ Open `mgmt-cluster-vpshere-local.yaml` and update the values of the keys to refe
 In particular, the values of the following keys:
 - `CLUSTER_NAME`: The name of the *management* cluster. For example: `tkg-management-vsphere-local`
 - `VSPHERE_SSH_AUTHORIZED_KEY`: The public key of the keypair generated in the previous step ( including the `ssh-rsa` at the beginning and the email address at the end ).
-- `VSPHERE_TLS_THUMBPRINT`: The thumbprint of the vsphere SSL certificate. This can be obtained, for example, by running `openssl x509 -in /etc/vmware-vpx/ssl/rui.crt -fingerprint -sha1 -noout | cut -d'=' -f2` on an `ssh` shell on the `vcsa` host *or* copy from browser ( click on `certificate information` -> `details` -> `thumbprint` ( paste thumbprint in caps and a `:` after every second character ( `AA:BB:CC` etc ) ) )
+- `VSPHERE_TLS_THUMBPRINT`: The thumbprint of the `vsphere` SSL certificate. This can be obtained, for example, by running `openssl x509 -in /etc/vmware-vpx/ssl/rui.crt -fingerprint -sha1 -noout | cut -d'=' -f2` on an `ssh` shell on the `vcsa` host *or* copy from browser ( click on `certificate information` -> `details` -> `thumbprint` ( paste thumbprint in caps and a `:` after every second character ( `AA:BB:CC` etc ) ) )
 - `OS_NAME`: Depends on which base image was imported in step 2. Use `ubuntu` for the *ubuntu* based image or `photon` for the *photon* based image.
 - `OS_VERSION`: Depends on which base image was imported in step 2. Use `"20.04"` for the *ubuntu* based image or `"3"` for the *photon* based image.
 - `VSPHERE_CONTROL_PLANE_ENDPOINT`: The static IP on which the `*management cluster* control plane` will be running ( must be a static IP which is on the same network as the DHCP server but make sure there's no overlap in DHCP range )
 - `VSPHERE_NETWORK`: Set to the `Management` network
-- `VSPHERE_SERVER`: The IP address of the vsphere server ( `fqdn` does not always seem to work, preferably enter the IP here )
-- `VSPHERE_PASSWORD`: The password of a vsphere adminstrator account. On a linux box, set environment variable `MK_VSPHERE_PASSWORD`: `export MK_VSPHERE_PASSWORD=myTopSecretPassword`. To get the encrypted value run: ``export MK_VSPHERE_PASSWORD_ENC=`echo -n "$MK_VSPHERE_PASSWORD" | base64 -w0`;echo -e "<encoded:$MK_VSPHERE_PASSWORD_ENC>"``
+- `VSPHERE_SERVER`: The IP address of the `vsphere` server ( `fqdn` does not always seem to work, preferably enter the IP here )
+- `VSPHERE_PASSWORD`: The password of a `vsphere` adminstrator account. On a linux box, set environment variable `MK_VSPHERE_PASSWORD`: `export MK_VSPHERE_PASSWORD=myTopSecretPassword`. To get the encrypted value run: ``export MK_VSPHERE_PASSWORD_ENC=`echo -n "$MK_VSPHERE_PASSWORD" | base64 -w0`;echo -e "<encoded:$MK_VSPHERE_PASSWORD_ENC>"``
 
 ---
 
