@@ -435,6 +435,8 @@ Delete the *workload* cluster using the following command
 
 `tanzu cluster delete mkennis-azure-tkg-workload -v 9`
 
+![](images/tanzu-delete-workload-cluster.png)
+
 The command returns the prompt immediately, deletion of the *workload* cluster takes place in the backgroud and can be monitored using 
 
 `tanzu cluster list --include-management-cluster`
