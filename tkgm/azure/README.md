@@ -190,7 +190,7 @@ NOTE:
 ---
 
 ### Step 12
-To prepare for creating the *workload* cluster, make a copy of `tkg-azure-mgmt-cluster.yaml` used in Step 10 ( this document will assume the filename of the copy is `tkg-azure-workload-cluster.yaml` ) and update the following field:
+To prepare for creating the *workload* cluster, make a copy of `tkg-azure-mgmt-cluster.yaml` used in `Step 10` ( this document will assume the filename of the copy is `tkg-azure-workload-cluster.yaml` ) and update the following field:
 
 - `CLUSTER_NAME`: The name of the *workload* cluster to be created
 
@@ -265,7 +265,7 @@ NOTES:
 
 Copy the file `contour-data-values.yaml` to the linux (virtual)machine from where the `tanzu` commands are executed.
 
-For more info on the content of `contour-data-values.yaml` or how to configure it for other platforms, see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-packages-ingress-contour.html
+For more info on the content of `contour-data-values.yaml` or how to configure it for other platforms, see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-packages-ingress-contour.html
 
 Confirm that `contour` is available in your *workload* cluster
 
@@ -275,9 +275,13 @@ Retrieve the version of the available `contour` package
 
 `tanzu package available list contour.tanzu.vmware.com -A`
 
+![](images/tanzu-package-avail-contour-list.png)
+
 Install `contour` copy/paste the `package-name` and `version` from the output of the commands in the previous steps
 
-`tanzu package install contour --package-name contour.tanzu.vmware.com --version 1.17.2+vmware.1-tkg.2 --values-file contour-data-values.yaml --namespace tkg-system`
+`tanzu package install contour --package-name contour.tanzu.vmware.com --version 1.18.2+vmware.1-tkg.1 --values-file contour-data-values.yaml --namespace tkg-system`
+
+![](images/tanzu-package-contour-install.png)
 
 Confirm that `contour` is installed correctly ( status: `Reconcile succeeded` )
 
