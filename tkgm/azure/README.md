@@ -32,11 +32,17 @@ Copy the downloaded VMware Tanzu CLI for Linux ( `tanzu-cli-bundle-linux-amd64.t
 ---
 
 ### Step 3
-Untar the VMware Tanzu CLI ( `tar xf tanzu-cli-bundle-linux-amd64.tar` )
+Untar the VMware Tanzu CLI ( `tar xf tanzu-cli-bundle-linux-amd64.tar` ) in an empty directory ( for example `~/tanzu-cli` )
 
-Copy the VMware Tanzu CLI binary to a location which is in the system path, for example: `/usr/local/bin` ( `cp /path/to/cli/core/v1.5.3/tanzu-core-linux_amd64 /usr/local/bin/tanzu` ).
+Copy the VMware Tanzu CLI binary to a location which is in the system path, for example: `/usr/local/bin` ( `cp ~/tanzu-cli/cli/core/v0.11.4/tanzu-core-linux_amd64 /usr/local/bin/tanzu` ).
 
 Make the destination file executable ( `chmod a=rx /usr/local/bin/tanzu` )
+
+Check the version of the `tanzu` cli
+
+`tanzu version`
+
+![](images/tanzu-cli-version.png)
 
 ---
 
@@ -55,9 +61,25 @@ Make the destination file executable ( `chmod a=rx /usr/local/bin/kubectl` )
 ---
 
 ### Step 6
-Go to the directory where VMware Tanzu CLI was extracted in step 7 ( this directory must contain the directory `cli` ( don't cd into the `cli` directory ) ) and run `tanzu plugin install --local cli all`. Use `tanzu plugin list` to see if the plugins were installed successfully.
+Install the `tanzu-cli` plugins.
 
-![](images/tanzu-plugin-list.png)
+Verify no plugins have been installed yet.
+
+`tanzu plugin list`
+
+![](images/tkg-tanzu-cli-plugin-list-before.png)
+
+Install the plugins.
+
+`tanzu plugin sync`
+
+![](images/tkg-tanzu-cli-plugin-install.png)
+
+Verify the plugins have been installed.
+
+`tanzu plugin list`
+
+![](images/tkg-tanzu-cli-plugin-list-after.png)
 
 ---
 
