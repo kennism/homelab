@@ -217,8 +217,6 @@ NOTE:
 
 ---
 
----
-
 ### Add the clusters to the kubectl config
 In case the newly created clusters were not added to the `.kube/config` ( if the cluster is not in the list shown as output of this command: `kubectl config get-contexts` )
 
