@@ -311,6 +311,8 @@ Retrieve the version of the available package:
 
 `tanzu package available list harbor.tanzu.vmware.com -A`
 
+![](images/tanzu-package-avail-harbor-list.png)
+
 Open file `harbor-data-values.yaml` and update the following parameters:
 - `harborAdminPassword`
 - `secretKey`
