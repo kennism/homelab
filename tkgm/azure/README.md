@@ -325,7 +325,9 @@ Open file `harbor-data-values.yaml` and update the following parameters:
 
 Install harbor by executing the following command
 
-`tanzu package install harbor --package-name harbor.tanzu.vmware.com --version 2.2.3+vmware.1-tkg.2 --values-file /path/to/harbor-data-values.yaml --namespace=harbor --create-namespace`
+`tanzu package install harbor --package-name harbor.tanzu.vmware.com --version 2.3.3+vmware.1-tkg.1 --values-file /path/to/harbor-data-values.yaml --namespace=harbor --create-namespace`
+
+![](images/tanzu-package-harbor-install.png)
 
 Use `kubectl -n harbor get pods` to monitor if all the `harbor` related pods start up correctly.
 
