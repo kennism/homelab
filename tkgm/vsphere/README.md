@@ -346,8 +346,6 @@ NOTE:
 
 *Note: Packages `contour` and `cert-manager` are prerequisites for `harbor`. Make sure the steps for installing `contour` and `cert-manager` were executed prior to installing `harbor`.*
 
-*Note: Make sure that the VM type which is used for the _workload_ cluster supports _Premium Storage_ ( https://docs.microsoft.com/en-us/azure/virtual-machines/premium-storage-performance ) _and_ has sufficient max. number of allowed disks ( See: notes at the end of this chapter )*
-
 Confirm that the Harbor package is available in the cluster:
 
 `tanzu package available list -A`
@@ -410,7 +408,6 @@ Also see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tan
 
 
 NOTE:
-- When pods remain in `Pending` state ( `kubectl get pods -n harbor` ), do a describe of the `Pending` pod ( in this example the pod is `harbor-trivy-0` but it can be any pod in the `harbor` namespace ) using `kubectl describe harbor-trivy-0 -n harbor`. If there are messages like `0/2 nodes are available: 1 node(s) exceed max volume count, 1 node(s) had taint {node-role.kubernetes.io/master: }, that the pod didn't tolerate.`, the VM chosen for the cluster nodes _probably_ doesn't have enough `Max data disks` ( for example, a `Standard_D2s_v3` allows a max. of `4` data disks ( See: https://docs.microsoft.com/en-us/azure/virtual-machines/dv3-dsv3-series#dsv3-series ). Choose a larger VM to allow more data disks ( see: https://docs.microsoft.com/en-us/azure/virtual-machines/ ). For example, a `Standard_D4s_v4` which allows `16` data disks appears to be working pretty well with `harbor`. Make sure that the VM type supports _Premium Storage_ ( https://docs.microsoft.com/en-us/azure/virtual-machines/premium-storage-performance )
 - For debugging purposes, the package can be deleted as follows: `tanzu package installed delete harbor --namespace [NAMESPACE]`
 - To monitor the state, use command like: `kubectl get app/harbor -n [NAMESPACE] -o jsonpath="{.status.usefulErrorMessage}"` or `kubectl get app/harbor -n [NAMESPACE] -o jsonpath="{.status.deploy.stdout}"` or `kubectl get deployment -n [NAMESPACE]` or `kubectl get pods -n [NAMESPACE]`
 
@@ -420,7 +417,7 @@ NOTE:
 
 Add *workload* cluster to the kubeconfig.
 
-`tanzu cluster kubeconfig get mkennis-azure-tkg-workload --admin`
+`tanzu cluster kubeconfig get mkennis-vsphere-tkg-workload --admin`
 
 Check if the *workload* cluster was added to the kubeconfig.
 
@@ -428,7 +425,7 @@ Check if the *workload* cluster was added to the kubeconfig.
 
 Switch to the *workload* cluster.
 
-`kubectl config use-context mkennis-azure-tkg-workload-admin@mkennis-azure-tkg-workload`
+`kubectl config use-context mkennis-vsphere-tkg-workload-admin@mkennis-vsphere-tkg-workload`
 
 Copy the following files to the linux (virtual)machine:
 - `nginx-deployment.yaml`
@@ -460,17 +457,13 @@ Point the browser on the client machine to the `IP` of the service ( it may take
 
 ![](images/nginx-welcome.png)
 
-NOTE: In the `azure` console under `network security groups` there are two `nsg`'s created per management/workload cluster ( a node-`nsg` and a controlplane-`nsg` ). After deploying a `service` of type `LoadBalancer`, automatically an entry in the node-`nsg` for the `workload` cluster is created to expose the service to the internet.
-
-Also see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/
-
 ---
 
 ### Delete *management* cluster
 
 Delete the *management* cluster using the following command ( takes approx. 10 min. to complete )
 
-`tanzu management-cluster delete tkg-azure-mgmt-cluster -v 9`
+`tanzu management-cluster delete tkg-vsphere-mgmt-cluster -v 9`
 
 ---
 
@@ -478,10 +471,10 @@ Delete the *management* cluster using the following command ( takes approx. 10 m
 
 Delete the *workload* cluster using the following command
 
-`tanzu cluster delete mkennis-azure-tkg-workload -v 9`
-
-![](images/tanzu-delete-workload-cluster.png)
+`tanzu cluster delete mkennis-vsphere-tkg-workload -v 9`
 
 The command returns the prompt immediately, deletion of the *workload* cluster takes place in the backgroud and can be monitored using 
 
 `tanzu cluster list --include-management-cluster`
+
+![](images/tanzu-delete-workload-cluster-progress.png)
