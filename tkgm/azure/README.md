@@ -123,9 +123,10 @@ Verify the `az` cli client, the app definition etc are configured properly using
 
 The command responds with a `json`.
 
-Next, accept the base image license ( replace variable `AZURE_SUBSCRIPTION_ID` with the actual value collected in the previous step(s). For `PLAN_ID`, use `k8s-1dot21dot2-ubuntu-2004` or `k8s-1dot21dot2-ubuntu-1804`.
+Next, accept the base image license ( replace variable `AZURE_SUBSCRIPTION_ID` with the actual value collected in the previous step(s). For `PLAN_ID`, use `k8s-1dot22dot8-ubuntu-2004`.
 
 `az vm image terms accept --publisher vmware-inc --offer tkg-capi --plan PLAN_ID --subscription AZURE_SUBSCRIPTION_ID`
+`az vm image terms accept --publisher vmware-inc --offer tkg-capi --plan k8s-1dot22dot8-ubuntu-2004 --subscription AZURE_SUBSCRIPTION_ID
 
 The command responds with a `json`.
 
@@ -156,7 +157,7 @@ Open the file `tkg-azure-mgmt-cluster.yaml` and edit the following fields:
 - `AZURE_SUBSCRIPTION_ID:`: The value of the `subscription id` collected in the previous step(s)
 - `AZURE_TENANT_ID`: The value of the `tenant id` collected in the previous step(s)
 - `CLUSTER_NAME`: A friendly name for the *management* cluster to be created. For example: `tkg-azure-mgmt-cluster`
-- `OS_VERSION`: Depending on the image version selected in `step 7`, the value of the property is `"18.04"` or `"20.04"`.
+- `OS_VERSION`: The value of the property is `"20.04"`.
 
 *UN*set the following environment variables:
 - `TKG_AZURE_CLIENT_ID`
@@ -169,11 +170,18 @@ Create the *management* cluster using the following command ( takes approx. 15 m
 
 `tanzu management-cluster create --file /path/to/tkg-azure-mgmt-cluster.yaml -v 9`
 
-Use the following command to verify the cluster is up-and-running:
+After completion, check if the *management* cluster is deployed correctly.
 
 `tanzu cluster list --include-management-cluster`
 
-![](images/tkg-azure-mgmt-ready.png)
+![](images/tanzu-cluster-list-mgmt.png)
+
+Check if the `cluster` and `kubernetes-releases` plugins were installed for the `tanzu` cli
+
+`tanzu plugin list`
+
+![](images/tanzu-cli-list-mgmt.png)
+
 
 NOTE:
 1) If creation of the *management* cluster fails, make sure you clean up your docker environment *before* the next attempt. For example, using commands like: `kind delete clusters --all` and/or `docker system prune -a` ( *these commands wipe out the entire `kind` clusters and `docker` images/cache/etc. Only execute these commands if you know what you are doing* ).
