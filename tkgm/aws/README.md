@@ -170,6 +170,15 @@ NOTE:
 
 ---
 
+### Add the clusters to the kubectl config
+In case the newly created clusters were not added to the `.kube/config` ( if the cluster is not in the list shown as output of this command: `kubectl config get-contexts` )
+
+Use the following command to add the desired cluster to the `.kube/config` ( where `[name_of_the_cluster]` is the name of the cluster which can be found using the following command `tanzu cluster list --include-management-cluster` ).
+
+`tanzu cluster kubeconfig get [name_of_the_cluster] --admin`
+
+---
+
 ### Install / Configure `cert-manager` in the *workload* cluster
 
 This topic explains how to install Cert Manager into a *workload* cluster ( In *management* clusters, `cert-manager` is installed automatically during cluster creation ).
@@ -182,9 +191,13 @@ Retrieve the version of the available `cert-manager` package
 
 `tanzu package available list cert-manager.tanzu.vmware.com -A`
 
+![](images/tanzu-package-avail-cert-manager-list.png)
+
 Install `cert-manager` copy/paste the `package-name` and `version` from the output of the commands in the previous steps
 
-`tanzu package install cert-manager --package-name cert-manager.tanzu.vmware.com --version 1.1.0+vmware.2-tkg.1  --namespace tkg-system`
+`tanzu package install cert-manager --package-name cert-manager.tanzu.vmware.com --version 1.5.3+vmware.2-tkg.1 --namespace tkg-system`
+
+![](images/tanzu-package-cert-mgr-install.png)
 
 Confirm that `cert-manager` is installed correctly ( status: `Reconcile succeeded` )
 
@@ -195,7 +208,7 @@ Confirm that `cert-manager` is installed correctly ( status: `Reconcile succeede
 NOTES:
 - For debugging purposes, the package can be deleted as follows: `tanzu package installed delete cert-manager --namespace tkg-system`
 - To monitor the state, use command like: `kubectl get app/harbor -n [NAMESPACE] -o jsonpath="{.status.usefulErrorMessage}"` or `kubectl get app/harbor -n [NAMESPACE] -o jsonpath="{.status.deploy.stdout}"` or `kubectl get deployment -n [NAMESPACE]` or `kubectl get pods -n [NAMESPACE]`
-- For more info, see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-packages-cert-manager.html
+- For more info, see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-packages-cert-manager.html
 
 ----
 
@@ -205,7 +218,7 @@ NOTES:
 
 Copy the file `contour-data-values.yaml` to the linux (virtual)machine from where the `tanzu` commands are executed.
 
-For more info on the content of `contour-data-values.yaml` or how to configure it for other platforms, see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-packages-ingress-contour.html
+For more info on the content of `contour-data-values.yaml` or how to configure it for other platforms, see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-packages-ingress-contour.html
 
 Confirm that `contour` is available in your *workload* cluster
 
@@ -215,9 +228,13 @@ Retrieve the version of the available `contour` package
 
 `tanzu package available list contour.tanzu.vmware.com -A`
 
+![](images/tanzu-package-avail-contour-list.png)
+
 Install `contour` copy/paste the `package-name` and `version` from the output of the commands in the previous steps
 
-`tanzu package install contour --package-name contour.tanzu.vmware.com --version 1.17.2+vmware.1-tkg.2 --values-file contour-data-values.yaml --namespace tkg-system`
+`tanzu package install contour --package-name contour.tanzu.vmware.com --version 1.18.2+vmware.1-tkg.1 --values-file contour-data-values.yaml --namespace tkg-system`
+
+![](images/tanzu-package-contour-install.png)
 
 Confirm that `contour` is installed correctly ( status: `Reconcile succeeded` )
 
@@ -235,7 +252,7 @@ NOTE:
 
 `Harbor` is a cloud-native container registry that stores, signs, and scans content. `Harbor` extends the open-source Docker distribution by adding the functionalities usually required by users such as security and identity control and management.
 
-*Note: Packages `contour` and `cert-manager` are prerequisites for `harbor`. Make sure `step 17` and `step 18` of this guide were successful before proceeding.*
+*Note: Packages `contour` and `cert-manager` are prerequisites for `harbor`. Make sure the steps for installing `contour` and `cert-manager` were executed prior to installing `harbor`.*
 
 Confirm that the Harbor package is available in the cluster:
 
@@ -244,6 +261,8 @@ Confirm that the Harbor package is available in the cluster:
 Retrieve the version of the available package:
 
 `tanzu package available list harbor.tanzu.vmware.com -A`
+
+![](images/tanzu-package-avail-harbor-list.png)
 
 Open file `harbor-data-values.yaml` and update the following parameters:
 - `harborAdminPassword`
@@ -255,10 +274,11 @@ Open file `harbor-data-values.yaml` and update the following parameters:
 - `registry.secret`
 - `hostname`
 
-
 Install harbor by executing the following command
 
-`tanzu package install harbor --package-name harbor.tanzu.vmware.com --version 2.2.3+vmware.1-tkg.2 --values-file /path/to/harbor-data-values.yaml --namespace=harbor --create-namespace`
+`tanzu package install harbor --package-name harbor.tanzu.vmware.com --version 2.3.3+vmware.1-tkg.1 --values-file /path/to/harbor-data-values.yaml --namespace=harbor --create-namespace`
+
+![](images/tanzu-package-harbor-install.png)
 
 Use `kubectl -n harbor get pods` to monitor if all the `harbor` related pods start up correctly.
 
@@ -286,13 +306,13 @@ Get the `EXTERNAL-IP` of the loadbalancer through which the `harbor` service is 
 
 Add the `EXTERNAL-IP` to your `dns` or to the hosts file of your client machine
 
-`192.168.1.195	harbor.tanzu.local`
+`51.138.183.74	harbor.tanzu.local`
 
 Point the browser on the client machine to `http://harbor.tanzu.local/`
 
 ![](images/harbor-welcome.png)
 
-Also see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-packages-harbor-registry.html
+Also see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-packages-harbor-registry.html
 
 
 NOTE:
@@ -305,7 +325,7 @@ NOTE:
 
 Add *workload* cluster to the kubeconfig.
 
-`tanzu cluster kubeconfig get mkennis-aws-tkg-workload-ng --admin`
+`tanzu cluster kubeconfig get mkennis-vsphere-tkg-workload --admin`
 
 Check if the *workload* cluster was added to the kubeconfig.
 
@@ -313,7 +333,7 @@ Check if the *workload* cluster was added to the kubeconfig.
 
 Switch to the *workload* cluster.
 
-`kubectl config use-context mkennis-aws-tkg-workload-ng-admin@mkennis-aws-tkg-workload-ng`
+`kubectl config use-context mkennis-vsphere-tkg-workload-admin@mkennis-vsphere-tkg-workload`
 
 Copy the following files to the linux (virtual)machine:
 - `nginx-deployment.yaml`
@@ -335,17 +355,15 @@ Confirm that `nginx` deployment was successfully ( `1/1` under `READY` ).
 
 `kubectl apply -f nginx-service.yaml`
 
-Confirm that the `nginx-service` service was created successfully ( when there's a `FQDN` instead of `<pending>` in column `EXTERNAL-IP` ).
+Confirm that the `nginx-service` service was created successfully ( when there's a `IP` instead of `<pending>` in column `EXTERNAL-IP` ).
 
 `kubectl get services`
 
 ![](images/kubectl-get-services.png)
 
-Point the browser on the client machine to the `FQDN` of the service ( it may take a while ( approx 3 min. ) for the service to respond the first time ). Also, please note that while creating the service, also an `elb` was created in order to expose the service ( see: `EC2` -> `Load Balancing` -> `Load Balancers` ) through the `FQDN` ( as seen with `kubectl get services` ).
+Point the browser on the client machine to the `IP` of the service ( it may take a while for the service to respond the first time ).
 
 ![](images/nginx-welcome.png)
-
-Also see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/
 
 ---
 
@@ -353,7 +371,7 @@ Also see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/
 
 Delete the *management* cluster using the following command ( takes approx. 10 min. to complete )
 
-`tanzu management-cluster delete mkennis-aws-tkg-mgmt-ng -v 9`
+`tanzu management-cluster delete tkg-vsphere-mgmt-cluster -v 9`
 
 ---
 
@@ -361,9 +379,7 @@ Delete the *management* cluster using the following command ( takes approx. 10 m
 
 Delete the *workload* cluster using the following command
 
-`tanzu cluster delete mkennis-aws-tkg-workload-ng -v 9`
-
-![](images/tanzu-delete-workload-cluster.png)
+`tanzu cluster delete mkennis-vsphere-tkg-workload -v 9`
 
 The command returns the prompt immediately, deletion of the *workload* cluster takes place in the backgroud and can be monitored using 
 
