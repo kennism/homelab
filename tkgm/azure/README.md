@@ -9,7 +9,7 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 ---
 
 ### Assumptions / Requirements / Prerequisites
-- Access to an `azure` instance with, at least, the permissions described [here](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-mgmt-clusters-azure.html) and associated `Tenant ID`.
+- Access to an `azure` instance with, at least, the permissions described [here](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-mgmt-clusters-azure.html) and associated `Tenant ID`.
 - Access to a `linux` based (virtual)machine with, at least, 4GB memory *available* and the following software installed on it:
   - `docker`
   - azure `az` cli ( https://docs.microsoft.com/cli/azure/install-azure-cli )
@@ -255,7 +255,7 @@ Confirm that `cert-manager` is installed correctly ( status: `Reconcile succeede
 NOTES:
 - For debugging purposes, the package can be deleted as follows: `tanzu package installed delete cert-manager --namespace tkg-system`
 - To monitor the state, use command like: `kubectl get app/harbor -n [NAMESPACE] -o jsonpath="{.status.usefulErrorMessage}"` or `kubectl get app/harbor -n [NAMESPACE] -o jsonpath="{.status.deploy.stdout}"` or `kubectl get deployment -n [NAMESPACE]` or `kubectl get pods -n [NAMESPACE]`
-- For more info, see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-packages-cert-manager.html
+- For more info, see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-packages-cert-manager.html
 
 ----
 
@@ -355,13 +355,13 @@ Get the `EXTERNAL-IP` of the loadbalancer through which the `harbor` service is 
 
 Add the `EXTERNAL-IP` to your `dns` or to the hosts file of your client machine
 
-`192.168.1.195	harbor.tanzu.local`
+`51.138.183.74	harbor.tanzu.local`
 
 Point the browser on the client machine to `http://harbor.tanzu.local/`
 
 ![](images/harbor-welcome.png)
 
-Also see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-packages-harbor-registry.html
+Also see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-packages-harbor-registry.html
 
 
 NOTE:
