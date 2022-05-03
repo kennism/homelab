@@ -217,6 +217,17 @@ NOTE:
 
 ---
 
+---
+
+### Add the clusters to the kubectl config
+In case the newly created clusters were not added to the `.kube/config` ( if the cluster is not in the list shown as output of this command: `kubectl config get-contexts` )
+
+Use the following command to add the desired cluster to the `.kube/config` ( where `[name_of_the_cluster]` is the name of the cluster which can be found using the following command `tanzu cluster list --include-management-cluster` ).
+
+`tanzu cluster kubeconfig get [name_of_the_cluster] --admin`
+
+---
+
 ### Install / Configure `cert-manager` in the *workload* cluster
 
 This topic explains how to install Cert Manager into a *workload* cluster ( In *management* clusters, `cert-manager` is installed automatically during cluster creation ).
@@ -229,9 +240,13 @@ Retrieve the version of the available `cert-manager` package
 
 `tanzu package available list cert-manager.tanzu.vmware.com -A`
 
+![](images/tanzu-package-avail-cert-manager-list.png)
+
 Install `cert-manager` copy/paste the `package-name` and `version` from the output of the commands in the previous steps
 
-`tanzu package install cert-manager --package-name cert-manager.tanzu.vmware.com --version 1.1.0+vmware.2-tkg.1  --namespace tkg-system`
+`tanzu package install cert-manager --package-name cert-manager.tanzu.vmware.com --version 1.5.3+vmware.2-tkg.1 --namespace tkg-system`
+
+![](images/tanzu-package-cert-mgr-install.png)
 
 Confirm that `cert-manager` is installed correctly ( status: `Reconcile succeeded` )
 
