@@ -9,7 +9,7 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 ---
 
 ### Assumptions / Requirements / Prerequisites
-- Access to an `aws` instance with, at least, the permissions described [here](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.4/vmware-tanzu-kubernetes-grid-14/GUID-mgmt-clusters-aws.html) and associated `access key` and `access key secret`.
+- Access to an `aws` instance with, at least, the permissions described [here](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-mgmt-clusters-aws.html) and associated `access key` and `access key secret`.
 - Access to a `linux` based (virtual)machine with, at least, 4GB memory *available* and the following software installed on it:
   - `docker`
   - `aws` cli ( https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html )
@@ -23,7 +23,7 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 Download the following Tanzu Kubernetes components ( https://my.vmware.com/en/web/vmware/downloads/info/slug/infrastructure_operations_management/vmware_tanzu_kubernetes_grid/1_x )
 
 - VMware Tanzu CLI for Linux ( `tanzu-cli-bundle-linux-amd64.tar` )
-- kubectl cluster cli v1.22.8 for Linux ( `kubectl-linux-v1.22.8+vmware.1.gz` )
+- kubectl cluster cli `v1.22.8` for Linux ( `kubectl-linux-v1.22.8+vmware.1.gz` )
 
 ---
 
