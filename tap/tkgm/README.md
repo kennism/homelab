@@ -1,6 +1,6 @@
 # Install/Configure Tanzu Application Platform `tap` on `tkgm`
 
-### This document describes how to install/configure `tap` ( [Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform) ) version `1.0.2` on a `tkgm` cluster ( and run a demo workload ).
+### This document describes how to install/configure `tap` ( [Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform) ) version `1.1.1` on a `tkgm` version `1.5.3` cluster ( and run a demo workload ).
 
 ---
 
@@ -251,7 +251,7 @@ Create a `secret` for `tap-registry` ( replace `[USERNAME]` and `[PASSWORD]` wit
 
 Add the `Tanzu Application Platform` package repository to the cluster
 
-`tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.0.2 --namespace tap-install`
+`tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.1.1 --namespace tap-install`
 
 Get the status of the `Tanzu Application Platform` package repository, and ensure the status updates to `Reconcile succeeded`
 
@@ -301,7 +301,7 @@ Update the file `tap-values.yaml` to meet your environment:
 ### Step 11
 Install `tap`
 
-`tanzu package install tap -p tap.tanzu.vmware.com -v 1.0.2 --values-file tap-values.yaml -n tap-install`
+`tanzu package install tap -p tap.tanzu.vmware.com -v 1.1.1 --values-file tap-values.yaml -n tap-install`
 
 ( Even though the field `ceip_policy_disclosed` is set to `true`, there might still be an error stating `The field ceip_policy_disclosed in values.yaml must be set to true in order to proceed with the installation`. Check with the commands below if the deployment started ( in that case error can be ignored ) ).
 
@@ -363,7 +363,7 @@ Update `tap-values.yaml`, uncomment the entire `app_config` section under the `t
 
 Update the `tap` installation with the new values:
 
-`tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.2 -n tap-install -f tap-values.yaml`
+`tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.1.1 -n tap-install -f tap-values.yaml`
 
 After updating `tap`, point your browser to the `fqdn` used in the previous step(s)
 
@@ -440,7 +440,7 @@ like this:
 
 Update the `tap` installation with the new values:
 
-`tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.0.2 -n tap-install -f tap-values.yaml`
+`tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.1.1 -n tap-install -f tap-values.yaml`
 
 Use `kubectl get apps -A` to verify that the `learningcenter` and `learningcenter-workshops` apps are `Reconcile succeeded`
 
