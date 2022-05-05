@@ -181,7 +181,7 @@ To accept EULAs:
 ### Step 7
 Add/update the `Tanzu Application Platform` specific `Tanzu CLI` plugins.
 
-Sign in to `Tanzu Network` and Navigate to `Tanzu Application Platform`. Click the `tanzu-cli-0.11.1` directory and download the CLI bundle corresponding to your operating system. For example, if your client operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
+Sign in to `Tanzu Network` and Navigate to `Tanzu Application Platform`. Click the `tanzu-cli-0.11.4` directory and download the CLI bundle corresponding to your operating system. For example, if your client operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
 
 ---
 
@@ -195,7 +195,7 @@ Unpack the TAR file in the tanzu directory by running:
 
 `tar -xvf tanzu-framework-linux-amd64.tar -C ~/tanzu-cli`
 
-Copy the file `~/tanzu-cli/cli/core/v0.11.1/tanzu-core-linux_amd64` to a location in the system path and rename it to `tanzu`.
+Copy the file `~/tanzu-cli/cli/core/v0.11.4/tanzu-core-linux_amd64` to a location in the system path and rename it to `tanzu`.
 
 Check installation status for the core CLI by running:
 
@@ -203,7 +203,7 @@ Check installation status for the core CLI by running:
 
 ![](images/tanzu-cli-version.png)
 
-Expected output: version: `v0.11.1`
+Expected output: version: `v0.11.4`
 
 Navigate to the tanzu directory by running:
 
