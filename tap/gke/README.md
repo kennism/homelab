@@ -96,8 +96,12 @@ tar xzf ../tanzu-cluster-essentials-linux-amd64-1.0.0.tgz
 
 Set the appropriate environment variables. Make sure the values for `TANZU-NET-USER` and `TANZU-NET-PASSWORD` are both between single quotes `'`.
 
+
+Please note that the `sha` in the `export INSTALL_BUNDLE` command below is updated per version of `cluster essentials`. For the most up-to-date `sha`, please verify the `sha` on the official `cluster essentials` page ( https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.1/cluster-essentials/GUID-deploy.html )
+
+
 ```
-export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-cluster-essentials/cluster-essentials-bundle@sha256:82dfaf70656b54dcba0d4def85ccae1578ff27054e7533d08320244af7fb0343
+export INSTALL_BUNDLE=registry.tanzu.vmware.com/tanzu-cluster-essentials/cluster-essentials-bundle@sha256:ab0a3539da241a6ea59c75c0743e9058511d7c56312ea3906178ec0f3491f51d
 export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com
 export INSTALL_REGISTRY_USERNAME=TANZU-NET-USER
 export INSTALL_REGISTRY_PASSWORD=TANZU-NET-PASSWORD
