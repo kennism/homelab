@@ -384,7 +384,7 @@ Create required `serviceaccount`, `role` and `rolebinding` in the `dev` namespac
 
 Create a secret for the workload to be able to push images to the workload repository ( replace the `docker-server` url and `docker-password` with the values which are applicable for your situation ):
 
-`kubectl create secret docker-registry registry-credentials --docker-server='https://fancyregistryname.gcloudcr.io' --docker-username='00000000-0000-0000-0000-000000000000' --docker-password='topSecretPassword' -n dev`
+`tanzu secret registry add registry-credentials --server 'https://[url-to-registry-server]' --username '_json_key_base64' --password 'topSecretB64BuildServicePasswordFromValuesYaml' --namespace dev --export-to-all-namespaces`
 
 Deploy the demo `tanzu-java-web-app` workload:
 
