@@ -8,13 +8,6 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 
 ---
 
-### Hardware
-- Two NUC10i7FNK with each:
-  - 64 GB RAM
-  - 1TB SSD
-
----
-
 ### Network
 3 static IP addresses are required from your local LAN network.
 
@@ -27,24 +20,24 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 ---
 
 ### Assumptions / Requirements / Prerequisites
-- A NUC with no OS installed and no partitions defined on the SSD. If there are OS/partitions on the SSD, wipe all partitions from ssd and esxi boot device ( for example, using a fedora live usb ) prior to starting this guide ( Reminder: `f2 -> bios / f10 -> select boot device` ).
+- A system with no OS installed and no partitions defined on the SSD. If there are OS/partitions on the SSD, wipe all partitions from ssd and esxi boot device ( for example, using a fedora live usb ) prior to starting this guide ( Reminder for `NUC`: `f2 -> bios / f10 -> select boot device` ).
 - Access to the required software and licenses. For example, through a VMUG Advantage subscription ( https://vmug.com ) or requesting a trial.
 - A customerconnect account ( to download some additional tools ( https://customerconnect.vmware.com ) ).
 
 ---
 
 ### Step 1
-Prepare a USB stick and load the `esxi` install iso ( `VMware-VMvisor-Installer-7.0U3c-19193900.x86_64.iso` ) on it ( for example, by using a tool like `Rufus` ( https://rufus.ie ) ).
+Prepare a USB stick and load the `esxi` install iso ( `VMware-VMvisor-Installer-7.0U3d-19482537.x86_64.iso` ) on it ( for example, by using a tool like `Rufus` ( https://rufus.ie ) ).
 
 ---
 
 ### Step 2
-Boot from esxi usb boot device and perform a `next -> next -> next -> finish` install accepting all the defaults ( avoid using # in the root password. For example, at the time of writing this document, the `ovftool` tool could not handle those kind of characters in passwords ( _ and ! appear to be fine ) ).
+Boot from `esxi` usb device and perform a `next -> next -> next -> finish` install accepting all the defaults ( avoid using # in the root password. For example, at the time of writing this document, the `ovftool` tool could not handle those kind of characters in passwords ( _ and ! appear to be fine ) ).
 
 ---
 
 ### Step 3
-After reboot, on the `esxi` console ( connect a monitor to the NUC ), using the F2 key, set fixed ip ( `192.168.1.2` or `192.168.1.3` ) and hostname ( `esxi01` or `esxi02` ) and disable `ipv6`. 
+After reboot, on the `esxi` console ( connect a monitor to the NUC ), using the F2 key, set fixed ip ( `192.168.1.2` or `192.168.1.3` or `192.168.1.4` ) and hostname ( `esxi01` or `esxi02` or `esxi03` ) and disable `ipv6`. 
 
 
 Reboot to activate the changes.
@@ -67,7 +60,7 @@ Start service `ntpd` ( under `host -> manage -> services` ).
 ---
 
 ### Step 7
-Update esxi to latest version ( if no iso avail, use: `esxcli software profile update -p ESXi-7.0U3c-19193900-standard -d https://hostupdate.vmware.com/software/VUM/PRODUCTION/main/vmw-depot-index.xml` ( see: https://tinkertry.com/easy-update-to-latest-esxi ) )
+Update `esxi` to latest ( at the time of writing this `7.0u3e` was the latest version ) version ( if no iso avail, use: `esxcli software profile update -p ESXi-7.0U3e-19898904-standard -d https://hostupdate.vmware.com/software/VUM/PRODUCTION/main/vmw-depot-index.xml` ( see: https://tinkertry.com/easy-update-to-latest-esxi ) )
 
 ---
 
