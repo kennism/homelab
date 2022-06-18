@@ -70,17 +70,17 @@ Reboot the `esxi` host.
 ---
 
 ### Step 9
-On a laptop or workstation, mount `VMware-VCSA-all-7.0.3-19234570.iso`.
+On a laptop or workstation, mount the `vcsa` virtual applicance iso ( `VMware-VCSA-all-7.0.3-19717403.iso` ).
 
 ---
 
 ### Step 10
-Edit `vcsa.tanzu.local.json` to meet your local settings ( `hostname` / `network` / `username` / `password` / etc ).
+Edit `vcsa.tanzu.local.json` to meet your local settings ( `hostname` / `network` / `username` / `password` / `datastore` / etc ).
 
 ---
 
 ### Step 11
-Run ( `from: d:\vcsa-cli-installer\win32` ) `vcsa-deploy.exe install --accept-eula --no-ssl-certificate-verification c:\path\to\vcsa.tanzu.local.json` ( takes approx 20 mins to complete ).
+Run ( from: `d:\vcsa-cli-installer\win32` or `/path/to/mountpoint/vcsa-cli-installer/lin64` ) `vcsa-deploy.exe install --accept-eula --no-ssl-certificate-verification c:\path\to\vcsa.tanzu.local.json` ( or `./vcsa-deploy install --accept-eula --no-ssl-certificate-verification /path/to/vcsa.tanzu.local.json` ) this operation takes approx 20 mins to complete.
 
 ---
 
