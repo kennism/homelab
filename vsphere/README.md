@@ -23,6 +23,7 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 - A system with no OS installed and no partitions defined on the SSD. If there are OS/partitions on the SSD, wipe all partitions from ssd and esxi boot device ( for example, using a fedora live usb ) prior to starting this guide ( Reminder for `NUC`: `f2 -> bios / f10 -> select boot device` ).
 - Access to the required software and licenses. For example, through a VMUG Advantage subscription ( https://vmug.com ) or requesting a trial.
 - A customerconnect account ( to download some additional tools ( https://customerconnect.vmware.com ) ).
+- Download `ovftool` from https://developer.vmware.com/tools
 
 ---
 
