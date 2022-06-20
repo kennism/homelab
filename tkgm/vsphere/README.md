@@ -42,7 +42,7 @@ Import the kubernetes base image(s) template into `vsphere`.
 
 *NOTE: Do not power on the VM*
 
-When the OVA deployment finishes, right-click the VM ( `photon-3-kube-v1.22.8+vmware.1` and/or `ubuntu-2004-kube-v1.22.8+vmware.1` ) and select `Template` -> `Convert to Template`.
+When the OVA deployment finishes, right-click the VM ( `photon-3-kube-v1.22.9+vmware.1` and/or `ubuntu-2004-kube-v1.22.9+vmware.1` ) and select `Template` -> `Convert to Template`.
 
 ---
 
@@ -112,14 +112,14 @@ Check the version of the `tanzu` cli
 ---
 
 ### Step 8
-Copy the downloaded kubectl cluster cli for Linux ( `kubectl-linux-v1.22.8+vmware.1.gz` ) file to the linux based environment with `docker` installed on it.
+Copy the downloaded kubectl cluster cli for Linux ( `kubectl-linux-v1.22.9+vmware.1.gz` ) file to the linux based environment with `docker` installed on it.
 
 ---
 
 ### Step 9
-Gunzip the kubectl cluster cli ( `kubectl-linux-v1.22.8+vmware.1.gz` )
+Gunzip the kubectl cluster cli ( `kubectl-linux-v1.22.9+vmware.1.gz` )
 
-Move the extracted file to a location which is in the system path, for example: `/usr/local/bin` ( `mv /path/to/kubectl-linux-v1.22.8+vmware.1 /usr/local/bin/kubectl` ).
+Move the extracted file to a location which is in the system path, for example: `/usr/local/bin` ( `mv /path/to/kubectl-linux-v1.22.9+vmware.1 /usr/local/bin/kubectl` ).
 
 Make the destination file executable ( `chmod a=rx /usr/local/bin/kubectl` )
 
