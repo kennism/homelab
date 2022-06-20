@@ -1,4 +1,4 @@
-# Install/Configure Tanzu Kubernetes Grid `tkgm` ( standalone / multicloud `tkg` ) version `1.5.3` on `aws`
+# Install/Configure Tanzu Kubernetes Grid `tkgm` ( standalone / multicloud `tkg` ) version `1.5.4` on `aws`
 
 This document describes how to install/configure `tkgm`, the *standalone / multicloud* variant of `tkg` ( [Tanzu Kubernetes Grid](https://tanzu.vmware.com/kubernetes-grid) ) on `aws`.
 
@@ -23,7 +23,7 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 Download the following Tanzu Kubernetes components ( https://my.vmware.com/en/web/vmware/downloads/info/slug/infrastructure_operations_management/vmware_tanzu_kubernetes_grid/1_x )
 
 - VMware Tanzu CLI for Linux ( `tanzu-cli-bundle-linux-amd64.tar` )
-- kubectl cluster cli `v1.22.8` for Linux ( `kubectl-linux-v1.22.8+vmware.1.gz` )
+- kubectl cluster cli `v1.22.9` for Linux ( `kubectl-linux-v1.22.8+vmware.1.gz` )
 
 ---
 
@@ -42,12 +42,12 @@ Make the destination file executable ( `chmod a=rx /usr/local/bin/tanzu` )
 ---
 
 ### Step 4
-Copy the downloaded kubectl cluster cli for Linux ( `kubectl-linux-v1.22.8+vmware.1.gz` ) file to the linux based environment with `docker` installed on it.
+Copy the downloaded kubectl cluster cli for Linux ( `kubectl-linux-v1.22.9+vmware.1.gz` ) file to the linux based environment with `docker` installed on it.
 
 ---
 
 ### Step 5
-Gunzip the kubectl cluster cli ( `kubectl-linux-v1.22.8+vmware.1.gz` )
+Gunzip the kubectl cluster cli ( `kubectl-linux-v1.22.9+vmware.1.gz` )
 
 Move the extracted file to a location which is in the system path, for example: `/usr/local/bin` ( `mv /path/to/kubectl-linux-v1.22.8+vmware.1 /usr/local/bin/kubectl` ).
 
