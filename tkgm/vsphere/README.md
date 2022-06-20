@@ -1,4 +1,4 @@
-# Install/Configure Tanzu Kubernetes Grid `tkgm` ( standalone / multicloud `tkg` ) version `1.5.3` on `vsphere 7`
+# Install/Configure Tanzu Kubernetes Grid `tkgm` ( standalone / multicloud `tkg` ) version `1.5.4` on `vsphere 7`
 
 This document describes how to install/configure the *standalone / multicloud* variant of `tkg` ( [Tanzu Kubernetes Grid](https://tanzu.vmware.com/kubernetes-grid) ) on `vsphere7`.
 
@@ -34,7 +34,7 @@ Download the following Tanzu Kubernetes components ( https://my.vmware.com/en/we
 Import the kubernetes base image(s) template into `vsphere`.
 
 - In the `vsphere` Client, go to `Inventory`, right-click on `Tanzu-Datacenter` and select `Deploy OVF template`.
-- Select `Local file`, click the button to upload files, and navigate to the downloaded OVA file on your local machine ( `photon-3-kube-v1.22.8+vmware.1-tkg.1-d69148b2a4aa7ef6d5380cc365cac8cd.ova` and/or `ubuntu-2004-kube-v1.22.8+vmware.1-tkg.2-5eab4250bf00d5e78c0f04257d03360e.ova` ).
+- Select `Local file`, click the button to upload files, and navigate to the downloaded OVA file on your local machine ( `photon-3-kube-v1.22.9+vmware.1-tkg.1-06852a87cc9526f5368519a709525c68.ova` and/or `ubuntu-2004-kube-v1.22.9+vmware.1-tkg.1-2182cbabee08edf480ee9bc5866d6933.ova` ).
 - Step through the wizard accepting all the defaults for `Name and folder`, `Compute resource`, `Review details` and accept the `license agreement`.
 - At `Select storage`, make sure to select the correct `datastore` and set `Select virtual disk format` to `Thin Provision`.
 - At `Select networks`, select the destination network `Management`.
