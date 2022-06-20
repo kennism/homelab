@@ -171,7 +171,7 @@ In particular, the values of the following keys:
 - `VSPHERE_CONTROL_PLANE_ENDPOINT`: The static `ip address` on which the `*management cluster* control plane` will be running ( must be a static `ip address` which is on the same network as the DHCP server but make sure there's no overlap in DHCP range )
 - `VSPHERE_NETWORK`: Set to the `Management` network
 - `VSPHERE_SERVER`: The `ip address` of the `vsphere` server ( `fqdn` does not always seem to work, preferably enter the `ip address` here )
-- `VSPHERE_PASSWORD`: The password of a `vsphere` adminstrator account. On a linux box, set environment variable `MK_VSPHERE_PASSWORD`: `export MK_VSPHERE_PASSWORD=myTopSecretPassword`. To get the encrypted value run: ``export MK_VSPHERE_PASSWORD_ENC=`echo -n "$MK_VSPHERE_PASSWORD" | base64 -w0`;echo -e "<encoded:$MK_VSPHERE_PASSWORD_ENC>"``
+- `VSPHERE_PASSWORD`: The password of a `vsphere` adminstrator account. On a linux box, set environment variable `MK_VSPHERE_PASSWORD`: `export MK_VSPHERE_PASSWORD=myTopSecretPassword` ( password between single quotes `'` ). To get the encrypted value run: ``export MK_VSPHERE_PASSWORD_ENC=`echo -n "$MK_VSPHERE_PASSWORD" | base64 -w0`;echo -e "<encoded:$MK_VSPHERE_PASSWORD_ENC>"``
 
 ---
 
