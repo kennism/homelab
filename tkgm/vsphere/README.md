@@ -164,7 +164,7 @@ Open `mgmt-cluster-vpshere-local.yaml` and update the values of the keys to refe
 
 In particular, the values of the following keys:
 - `CLUSTER_NAME`: The name of the *management* cluster. For example: `tkg-management-vsphere-local`
-- `VSPHERE_SSH_AUTHORIZED_KEY`: The public key of the keypair generated in the previous step ( including the `ssh-rsa` at the beginning and the email address at the end ).
+- `VSPHERE_SSH_AUTHORIZED_KEY`: The public key of the keypair generated in the previous step ( including the `ssh-ed25519` ( or `ssh-rsa` ) at the beginning and the email address at the end ).
 - `VSPHERE_TLS_THUMBPRINT`: The thumbprint of the `vsphere` SSL certificate. This can be obtained, for example, by running `openssl x509 -in /etc/vmware-vpx/ssl/rui.crt -fingerprint -sha1 -noout | cut -d'=' -f2` on an `ssh` shell on the `vcsa` host *or* copy from browser ( click on `certificate information` -> `details` -> `thumbprint` ( paste thumbprint in caps and a `:` after every second character ( `AA:BB:CC` etc ) ) )
 - `OS_NAME`: Depends on which base image was imported in step 2. Use `ubuntu` for the *ubuntu* based image or `photon` for the *photon* based image.
 - `OS_VERSION`: Depends on which base image was imported in step 2. Use `"20.04"` for the *ubuntu* based image or `"3"` for the *photon* based image.
