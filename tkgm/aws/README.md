@@ -326,11 +326,7 @@ Get the `EXTERNAL-IP` of the loadbalancer through which the `harbor` service is 
 
 ![](images/envoy-services-ip.png)
 
-Add the `EXTERNAL-IP` to your `dns` or to the hosts file of your client machine
-
-`51.138.183.74	harbor.tanzu.local`
-
-Point the browser on the client machine to `http://harbor.tanzu.local/`
+Point the browser to the `fqdn` under `EXTERNAL-IP`.
 
 ![](images/harbor-welcome.png)
 
