@@ -377,8 +377,6 @@ Confirm that the `nginx-service` service was created successfully ( when there's
 
 `kubectl get services`
 
-![](images/kubectl-get-services.png)
-
 Point the browser on the client machine to the `fqdn` of the service in column `EXTERNAL-IP` ( it may take a while for the service to respond the first time ).
 
 ![](images/nginx-welcome.png)
