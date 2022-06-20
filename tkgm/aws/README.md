@@ -15,7 +15,7 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
   - `aws` cli ( https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html )
   - `jq` ( https://stedolan.github.io/jq/download )
   - `kind` ( https://sigs.k8s.io/kind )
-- A `customerconnect` account ( to download some additional tools ( https://customerconnect.vmware.com ) ).
+- A `customerconnect` account ( to download additional tools ( https://customerconnect.vmware.com ) ).
 
 ---
 
