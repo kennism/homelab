@@ -459,14 +459,6 @@ Point the browser on the client machine to the `IP` of the service ( it may take
 
 ---
 
-### Delete *management* cluster
-
-Delete the *management* cluster using the following command ( takes approx. 10 min. to complete )
-
-`tanzu management-cluster delete tkg-vsphere-mgmt-cluster -v 9`
-
----
-
 ### Delete *workload* cluster
 
 Delete the *workload* cluster using the following command
@@ -476,3 +468,12 @@ Delete the *workload* cluster using the following command
 The command returns the prompt immediately, deletion of the *workload* cluster takes place in the backgroud and can be monitored using 
 
 `tanzu cluster list --include-management-cluster`
+
+---
+
+### Delete *management* cluster
+
+Delete the *management* cluster using the following command ( takes approx. 10 min. to complete )
+
+`tanzu management-cluster delete tkg-vsphere-mgmt-cluster -v 9`
+
