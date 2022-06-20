@@ -124,7 +124,7 @@ Log in to your Amazon EC2 dashboard and go to `Cloudformation` -> `Stacks` to ve
 Open the file `tkg-aws-mgmt-cluster.yaml` and edit the following fields:
 
 - `AWS_ACCESS_KEY_ID`: Output of the following command ( one line ): ``export AWS_ACCESS_KEY_ID_ENC=`echo -n "$AWS_ACCESS_KEY_ID" | base64 -w0`;echo -e "<encoded:$AWS_ACCESS_KEY_ID_ENC>"``
-- `AWS_AMI_ID`: For the *ubuntu* based image use: `ami-048b944e3ae94537b`. For the *Amazon Linux* based image use: `ami-033386f1ece25ae99`
+- `AWS_AMI_ID`: For the *ubuntu* based image use: `ami-0c0d6570e43ac145b`. For the *Amazon Linux* based image use: `ami-0092b98bc500b4c18`
 - `OS_NAME`: Use `ubuntu` for the *ubuntu* based image or `amazon` for the *Amazon Linux* based image.
 - `OS_VERSION`: Use `"20.04"` for the *ubuntu* based image or `"2"` for the *Amazon Linux* based image.
 - `AWS_B64ENCODED_CREDENTIALS`: Output of the following command ( one line ): `echo -e "[default]\naws_access_key_id = $AWS_ACCESS_KEY_ID\naws_secret_access_key = $AWS_SECRET_ACCESS_KEY\nregion = $AWS_REGION\n\naws_session_token = $AWS_SESSION_TOKEN\n" | base64 -w0`
