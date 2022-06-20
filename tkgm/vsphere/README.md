@@ -153,7 +153,7 @@ In order for the Tanzu CLI to connect to `vsphere` from the machine on which you
 
 On the machine on which you will run the Tanzu CLI, run the following `ssh-keygen` command.
 
-`ssh-keygen -t rsa -b 4096 -C "email@example.com"`
+`ssh-keygen -t ed25519 -C "email@example.com"`
 
 ---
 
