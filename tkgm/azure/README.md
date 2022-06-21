@@ -155,7 +155,7 @@ Open the file `tkg-azure-mgmt-cluster.yaml` and edit the following fields:
 - `AZURE_SSH_PUBLIC_KEY_B64`: Output of the following command ( one line ): `cat /path/to/.ssh/id_rsa.pub | base64 -w0`
 - `AZURE_SUBSCRIPTION_ID:`: The value of the `subscription id` collected in the previous step(s)
 - `AZURE_TENANT_ID`: The value of the `tenant id` collected in the previous step(s)
-- `CLUSTER_NAME`: A friendly name for the *management* cluster to be created. For example: `tkg-azure-mgmt-cluster`
+- `CLUSTER_NAME`: A friendly name for the *management* cluster to be created. For example: `tkg154-azure-mgmt`
 - `OS_VERSION`: The value of the property is `"20.04"`.
 
 *UN*set the following environment variables:
@@ -374,7 +374,7 @@ NOTE:
 
 Add *workload* cluster to the kubeconfig.
 
-`tanzu cluster kubeconfig get mkennis-azure-tkg-workload --admin`
+`tanzu cluster kubeconfig get tkg154-azure-work --admin`
 
 Check if the *workload* cluster was added to the kubeconfig.
 
@@ -382,7 +382,7 @@ Check if the *workload* cluster was added to the kubeconfig.
 
 Switch to the *workload* cluster.
 
-`kubectl config use-context mkennis-azure-tkg-workload-admin@mkennis-azure-tkg-workload`
+`kubectl config use-context tkg154-azure-work-admin@tkg154-azure-work`
 
 Copy the following files to the linux (virtual)machine:
 - `nginx-deployment.yaml`
@@ -424,7 +424,7 @@ Also see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/
 
 Delete the *workload* cluster using the following command
 
-`tanzu cluster delete mkennis-azure-tkg-workload -v 9`
+`tanzu cluster delete tkg154-azure-work -v 9`
 
 The command returns the prompt immediately, deletion of the *workload* cluster takes place in the backgroud and can be monitored using 
 
@@ -436,4 +436,4 @@ The command returns the prompt immediately, deletion of the *workload* cluster t
 
 Delete the *management* cluster using the following command ( takes approx. 10 min. to complete )
 
-`tanzu management-cluster delete tkg-azure-mgmt-cluster -v 9`
+`tanzu management-cluster delete tkg154-azure-mgmt -v 9`
