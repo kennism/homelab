@@ -134,7 +134,7 @@ The command responds with a `json`.
 ### Step 9
 In order for the Tanzu CLI to connect to azure from the machine on which you run it, you must provide the public key part of an SSH key pair to Tanzu Kubernetes Grid when you deploy the management cluster. If you do not already have one on the machine on which you run the CLI, you can use a tool such as `ssh-keygen` to generate a key pair.
 
-On the machine on which you will run the Tanzu CLI, run the following `ssh-keygen` command.
+On the machine on which you will run the Tanzu CLI, run the following `ssh-keygen` command ( at the time of writing, using a key in the `ed25519` format does not work ).
 
 `ssh-keygen -t rsa -b 4096 -C "email@example.com"`
 
