@@ -34,7 +34,7 @@ Copy the downloaded VMware Tanzu CLI for Linux ( `tanzu-cli-bundle-linux-amd64.t
 ### Step 3
 Untar the VMware Tanzu CLI ( `tar xf tanzu-cli-bundle-linux-amd64.tar` ) in an empty directory ( for example `~/tanzu-cli` )
 
-Copy the VMware Tanzu CLI binary to a location which is in the system path, for example: `/usr/local/bin` ( `cp ~/tanzu-cli/cli/core/v0.11.4/tanzu-core-linux_amd64 /usr/local/bin/tanzu` ).
+Copy the VMware Tanzu CLI binary to a location which is in the system path, for example: `/usr/local/bin` ( `cp ~/tanzu-cli/cli/core/v0.11.6/tanzu-core-linux_amd64 /usr/local/bin/tanzu` ).
 
 Make the destination file executable ( `chmod a=rx /usr/local/bin/tanzu` )
 
@@ -354,14 +354,13 @@ Get the `EXTERNAL-IP` of the loadbalancer through which the `harbor` service is 
 
 Add the `EXTERNAL-IP` to your `dns` or to the hosts file of your client machine
 
-`51.138.183.74	harbor.tanzu.local`
+`51.xx.yy.74	harbor.tanzu.local`
 
 Point the browser on the client machine to `http://harbor.tanzu.local/`
 
 ![](images/harbor-welcome.png)
 
 Also see: https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-packages-harbor-registry.html
-
 
 NOTE:
 - When pods remain in `Pending` state ( `kubectl get pods -n harbor` ), do a describe of the `Pending` pod ( in this example the pod is `harbor-trivy-0` but it can be any pod in the `harbor` namespace ) using `kubectl describe harbor-trivy-0 -n harbor`. If there are messages like `0/2 nodes are available: 1 node(s) exceed max volume count, 1 node(s) had taint {node-role.kubernetes.io/master: }, that the pod didn't tolerate.`, the VM chosen for the cluster nodes _probably_ doesn't have enough `Max data disks` ( for example, a `Standard_D2s_v3` allows a max. of `4` data disks ( See: https://docs.microsoft.com/en-us/azure/virtual-machines/dv3-dsv3-series#dsv3-series ). Choose a larger VM to allow more data disks ( see: https://docs.microsoft.com/en-us/azure/virtual-machines/ ). For example, a `Standard_D4s_v4` which allows `16` data disks appears to be working pretty well with `harbor`. Make sure that the VM type supports _Premium Storage_ ( https://docs.microsoft.com/en-us/azure/virtual-machines/premium-storage-performance )
