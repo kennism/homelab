@@ -84,7 +84,7 @@ Verify the plugins have been installed.
 ---
 
 ### Step 7
-Register Tanzu Kubernetes Grid as an Azure Client App.
+Register `Tanzu Kubernetes Grid` as an `Azure Client App`.
 
 Record your `Tenant ID` by opening the Azure portal and navigate to `Azure Active Directory` -> `<Your Azure Org>` -> `Overview`. The value is a GUID, for example: `abcdef01-2345-6789-abcd-ef0123456789`.
                                              
@@ -125,8 +125,7 @@ The command responds with a `json`.
 
 Next, accept the base image license ( replace variable `AZURE_SUBSCRIPTION_ID` with the actual value collected in the previous step(s). For `PLAN_ID`, use `k8s-1dot22dot8-ubuntu-2004`.
 
-`az vm image terms accept --publisher vmware-inc --offer tkg-capi --plan PLAN_ID --subscription AZURE_SUBSCRIPTION_ID`
-`az vm image terms accept --publisher vmware-inc --offer tkg-capi --plan k8s-1dot22dot8-ubuntu-2004 --subscription AZURE_SUBSCRIPTION_ID
+`az vm image terms accept --publisher vmware-inc --offer tkg-capi --plan k8s-1dot22dot9-ubuntu-2004 --subscription AZURE_SUBSCRIPTION_ID`
 
 The command responds with a `json`.
 
