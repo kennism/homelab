@@ -123,7 +123,7 @@ Verify the `az` cli client, the app definition etc are configured properly using
 
 The command responds with a `json`.
 
-Next, accept the base image license ( replace variable `AZURE_SUBSCRIPTION_ID` with the actual value collected in the previous step(s). For `PLAN_ID`, use `k8s-1dot22dot8-ubuntu-2004`.
+Next, accept the base image license ( replace variable `AZURE_SUBSCRIPTION_ID` with the actual value collected in the previous step(s). For `PLAN_ID`, use `k8s-1dot22dot9-ubuntu-2004`.
 
 `az vm image terms accept --publisher vmware-inc --offer tkg-capi --plan k8s-1dot22dot9-ubuntu-2004 --subscription AZURE_SUBSCRIPTION_ID`
 
