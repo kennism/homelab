@@ -1,6 +1,6 @@
 # Install/Configure Tanzu Application Platform `tap` on `tkgm`
 
-### This document describes how to install/configure `tap` ( [Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform) ) version `1.1.1` on a `tkgm` version `1.5.3` cluster ( and run a demo workload ).
+### This document describes how to install/configure `tap` ( [Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform) ) version `1.2.0` on a `tkgm` version `1.5.4` cluster ( and run a demo workload ).
 
 ---
 
@@ -181,7 +181,7 @@ To accept EULAs:
 ### Step 7
 Add/update the `Tanzu Application Platform` specific `Tanzu CLI` plugins.
 
-Sign in to `Tanzu Network` and Navigate to `Tanzu Application Platform`. Click the `tanzu-cli-0.11.4` directory and download the CLI bundle corresponding to your operating system. For example, if your client operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
+Sign in to `Tanzu Network` and Navigate to `Tanzu Application Platform`. Click the `tanzu-cli-tap-1.2.0-b3` directory and download the CLI bundle corresponding to your operating system. For example, if your client operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
 
 ---
 
@@ -203,7 +203,7 @@ Check installation status for the core CLI by running:
 
 ![](images/tanzu-cli-version.png)
 
-Expected output: version: `v0.11.4`
+Expected output: version: `v0.11.6`
 
 Navigate to the tanzu directory by running:
 
@@ -251,7 +251,7 @@ Create a `secret` for `tap-registry` ( replace `[USERNAME]` and `[PASSWORD]` wit
 
 Add the `Tanzu Application Platform` package repository to the cluster
 
-`tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.1.1 --namespace tap-install`
+`tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.2.0 --namespace tap-install`
 
 Get the status of the `Tanzu Application Platform` package repository, and ensure the status updates to `Reconcile succeeded`
 
@@ -301,7 +301,7 @@ Update the file `tap-values.yaml` to meet your environment:
 ### Step 11
 Install `tap`
 
-`tanzu package install tap -p tap.tanzu.vmware.com -v 1.1.1 --values-file tap-values.yaml -n tap-install`
+`tanzu package install tap -p tap.tanzu.vmware.com -v 1.2.0-build.13 --values-file tap-values-1.2.0.yaml -n tap-install`
 
 ( Even though the field `ceip_policy_disclosed` is set to `true`, there might still be an error stating `The field ceip_policy_disclosed in values.yaml must be set to true in order to proceed with the installation`. Check with the commands below if the deployment started ( in that case error can be ignored ) ).
 
