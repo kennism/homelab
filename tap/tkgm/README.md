@@ -195,7 +195,7 @@ Unpack the TAR file in the tanzu directory by running:
 
 `tar -xvf tanzu-framework-linux-amd64.tar -C ~/tanzu-cli`
 
-Copy the file `~/tanzu-cli/cli/core/v0.11.4/tanzu-core-linux_amd64` to a location in the system path and rename it to `tanzu`.
+Copy the file `~/tanzu-cli/cli/core/v0.11.6/tanzu-core-linux_amd64` to a location in the system path and rename it to `tanzu`.
 
 Check installation status for the core CLI by running:
 
