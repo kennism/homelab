@@ -1,4 +1,4 @@
-# Install/Configure Tanzu Application Platform `tap` on `tkgm`
+# Install and Configure Tanzu Application Platform `tap` on `tkgm`
 
 ### This document describes how to install/configure `tap` ( [Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform) ) version `1.2.0` on a `tkgm` version `1.5.4` cluster ( and run a demo workload ).
 
