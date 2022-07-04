@@ -1,4 +1,4 @@
-# Install and Configure Tanzu Application Platform `tap` on `tkgm`
+# Install/Configure Tanzu Application Platform `tap` on `tkgm`
 
 ### This document describes how to install/configure `tap` ( [Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform) ) version `1.2.0` on a `tkgm` version `1.5.4` cluster ( and run a demo workload ).
 
@@ -14,6 +14,7 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 - Access to a `git based repository` ( such as: `github`, `gitlab` or `azure devops` ).
 - `Kapp Carvel` command line tool v0.37.0 or later ( https://github.com/vmware-tanzu/carvel-kapp/releases ) is installed
 - `tilt` ( https://tilt.dev/ ) is installed
+- `jq` is installed
 - If the `git based repository` and/or `container image registry` are hosted locally ( no SaaS ), make sure there's a `dns` available with a `dns` record for those services ( an entry in the `hosts` file will not work ).
 
 ---
@@ -93,7 +94,7 @@ _If_ the `docker image registry` and/or the `git based repository` cannot be res
 
 ---
 
-### Step 5
+### Step 5 ( this step can be skipped if the cluster is configured to support service type `LoadBalancer` )
 The *workload* cluster needs to be configured to support service type `LoadBalancer`.
 
 Typically, this works out-of-the-box when `tkgm` is running on `aws` or `azure`. In case the *workload* cluster is *not* configured to support service type `LoadBalancer` ( for example, when `tkg` is running on `vsphere` ), make sure a loadbalancer like, for example, `metallb` is installed/configured on the *workload* cluster.
@@ -363,7 +364,7 @@ Update `tap-values.yaml`, uncomment the entire `app_config` section under the `t
 
 Update the `tap` installation with the new values:
 
-`tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.1.1 -n tap-install -f tap-values.yaml`
+`tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.2.0 -n tap-install -f tap-values.yaml`
 
 After updating `tap`, point your browser to the `fqdn` used in the previous step(s)
 
@@ -440,7 +441,7 @@ like this:
 
 Update the `tap` installation with the new values:
 
-`tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.1.1 -n tap-install -f tap-values.yaml`
+`tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.2.0 -n tap-install -f tap-values.yaml`
 
 Use `kubectl get apps -A` to verify that the `learningcenter` and `learningcenter-workshops` apps are `Reconcile succeeded`
 
@@ -465,6 +466,48 @@ It may take a while ...
 ---
 
 ### Step 14
+To view the `cve scan results` stored in the `metadata store`, a read-only account in the metadata store needs to be created and configured in the `tap-gui`.
+
+Create the service account:
+
+`kubectl apply -f metadata-store-read-only-read-only-service-account.yaml`
+
+Retrieve the read-only access token:
+
+`kubectl get secret $(kubectl get sa -n metadata-store metadata-store-read-client -o json | jq -r '.secrets[0].name') -n metadata-store -o json | jq -r '.data.token' | base64 -d`
+
+Add a `proxy` section under the `tap-gui` -> `app_config` section in the `tap-values.yaml` where the parameter `ACCESS-TOKEN` is replaced by the `read-only access token` retrieved in the previous command.
+
+```
+tap_gui:
+  app_config:
+    proxy:
+      /metadata-store:
+        target: https://metadata-store-app.metadata-store:8443/api/v1
+        changeOrigin: true
+        secure: false
+        headers:
+          Authorization: "Bearer ACCESS-TOKEN"
+          X-Custom-Source: project-star
+```
+Update `tap` to apply the new configuration:
+
+`tanzu package installed update tap --package-name tap.tanzu.vmware.com --version 1.2.0 -n tap-install -f tap-values.yaml`
+
+After the new configuration is applied, open the `tap-gui` and navigate to the `Supply Chains` menu. Select a _succesfully completed_ `source-test-scan-to-url` workload and click on the `Source Scanner` or the `Image Scanner`.
+
+![](images/tap-gui-cve-results-pipeline.png)
+
+If `cve`'s were found during the scan they will be shown.
+
+![](images/tap-gui-cve-results-pipeline-details.png)
+
+
+( See also: https://docs.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.2/tap/GUID-tap-gui-plugins-scc-tap-gui.html )
+
+---
+
+### Step 15
 Deploy a workload. From the `Tanzu Application Platform GUI` portal, click on `Create` on the left side of the navigation bar to see the list of available accelerators. And choose `Spring PetClinic`.
 
 ![](images/spring-petclinic-acc.png)
