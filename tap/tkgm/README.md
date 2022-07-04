@@ -95,7 +95,7 @@ _If_ the `docker image registry` and/or the `git based repository` cannot be res
 
 ---
 
-### Step 5 ( this step can be skipped if the cluster is configured to support service type `LoadBalancer` )
+### Step 5 ( this step can be skipped if the cluster is _already_ configured to support service type `LoadBalancer` )
 The *workload* cluster needs to be configured to support service type `LoadBalancer`.
 
 Typically, this works out-of-the-box when `tkgm` is running on `aws` or `azure`. In case the *workload* cluster is *not* configured to support service type `LoadBalancer` ( for example, when `tkg` is running on `vsphere` ), make sure a loadbalancer like, for example, `metallb` is installed/configured on the *workload* cluster.
