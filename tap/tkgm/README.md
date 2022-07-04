@@ -1,6 +1,6 @@
 # Install/Configure Tanzu Application Platform `tap` on `tkgm`
 
-### This document describes how to install/configure `tap` ( [Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform) ) version `1.2.0` ( _in a *single* cluster setup_ ( for multi cluster, see: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-multicluster-installing-multicluster.html ) ) on a `tkgm` version `1.5.4` ( and run a demo workload ).
+### This document describes how to install/configure `tap` ( [Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform) ) version `1.2.0` ( in a _single_ cluster setup ( for a _multi_ cluster setup, see: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-multicluster-installing-multicluster.html ) ) on a `tkgm` version `1.5.4` cluster ( and run a demo workload ).
 
 ---
 
