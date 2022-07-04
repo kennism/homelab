@@ -1,6 +1,6 @@
 # Install/Configure Tanzu Application Platform `tap` on `tkgm`
 
-### This document describes how to install/configure `tap` ( [Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform) ) version `1.2.0` on a `tkgm` version `1.5.4` cluster ( and run a demo workload ).
+### This document describes how to install/configure `tap` ( [Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform) ) version `1.2.0` ( _in a *single* cluster setup_ ( for multi cluster, see: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-multicluster-installing-multicluster.html ) ) on a `tkgm` version `1.5.4` ( and run a demo workload ).
 
 ---
 
@@ -16,7 +16,7 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 - `tilt` ( https://tilt.dev/ ) is installed
 - `jq` is installed
 - If the `git based repository` and/or `container image registry` are hosted locally ( no SaaS ), make sure there's a `dns` available with a `dns` record for those services ( an entry in the `hosts` file will not work ).
-- A `LoadBalancer` service such as `metallb` or `avi` is installed, configured and available. If not available, a guide on how to install/configure `metallb` is available in step 5 of this document.
+- Installing/configuring a `LoadBalancer` service such as, for example, `metallb` or `avi` is _NOT_ part of this guide. If not available, a guide on how to install/configure `metallb` is available in step 5 of this document.
 
 ---
 
