@@ -16,7 +16,7 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 - `tilt` ( https://tilt.dev/ ) is installed
 - `jq` is installed
 - If the `git based repository` and/or `container image registry` are hosted locally ( no SaaS ), make sure there's a `dns` available with a `dns` record for those services ( an entry in the `hosts` file will not work ).
-- Installing/configuring a `LoadBalancer` service such as, for example, `metallb` or `avi` is _NOT_ part of this guide. If a `LoadBalancer` is not available, a guide on how to install/configure `metallb` is available in step 5 of this document.
+- A `LoadBalancer`. Installing/configuring a `LoadBalancer` service such as, for example, `metallb` or `avi` is _NOT_ part of this guide. If a `LoadBalancer` is not available, a guide on how to install/configure `metallb` is available in `step 5` of this document.
 
 ---
 
