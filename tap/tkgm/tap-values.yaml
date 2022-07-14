@@ -1,39 +1,39 @@
-profile: [PROFILE-VALUE]
+profile: full
 
 ceip_policy_disclosed: true
 
 buildservice:
-  kp_default_repository: [KP-DEFAULT-REPO]
-  kp_default_repository_username: [KP-DEFAULT-REPO-USERNAME]
-  kp_default_repository_password: [KP-DEFAULT-REPO-PASSWORD]
-  tanzunet_username: [TANZU-NET-USERNAME]
-  tanzunet_password: [TANZU-NET-PASSWORD]
-  descriptor_name: tap-1.0.0-full
+  kp_default_repository: "myrepo/tap120/build-service"
+  kp_default_repository_username: "username"
+  kp_default_repository_password: "topSecretPassword"
+  tanzunet_username: "username@emaildomain.com"
+  tanzunet_password: "anotherTopSecretPassword"
   enable_automatic_dependency_updates: false
-  ca_cert_data: |
-    -----BEGIN CERTIFICATE-----
-    b64-encoded repo certificate only for private repositories
-    when using a SaaS based repository the entire ca_cert_data section is not needed
-    -----END CERTIFICATE-----
 
-excluded_packages:
-  - learningcenter.tanzu.vmware.com
-  - workshops.learningcenter.tanzu.vmware.com
+supply_chain: testing_scanning
 
-supply_chain: basic
-
-ootb_supply_chain_basic:
+ootb_supply_chain_testing_scanning:
   registry:
-    server: [SERVER-NAME]
-    repository: [REPO-NAME]
-  gitops:
-    ssh_secret: ""
+    server: "index.docker.io"
+    repository: "someRepository"
 
-# learningcenter:
-#   ingressDomain: .nip.io
+scanning:
+  metadataStore:
+    url: ""
 
-# cnrs:
-#   domain_name: .nip.io
+metadata_store:
+  ns_for_export_app_cert: "*"
+  app_service_type: NodePort
+
+learningcenter:
+  ingressDomain: someDomainName
+
+grype:
+  namespace: tst
+  targetImagePullSecret: registry-credentials
+
+cnrs:
+  domain_name: anotherDomainName
 
 contour:
   envoy:
@@ -42,10 +42,18 @@ contour:
 
 tap_gui:
   service_type: LoadBalancer
-#  app_config:
-#    app:
-#      baseUrl: http://.nip.io:7000
-#    backend:
-#        baseUrl: http://.nip.io:7000
-#        cors:
-#          origin: http://.nip.io:7000
+  app_config:
+    app:
+      baseUrl: http://tapGuiFqdn:7000
+    backend:
+        baseUrl: http://tapGuiFqdn:7000
+        cors:
+          origin: http://tapGuiFqdn:7000
+    proxy:
+      /metadata-store:
+        target: https://metadata-store-app.metadata-store:8443/api/v1
+        changeOrigin: true
+        secure: false
+        headers:
+          Authorization: "Bearer topSecretToken"
+          X-Custom-Source: project-star
