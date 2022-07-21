@@ -62,7 +62,7 @@ Start service `ntpd` ( under `host -> manage -> services` ).
 ---
 
 ### Step 7
-Update `esxi` to latest ( at the time of writing this `7.0u3e` was the latest version ) version ( if no iso avail, use: `esxcli software profile update -p ESXi-7.0U3e-19898904-standard -d https://hostupdate.vmware.com/software/VUM/PRODUCTION/main/vmw-depot-index.xml` ( see: https://tinkertry.com/easy-update-to-latest-esxi ) )
+Update `esxi` to latest ( at the time of writing this `7.0u3f` was the latest version ) version ( if no iso avail, use: `esxcli software profile update -p ESXi-7.0U3f-20036589-standard -d https://hostupdate.vmware.com/software/VUM/PRODUCTION/main/vmw-depot-index.xml` ( see: https://tinkertry.com/easy-update-to-latest-esxi ) )
 
 ---
 
