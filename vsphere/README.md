@@ -28,7 +28,7 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 ---
 
 ### Step 1
-Prepare a USB stick and load the `esxi` install iso ( `VMware-VMvisor-Installer-7.0U3d-19482537.x86_64.iso` ) on it ( for example, by using a tool like `Rufus` ( https://rufus.ie ) ).
+Prepare a USB stick and load the `esxi` install iso ( `VMware-VMvisor-Installer-7.0U3f-20036589.x86_64.iso` ) on it ( for example, by using a tool like `Rufus` ( https://rufus.ie ) ).
 
 ---
 
