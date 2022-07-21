@@ -9,12 +9,13 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 ---
 
 ### Network
-3 static IP addresses are required from your local LAN network.
+4 static IP addresses are required from your local LAN network.
 
 | Hostname | Address |
 | --- |--- |
-| esxi01.tanzu.local | 192.168.1.2 |
-| esxi02.tanzu.local | 192.168.1.3 |
+| esxi01.tanzu.local | 192.168.1.3 |
+| esxi02.tanzu.local | 192.168.1.4 |
+| esxi03.tanzu.local | 192.168.1.5 |
 | vcsa.tanzu.local | 192.168.1.11 |
 
 ---
@@ -38,7 +39,7 @@ Boot from `esxi` usb device and perform a `next -> next -> next -> finish` insta
 ---
 
 ### Step 3
-After reboot, on the `esxi` console ( connect a monitor to the NUC ), using the F2 key, set fixed ip ( `192.168.1.2` or `192.168.1.3` or `192.168.1.4` ) and hostname ( `esxi01` or `esxi02` or `esxi03` ) and disable `ipv6`. 
+After reboot, on the `esxi` console ( connect a monitor to the NUC ), using the F2 key, set fixed ip ( `192.168.1.3` or `192.168.1.4` or `192.168.1.5` ) and hostname ( `esxi01` or `esxi02` or `esxi03` ) and disable `ipv6`. 
 
 
 Reboot to activate the changes.
