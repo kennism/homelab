@@ -232,7 +232,7 @@ Update the file `tap-values.yaml` to meet your environment:
 ### Step 11
 Install `tap`
 
-`tanzu package install tap -p tap.tanzu.vmware.com -v 1.2.0-build.13 --values-file tap-values-1.2.0.yaml -n tap-install`
+`tanzu package install tap -p tap.tanzu.vmware.com -v 1.2.0 --values-file tap-values.yaml -n tap-install`
 
 ( Even though the field `ceip_policy_disclosed` is set to `true`, there might still be an error stating `The field ceip_policy_disclosed in values.yaml must be set to true in order to proceed with the installation`. Check with the commands below if the deployment started ( in that case error can be ignored ) ).
 
