@@ -8,3 +8,4 @@ The documents in this repository describe the setup of a VMware homelab. How to 
 4) To install/configure `tkgm` ( standalone / multicloud `tkg` ) on `aws`, click [here](tkgm/aws).
 5) To install/configure `tkgm` ( standalone / multicloud `tkg` ) on `azure`, click [here](tkgm/azure).
 6) To install/configure `tap`, click [here](tap).
+7) To install/configure `avi`, click [here](avi/vsphere).
