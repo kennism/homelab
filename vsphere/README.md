@@ -118,6 +118,8 @@ _If_ the vCLS vm's are not starting due to an error such as `Feature 'MWAIT' was
 - Disable "EVC"
 - Repeat for the other vCLS VMs
 _If_ a message such as `The number of vSphere HA heartbeat datastores for this host is 0, which is less than required: 2` appears ( and there's no shared storage, only local storage ):
+
+
 ![](images/vsphere-heartbeat-datastore.png)
 - In the `vsphere` console, go to: `cluster` -> `Configure` -> `vSphere Availability` -> `Edit ...` ( for HA )
 - Go to `Advanced Options`
