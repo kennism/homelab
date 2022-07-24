@@ -101,6 +101,7 @@ Update vCenter to latest version:
   - Run `software-packages stage --url` to stage available updates.
   - _If_ there is an update staged, view the details `software-packages list --staged`.
   - Install the staged update: `software-packages install --staged`
+  - If needed for the update, the `vcsa` vm will be automatically rebooted after installation of the update is completed.
 
 NOTE: One of the final steps of an update is: `Converting data as part of post install`, this step may take a while ( approx. 25-30 mins. ).
 
