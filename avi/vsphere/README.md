@@ -9,7 +9,7 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 ---
 ## Assumptions / Requirements / Prerequisites
 - Access to a `vsphere` instance. To setup one, follow [this](../../vsphere) guide.
-- A working `tkgm` instance running on `vsphere`. To setup one, follow [this](../../tkgm) guide.
+- A working `tkgm` instance running on `vsphere`. To setup one, follow [this](../../tkgm/vsphere) guide.
 - A `customerconnect` account ( https://customerconnect.vmware.com ).
 - A network with `dhcp` enabled _and_ a known range of static ip addresses ( on the same network ).
   - In this document we will assume a `192.168.1.0/24` network with `dhcp` enabled for ip addresses `192.168.1.60` and higher. The range below `192.168.1.60` are static ip adresses.
