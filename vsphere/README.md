@@ -62,7 +62,7 @@ Start service `ntpd` ( under `host -> manage -> services` ).
 ---
 
 ### Step 7
-Update `esxi` to latest ( at the time of writing this `7.0u3f` was the latest version ) version ( if no iso avail, use: `esxcli software profile update -p ESXi-7.0U3f-20036589-standard -d https://hostupdate.vmware.com/software/VUM/PRODUCTION/main/vmw-depot-index.xml` ( see: https://tinkertry.com/easy-update-to-latest-esxi ) )
+Update `esxi` to latest ( at the time of writing this `7.0u3f` was the latest version ) version ( if there is no iso available, use: `esxcli software profile update -p ESXi-7.0U3f-20036589-standard -d https://hostupdate.vmware.com/software/VUM/PRODUCTION/main/vmw-depot-index.xml` ( see: https://tinkertry.com/easy-update-to-latest-esxi ) )
 
 ---
 
@@ -72,7 +72,7 @@ Reboot the `esxi` host.
 ---
 
 ### Step 9
-On a laptop or workstation, mount the `vcsa` virtual applicance iso ( `VMware-VCSA-all-7.0.3-20150588.iso` ).
+On a laptop or workstation, mount the `vcsa` virtual appliance `.iso` ( `VMware-VCSA-all-7.0.3-20150588.iso` ).
 
 ---
 
