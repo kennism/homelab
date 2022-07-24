@@ -215,7 +215,7 @@ Deploy the `management` cluster.
 
 `tanzu management-cluster create --file /path/to/mgmt-avi.yaml -v 9`
 
-After the log line `Start creating management cluster...` a new `vm` with the naming convention `Avi-se-[5-random-chars]` should appear in `vcenter`
+After the log line `Start creating management cluster...`, one ( or more, depending on the configuration set in Step 7 ) new `vm`('s) with naming convention `Avi-se-[5-random-chars]` should appear in `vcenter`
 
 ![](images/vcenter-se-vm.png)
 
