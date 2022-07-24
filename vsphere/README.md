@@ -123,6 +123,8 @@ _If_ a message such as `The number of vSphere HA heartbeat datastores for this h
 - Go to `Advanced Options`
 - Add property `das.ignoreInsufficientHbDatastore` and set value to `true`
 - Add property `das.ignoreRedundantNetWarning` and set value to `true` ( this property might already be there )
+
+
 ![](images/vsphere-cluster-additional-settings.png)
 
 ---
