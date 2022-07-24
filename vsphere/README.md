@@ -102,7 +102,7 @@ Update vCenter to latest version:
   - _If_ there is an update staged, view the details `software-packages list --staged`.
   - Install the staged update: `software-packages install --staged`
 
-NOTE: One of the final steps of an update is: `Converting data as part of post install`, this step may take a while ( approx. xx mins. ).
+NOTE: One of the final steps of an update is: `Converting data as part of post install`, this step may take a while ( approx. 25-30 mins. ).
 
 ---
 
