@@ -138,7 +138,7 @@ Under `Basic Settings`, set a value for the `Virtual Services per Service Engine
 
 If low on resources, set `Max Number of Service Engines` to `1`.
 
-Under `Advanced`, if needed, set the resources for the `Service Engine`'s to use.
+Under `Advanced`, if needed ( for example, to steer where the `Service Engine`'s are going to be deployed ), set the resources for the `Service Engine`'s to use.
 
 ![](images/service-engine-group-adv-settings.png)
 
