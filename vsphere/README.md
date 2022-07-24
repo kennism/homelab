@@ -72,7 +72,7 @@ Reboot the `esxi` host.
 ---
 
 ### Step 9
-On a laptop or workstation, mount the `vcsa` virtual applicance iso ( `VMware-VCSA-all-7.0.3-20051473.iso` ).
+On a laptop or workstation, mount the `vcsa` virtual applicance iso ( `VMware-VCSA-all-7.0.3-20150588.iso` ).
 
 ---
 
