@@ -134,9 +134,13 @@ For the `Default-Group` click on `Edit` ( the pencil icon ).
 
 ![](images/service-engine-group-settings.png)
 
-Set a value for the `Virtual Services per Service Engine` field.
+Under `Basic Settings`, set a value for the `Virtual Services per Service Engine` field.
 
 If low on resources, set `Max Number of Service Engines` to `1`.
+
+Under `Advanced`, if needed set the resources for the `Service Engine`'s to use.
+
+![](images/service-engine-group-adv-settings.png)
 
 Click on `Save`.
 
