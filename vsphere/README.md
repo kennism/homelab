@@ -110,13 +110,13 @@ Run `setup_vcsa_vanilla.ps1`
 
 *NOTES: The `setup_vcsa_vanilla.ps1` script, amongst other things, enables `DRS` and `HA` on the cluster ( which are mandatory if `tkgs` needs to be installed ). When enables there's a `vSphere Cluster Service VM` ( or `vCLS`) VM deployed on every node of the cluster. Sometimes one or both of the messages below may appear.*
 _If_ the vCLS vm's are not starting due to an error such as `Feature 'MWAIT' was absent, but must be present`, do the following:
-- Upgrade the VMs "Compatibility" version to _at least_ "VM version 14" ( right-click the VM )
-- Click on the VM, click on the Configure tab and click on "VMware EVC"
-- Click on "Edit" and click on "Yes" when you are informed to not make changes to the VM
-- Enable "EVC"
+- Upgrade the VMs `Compatibility` version to _at least_ `VM version 14` ( right-click the VM )
+- Click on the VM, click on the `Configure` tab and click on `VMware EVC`
+- Click on `Edit` and click on `Yes` when you are informed to not make changes to the VM
+- Enable `EVC`
 - Wait ...
-- Disable "EVC"
-- Repeat for the other vCLS VMs
+- Disable `EVC`
+- Repeat for the other `vCLS` VMs
 _If_ a message such as `The number of vSphere HA heartbeat datastores for this host is 0, which is less than required: 2` appears ( and there's no shared storage, only local storage ):
 
 
