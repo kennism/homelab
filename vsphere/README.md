@@ -92,8 +92,17 @@ Login on the `vCenter` console ( `https://vcsa.tanzu.local/ui` ) and add the `vC
 ---
 
 ### Step 13
-Update vCenter to latest version ( open mgmt portal ( port: `5480` ) see `Updates` ).
-
+Update vCenter to latest version:
+- Through the `web ui`:
+  - Open `mgmt portal` ( port: `5480` ), see `Updates`.
+- Through the `cli`:
+  - `ssh` into the `vcsa`.
+  - Stay on the `Command>` prompt ( don't start a `bash` shell ).
+  - Run `software-packages stage --url` to stage available updates.
+  - _If_ there is an update staged, view the details `software-packages list --staged`.
+  - Install the staged update: `software-packages install --staged`
+  
+  
 ---
 
 ### Step 14
