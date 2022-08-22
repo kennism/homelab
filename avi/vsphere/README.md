@@ -76,7 +76,7 @@ Configure the controller to use the new certificate
 
 In the `avi` web console, go to:
 
-`Administration` -> `Access Settings` and click on `Edit` ( the pencil icon )
+`Administration` -> `Settings` -> `Access Settings` and click on `Edit` ( the pencil icon )
 
 ![](images/update-system-settings-cert.png)
 
