@@ -114,6 +114,8 @@ Click on `Set Credentials`.
 
 Click on `Connect`.
 
+Uncheck `Use Content Library`.
+
 Click on `Save & Relaunch`.
 
 Select the `Management Network`.
