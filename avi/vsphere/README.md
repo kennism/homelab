@@ -152,7 +152,7 @@ Verify the `Service Engine Network`.
 
 Go to: `Infrastructure` -> `Cloud Resources` -> `Networks`.
 
-On the line of the desired network ( the management network selected in the previous step(s) ) click on `Edit` ( the pencil icon ).
+On the line of the desired network ( the `management` network selected in the previous step(s) ) click on `Edit` ( the pencil icon ).
 
 On the `IP Subnet` line, click on edit ( the pencil icon ).
 
