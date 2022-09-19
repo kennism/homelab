@@ -374,7 +374,7 @@ Open file `harbor-data-values.yaml` and update the following parameters:
 
 Install harbor by executing the following command
 
-`tanzu package install harbor --package-name harbor.tanzu.vmware.com --version 2.3.3+vmware.1-tkg.1 --values-file /path/to/harbor-data-values.yaml --namespace=harbor --create-namespace`
+`tanzu package install harbor --package-name harbor.tanzu.vmware.com --version 2.5.3+vmware.1-tkg.1 --values-file /path/to/harbor-data-values.yaml --namespace=harbor --create-namespace`
 
 ![](images/tanzu-package-harbor-install.png)
 
@@ -404,7 +404,7 @@ Get the `EXTERNAL-IP` of the loadbalancer through which the `harbor` service is 
 
 Add the `EXTERNAL-IP` to your `dns` or to the hosts file of your client machine
 
-`51.138.183.74	harbor.tanzu.local`
+`192.168.1.35	harbor.tanzu.local`
 
 Point the browser on the client machine to `http://harbor.tanzu.local/`
 
