@@ -279,6 +279,8 @@ Confirm that `cert-manager` is available in your *workload* cluster
 
 `tanzu package available list -A`
 
+![](images/tanzu-package-avail-list.png)
+
 Retrieve the version of the available `cert-manager` package
 
 `tanzu package available list cert-manager.tanzu.vmware.com -A`
@@ -287,7 +289,7 @@ Retrieve the version of the available `cert-manager` package
 
 Install `cert-manager` copy/paste the `package-name` and `version` from the output of the commands in the previous steps
 
-`tanzu package install cert-manager --package-name cert-manager.tanzu.vmware.com --version 1.5.3+vmware.2-tkg.1 --namespace tkg-system`
+`tanzu package install cert-manager --package-name cert-manager.tanzu.vmware.com --version 1.7.2+vmware.1-tkg.1 --namespace tkg-system`
 
 ![](images/tanzu-package-cert-mgr-install.png)
 
