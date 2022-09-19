@@ -354,6 +354,8 @@ Confirm that the Harbor package is available in the cluster:
 
 `tanzu package available list -A`
 
+![](images/tanzu-package-avail-list.png)
+
 Retrieve the version of the available package:
 
 `tanzu package available list harbor.tanzu.vmware.com -A`
