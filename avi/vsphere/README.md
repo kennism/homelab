@@ -1,6 +1,6 @@
 # Install/Configure `VMware NSX Advanced Load Balancer` ( `avi` ) for `tkgm` on `vsphere`
 
-This document describes how to install version `22.1.1` of the `VMware NSX Advanced Load Balancer` ( `avi` ) on `vsphere` and how to configure a `tkgm` ( version `1.5.4` ) cluster ( running on `vsphere` ) to use the `VMware NSX Advanced Load Balancer` ( [VMware NSX Advanced Load Balancer](https://www.vmware.com/products/nsx-advanced-load-balancer.html) ) and deploy a workload ( `nginx` ) using service type `LoadBalancer`.
+This document describes how to install version `22.1.1` of the `VMware NSX Advanced Load Balancer` ( `avi` ) on `vsphere` and how to configure a `tkgm` ( version `1.6.0` ) cluster ( running on `vsphere` ) to use the `VMware NSX Advanced Load Balancer` ( [VMware NSX Advanced Load Balancer](https://www.vmware.com/products/nsx-advanced-load-balancer.html) ) and deploy a workload ( `nginx` ) using service type `LoadBalancer`.
 
 ---
 
