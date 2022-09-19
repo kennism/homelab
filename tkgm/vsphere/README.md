@@ -23,7 +23,7 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 ### Step 1
 Download the following Tanzu Kubernetes components ( https://my.vmware.com/en/web/vmware/downloads/info/slug/infrastructure_operations_management/vmware_tanzu_kubernetes_grid/1_x )
 
-- VMware Tanzu CLI for Linux ( `tanzu-cli-bundle-linux-amd64.tar` )
+- VMware Tanzu CLI for Linux ( `tanzu-cli-bundle-linux-amd64.tar.gz` )
 - Photon v3 Kubernetes `v1.23.8` OVA ( `photon-3-kube-v1.23.8+vmware.2-tkg.2-81d1a7892ad39f017fbaf59f9907cbe7.ova` )
 - Ubuntu 2004 Kubernetes `v1.23.8` OVA ( `ubuntu-2004-kube-v1.23.8+vmware.2-tkg.1-85a434f93857371fccb566a414462981.ova` )
 - kubectl cluster cli `v1.23.8` for Linux ( `kubectl-linux-v1.23.8+vmware.2.gz` )
@@ -92,14 +92,14 @@ In the `Networking` view:
 ---
 
 ### Step 6
-Copy the downloaded VMware Tanzu CLI for Linux ( `tanzu-cli-bundle-linux-amd64.tar` ) file to the linux based environment with `docker` installed on it.
+Copy the downloaded VMware Tanzu CLI for Linux ( `tanzu-cli-bundle-linux-amd64.tar.gz` ) file to the linux based environment with `docker` installed on it.
 
 ---
 
 ### Step 7
-Untar the VMware Tanzu CLI ( `tar xf tanzu-cli-bundle-linux-amd64.tar` ) in an empty directory ( for example `~/tanzu-cli` )
+Untar the VMware Tanzu CLI ( `tar xzf tanzu-cli-bundle-linux-amd64.tar.gz` ) in an empty directory ( for example `~/tanzu-cli` )
 
-Copy the VMware Tanzu CLI binary to a location which is in the system path, for example: `/usr/local/bin` ( `cp ~/tanzu-cli/cli/core/v0.11.6/tanzu-core-linux_amd64 /usr/local/bin/tanzu` ).
+Copy the VMware Tanzu CLI binary to a location which is in the system path, for example: `/usr/local/bin` ( `cp ~/tanzu-cli/cli/core/v0.25.0/tanzu-core-linux_amd64 /usr/local/bin/tanzu` ).
 
 Make the destination file executable ( `chmod a=rx /usr/local/bin/tanzu` )
 
@@ -112,14 +112,14 @@ Check the version of the `tanzu` cli
 ---
 
 ### Step 8
-Copy the downloaded kubectl cluster cli for Linux ( `kubectl-linux-v1.23.8+vmware.1.gz` ) file to the linux based environment with `docker` installed on it.
+Copy the downloaded kubectl cluster cli for Linux ( `kubectl-linux-v1.23.8+vmware.2.gz` ) file to the linux based environment with `docker` installed on it.
 
 ---
 
 ### Step 9
-`gunzip` the kubectl cluster cli ( `kubectl-linux-v1.23.8+vmware.1.gz` )
+`gunzip` the kubectl cluster cli ( `kubectl-linux-v1.23.8+vmware.2.gz` )
 
-Move the extracted file to a location which is in the system path, for example: `/usr/local/bin` ( `mv /path/to/kubectl-linux-v1.23.8+vmware.1 /usr/local/bin/kubectl` ).
+Move the extracted file to a location which is in the system path, for example: `/usr/local/bin` ( `mv /path/to/kubectl-linux-v1.23.8+vmware.2 /usr/local/bin/kubectl` ).
 
 Make the destination file executable ( `chmod a=rx /usr/local/bin/kubectl` )
 
