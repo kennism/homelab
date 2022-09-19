@@ -12,7 +12,7 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 
 ### Assumptions / Requirements / Prerequisites
 - Access to a `vsphere` instance. To setup one, follow [this](../../vsphere) guide.
-- Access to a `linux` based (virtual)machine with, at least, 4GB memory *available* and the following software installed on it:
+- Access to a `linux` based (virtual)machine with, at least, 6GB memory *available* ( as-in *available* not *total* ) and the following software installed on it:
   - `docker`
   - `kind` ( https://sigs.k8s.io/kind )
 - At least 2 static `ip address` are required from your local LAN network ( 1 for each mgmt cluster management node and 1 for each workload cluster management node ).
@@ -24,9 +24,9 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 Download the following Tanzu Kubernetes components ( https://my.vmware.com/en/web/vmware/downloads/info/slug/infrastructure_operations_management/vmware_tanzu_kubernetes_grid/1_x )
 
 - VMware Tanzu CLI for Linux ( `tanzu-cli-bundle-linux-amd64.tar` )
-- Photon v3 Kubernetes `v1.22.9` OVA ( `photon-3-kube-v1.22.9+vmware.1-tkg.1-06852a87cc9526f5368519a709525c68.ova` )
-- Ubuntu 2004 Kubernetes `v1.22.9` OVA ( `ubuntu-2004-kube-v1.22.9+vmware.1-tkg.1-2182cbabee08edf480ee9bc5866d6933.ova` )
-- kubectl cluster cli `v1.22.9` for Linux ( `kubectl-linux-v1.22.9+vmware.1.gz` )
+- Photon v3 Kubernetes `v1.23.8` OVA ( `photon-3-kube-v1.23.8+vmware.2-tkg.2-81d1a7892ad39f017fbaf59f9907cbe7.ova` )
+- Ubuntu 2004 Kubernetes `v1.23.8` OVA ( `ubuntu-2004-kube-v1.23.8+vmware.2-tkg.1-85a434f93857371fccb566a414462981.ova` )
+- kubectl cluster cli `v1.23.8` for Linux ( `kubectl-linux-v1.23.8+vmware.2.gz` )
 
 ---
 
@@ -34,7 +34,7 @@ Download the following Tanzu Kubernetes components ( https://my.vmware.com/en/we
 Import the kubernetes base image(s) template into `vsphere`.
 
 - In the `vsphere` Client, go to `Inventory`, right-click on `Tanzu-Datacenter` and select `Deploy OVF template`.
-- Select `Local file`, click the button to upload files, and navigate to the downloaded OVA file on your local machine ( `photon-3-kube-v1.22.9+vmware.1-tkg.1-06852a87cc9526f5368519a709525c68.ova` and/or `ubuntu-2004-kube-v1.22.9+vmware.1-tkg.1-2182cbabee08edf480ee9bc5866d6933.ova` ).
+- Select `Local file`, click the button to upload files, and navigate to the downloaded OVA file on your local machine ( `photon-3-kube-v1.23.8+vmware.2-tkg.2-81d1a7892ad39f017fbaf59f9907cbe7.ova` and/or `ubuntu-2004-kube-v1.23.8+vmware.2-tkg.1-85a434f93857371fccb566a414462981.ova` ).
 - Step through the wizard accepting all the defaults for `Name and folder`, `Compute resource`, `Review details` and accept the `license agreement`.
 - At `Select storage`, make sure to select the correct `datastore` and set `Select virtual disk format` to `Thin Provision`.
 - At `Select networks`, select the destination network `Management`.
@@ -42,7 +42,7 @@ Import the kubernetes base image(s) template into `vsphere`.
 
 *NOTE: Do not power on the VM*
 
-When the OVA deployment finishes, right-click the VM ( `photon-3-kube-v1.22.9+vmware.1` and/or `ubuntu-2004-kube-v1.22.9+vmware.1` ) and select `Template` -> `Convert to Template`.
+When the OVA deployment finishes, right-click the VM ( `photon-3-kube-v1.23.8+vmware.2` and/or `ubuntu-2004-kube-v1.23.8+vmware.2` ) and select `Template` -> `Convert to Template`.
 
 ---
 
@@ -112,14 +112,14 @@ Check the version of the `tanzu` cli
 ---
 
 ### Step 8
-Copy the downloaded kubectl cluster cli for Linux ( `kubectl-linux-v1.22.9+vmware.1.gz` ) file to the linux based environment with `docker` installed on it.
+Copy the downloaded kubectl cluster cli for Linux ( `kubectl-linux-v1.23.8+vmware.1.gz` ) file to the linux based environment with `docker` installed on it.
 
 ---
 
 ### Step 9
-`gunzip` the kubectl cluster cli ( `kubectl-linux-v1.22.9+vmware.1.gz` )
+`gunzip` the kubectl cluster cli ( `kubectl-linux-v1.23.8+vmware.1.gz` )
 
-Move the extracted file to a location which is in the system path, for example: `/usr/local/bin` ( `mv /path/to/kubectl-linux-v1.22.9+vmware.1 /usr/local/bin/kubectl` ).
+Move the extracted file to a location which is in the system path, for example: `/usr/local/bin` ( `mv /path/to/kubectl-linux-v1.23.8+vmware.1 /usr/local/bin/kubectl` ).
 
 Make the destination file executable ( `chmod a=rx /usr/local/bin/kubectl` )
 
