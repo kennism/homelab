@@ -318,6 +318,8 @@ Confirm that `contour` is available in your *workload* cluster
 
 `tanzu package available list -A`
 
+![](images/tanzu-package-avail-list.png)
+
 Retrieve the version of the available `contour` package
 
 `tanzu package available list contour.tanzu.vmware.com -A`
@@ -326,7 +328,7 @@ Retrieve the version of the available `contour` package
 
 Install `contour` copy/paste the `package-name` and `version` from the output of the commands in the previous steps
 
-`tanzu package install contour --package-name contour.tanzu.vmware.com --version 1.18.2+vmware.1-tkg.1 --values-file contour-data-values.yaml --namespace tkg-system`
+`tanzu package install contour --package-name contour.tanzu.vmware.com --version 1.20.2+vmware.1-tkg.1 --values-file contour-data-values.yaml --namespace tkg-system`
 
 ![](images/tanzu-package-contour-install.png)
 
