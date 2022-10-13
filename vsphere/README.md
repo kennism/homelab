@@ -1,4 +1,4 @@
-# Install/Configure `esxi 7` and `vsphere 7`
+# Install/Configure `esxi 8` and `vsphere 8`
 
 This document describes the setup of a vmware homelab and is heavily inspired on William Lam's guide to installing a Tanzu homelab ( https://williamlam.com/2020/11/complete-vsphere-with-tanzu-homelab-with-just-32gb-of-memory.html ) and is adjusted mainly to accomodate my local network setup.
 
@@ -29,7 +29,7 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 ---
 
 ### Step 1
-Prepare a USB stick and load the `esxi` install iso ( `VMware-VMvisor-Installer-7.0U3f-20036589.x86_64.iso` ) on it ( for example, by using a tool like `Rufus` ( https://rufus.ie ) ).
+Prepare a USB stick and load the `esxi` install iso ( `VMware-VMvisor-Installer-8.0-20513097.x86_64.iso` ) on it ( for example, by using a tool like `Rufus` ( https://rufus.ie ) ).
 
 ---
 
@@ -62,7 +62,7 @@ Start service `ntpd` ( under `host -> manage -> services` ).
 ---
 
 ### Step 7
-Update `esxi` to latest ( at the time of writing this `7.0u3f` was the latest version ) version ( if there is no iso available, use: `esxcli software profile update -p ESXi-7.0U3f-20036589-standard -d https://hostupdate.vmware.com/software/VUM/PRODUCTION/main/vmw-depot-index.xml` ( see: https://tinkertry.com/easy-update-to-latest-esxi ) )
+Update `esxi` to latest ( at the time of writing this `8.0.0` was the latest version ) version ( if there is no iso available, use: `esxcli software profile update -p ESXi-8.0-20513097-standard -d https://hostupdate.vmware.com/software/VUM/PRODUCTION/main/vmw-depot-index.xml` ( see: https://tinkertry.com/easy-update-to-latest-esxi ) )
 
 ---
 
@@ -72,7 +72,7 @@ Reboot the `esxi` host.
 ---
 
 ### Step 9
-On a laptop or workstation, mount the `vcsa` virtual appliance `.iso` ( `VMware-VCSA-all-7.0.3-20150588.iso` ).
+On a laptop or workstation, mount the `vcsa` virtual appliance `.iso` ( `VMware-VCSA-all-8.0.0-20519528.iso` ).
 
 ---
 
@@ -82,7 +82,7 @@ Edit `vcsa.tanzu.local.json` to meet your local settings ( `hostname` / `network
 ---
 
 ### Step 11
-Run ( from: `d:\vcsa-cli-installer\win32` or `/path/to/mountpoint/vcsa-cli-installer/lin64` ) `vcsa-deploy.exe install --accept-eula --no-ssl-certificate-verification c:\path\to\vcsa.tanzu.local.json` ( or `./vcsa-deploy install --accept-eula --no-ssl-certificate-verification /path/to/vcsa.tanzu.local.json` ) this operation takes approx 20 mins to complete.
+Run ( from: `d:\vcsa-cli-installer\win32` or `/path/to/mountpoint/vcsa-cli-installer/lin64` ) `vcsa-deploy.exe install --accept-eula --no-ssl-certificate-verification c:\path\to\vcsa.tanzu.local.json` ( or `./vcsa-deploy install --accept-eula --no-ssl-certificate-verification /path/to/vcsa.tanzu.local.json` ) this operation takes approx 15 mins to complete.
 
 ---
 
@@ -119,7 +119,7 @@ Also, run `Set-PowerCLIConfiguration -InvalidCertificateAction Ignore -Confirm:$
 ### Step 15
 Run `setup_vcsa_vanilla.ps1`
 
-*NOTES: The `setup_vcsa_vanilla.ps1` script, amongst other things, enables `DRS` and `HA` on the cluster ( which are mandatory if `tkgs` needs to be installed ). When enables there's a `vSphere Cluster Service VM` ( or `vCLS`) VM deployed on every node of the cluster. Sometimes one or both of the messages below may appear.*
+*NOTES: The `setup_vcsa_vanilla.ps1` script, amongst other things, enables `DRS` and `HA` on the cluster ( which are mandatory if `tkgs` needs to be installed ). When enabled, there's a `vSphere Cluster Service VM` ( or `vCLS`) VM deployed on every node of the cluster. Sometimes one or both of the messages below may appear.*
 
 
 _If_ the vCLS vm's are not starting due to an error such as `Feature 'MWAIT' was absent, but must be present`, do the following:
@@ -136,13 +136,61 @@ _If_ a message such as `The number of vSphere HA heartbeat datastores for this h
 
 
 ![](images/vsphere-heartbeat-datastore.png)
-- In the `vsphere` console, go to: `cluster` -> `Configure` -> `vSphere Availability` -> `Edit ...` ( for `HA` )
+- In the `vSphere` console, go to: `Cluster` -> `Configure` -> `vSphere Availability` -> `Edit ...` ( The one on the top next to `vSphere HA is Turned ON` )
 - Go to `Advanced Options`
 - Add property `das.ignoreInsufficientHbDatastore` and set value to `true`
-- Add property `das.ignoreRedundantNetWarning` and set value to `true` ( this property might already be there )
+- Add property `das.ignoreRedundantNetWarning` and set value to `true`
 
 
 ![](images/vsphere-cluster-additional-settings.png)
+
+If there's no `PowerShell` available to run `setup_vcsa_vanilla.ps1`, please configure the following steps manually:
+
+To disable Network Rollback for 1-NIC VDS:
+- In the vSphere webclient, go to `Inventory` -> `Hosts and Clusters` -> `Configure` -> `Advanced Settings`
+- Click on `Edit Settings` and search for `config.vpxd.network.rollback` and set this value to `false`
+
+Create a new datacenter:
+- Right-Click on the top item under `Inventory` -> `Hosts and Clusters` ( In this example this is `vcsa.tanzu.local` ) and click on `New Datacenter`.
+
+![](images/vsphere-new-datacenter.png)
+
+Give the datacenter a name and click `OK`
+
+![](images/vsphere-new-datacenter-name.png)
+
+Create a cluster in the datacenter
+- Right-Click on the datacenter and select `New Cluster`
+
+![](images/vsphere-new-cluster.png)
+
+Give the cluster a name and enable `vSphere DRS` and `vSphere HA`
+
+![](images/vsphere-new-cluster-input.png)
+
+Leave everything else to the default values `Next` -> `Next` -> `Finish`.
+
+Disable `Network Redudancy` and `Insufficient Heartbeat Datastore` Warning ( for example, in case of running `vcsa` on a host with 1 nic such as an intel nuc ):
+- In the `vSphere` console, go to: `Cluster` -> `Configure` -> `vSphere Availability` -> `Edit ...` ( The one on the top next to `vSphere HA is Turned ON` )
+- Go to `Advanced Options`
+- Add property `das.ignoreInsufficientHbDatastore` and set value to `true`
+- Add property `das.ignoreRedundantNetWarning` and set value to `true`
+
+![](images/vsphere-cluster-additional-settings.png)
+
+- Add host(s) to the cluster
+Right-Click on the cluster and select `Add hosts`
+
+![](images/vsphere-cluster-add-hosts.png)
+
+Add the host(s) to be added to the cluster, click `Next`
+
+Review the summary, click `Next`
+
+Don't import an image, click `Next`
+
+Review the summary, click `Finish`
+
 
 ---
 
