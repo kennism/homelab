@@ -191,6 +191,19 @@ Don't import an image, click `Next`
 
 Review the summary, click `Finish`
 
+- Create a `Virtual Distributed Switch`
+
+Open the `Network` view, Right-Click on the datacenter and select `Distributed Switch` -> `New Distributed Switch`
+
+Give the new `vds` a name and click `Next`
+
+Accept the defaults for `Select version` and click `Next`
+
+On the `Configure settings` page set the `Number of uplinks` to `1` and set `Port group name` to `management`
+
+Review the summary and click 'Finish'
+
+Right click on the `management` portgroup, select `Edit Settings`, set `Port binding` to `Ephemeral - no binding` and click `OK`
 
 ---
 
