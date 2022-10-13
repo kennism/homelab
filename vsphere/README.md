@@ -195,6 +195,8 @@ Review the summary, click `Finish`
 
 Open the `Network` view, Right-Click on the datacenter and select `Distributed Switch` -> `New Distributed Switch`
 
+![](images/vsphere-network-new-vds.png)
+
 Give the new `vds` a name and click `Next`
 
 Accept the defaults for `Select version` and click `Next`
