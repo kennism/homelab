@@ -299,7 +299,7 @@ Now the datastore has status `Normal`
 
 ![](images/software-iscsi-devices-ok.png)
 
-( source: https://communities.vmware.com/t5/ESXi-Discussions/Disks-degraded-in-ESXi/m-p/1404465#M134443 )
+( source: https://communities.vmware.com/t5/ESXi-Discussions/Disks-degraded-in-ESXi/m-p/1404465#M134443 also see: https://wahlnetwork.com/2012/03/19/reclaim-error-when-configuring-remote-ssd-for-host-cache/#Reclaim_Error_Troubleshooting ( especially if you run into errors like `Unable to unclaim path ...` ) )
 
 Note:
 - _If_ the iSCSI datastore disappears after reboot, add it back by navigating to `Storage -> Adapters -> ( select the iscsi adapter ) -> Configure iSCSI` and re-add the target iqn and address under `Static targets` and save the configuration. Now, the iSCSI datastore should re-appear.
