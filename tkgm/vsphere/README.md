@@ -1,8 +1,8 @@
-# Install/Configure Tanzu Kubernetes Grid `tkgm` ( standalone / multicloud `tkg` ) version `1.6.0` on `vsphere 7`
+# Install/Configure Tanzu Kubernetes Grid `tkgm` ( standalone / multicloud `tkg` ) version `1.6.0` on `vsphere 8`
 
-This document describes how to install/configure the *standalone / multicloud* variant of `tkg` ( [Tanzu Kubernetes Grid](https://tanzu.vmware.com/kubernetes-grid) ) on `vsphere7`.
+This document describes how to install/configure the *standalone / multicloud* variant of `tkg` ( [Tanzu Kubernetes Grid](https://tanzu.vmware.com/kubernetes-grid) ) on `vsphere 8`.
 
-NOTE: If you are looking for instructions on how to enable/configure `tkgs`, which is the `tkg` variant which is *embedded* in `vsphere 7` ( also known as `workload management` ), click [here](../../tkgs).
+NOTE: If you are looking for instructions on how to enable/configure `tkgs`, which is the `tkg` variant which is *embedded* in `vsphere 8` ( also known as `workload management` ), click [here](../../tkgs).
 
 ---
 
@@ -60,7 +60,7 @@ In the `vsphere` Client, go to `Administration` -> `Access Control` -> `Roles`, 
 | Virtual machine | Change Configuration -> Add existing disk<br/>Change Configuration -> Add new disk<br/>Change Configuration -> Add or remove device<br/>Change Configuration -> Advanced configuration<br/>Change Configuration -> Change CPU count<br/>Change Configuration -> Change Memory<br/>Change Configuration -> Change Settings<br/>Change Configuration -> Configure Raw device<br/>Change Configuration -> Extend virtual disk<br/>Change Configuration -> Modify device settings<br/>Change Configuration -> Remove disk<br/>Edit Inventory -> Create from existing<br/>Edit Inventory -> Remove<br/>Interaction -> Power On<br/>Interaction -> Power Off |
 | vApp | Import |
 
-NOTE: If you are deploying Tanzu Kubernetes clusters to a `vsphere 7` instance  with `workload management` enabled, you must also set the `Global` -> `Cloud Admin` permission.
+NOTE: If you are deploying Tanzu Kubernetes clusters to a `vsphere 8` instance  with `workload management` enabled, you must also set the `Global` -> `Cloud Admin` permission.
 
 ---
 
