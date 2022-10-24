@@ -1,6 +1,6 @@
-# Enable/Configure `workload management` ( or `tkgs` ) on `vsphere 7`
+# Enable/Configure `workload management` ( or `tkgs` ) on `vsphere 8`
 
-This document describes how to enable/configure `workload management` ( or `tkgs` ) on `vsphere 7`.
+This document describes how to enable/configure `workload management` ( or `tkgs` ) on `vsphere 8`.
 
 NOTE: If you are looking for instructions on how to install/configure `tkgm`, the *standalone / multicloud* variant of `tkg`, click [here](../tkgm/vsphere).
 
@@ -33,7 +33,7 @@ The `haproxy` loadbalancer uses the following two _additional_ networks:
 ---
 
 ### Step 1
-Download a recent version of a `photon 3.0 ova`. For example, from: https://packages.vmware.com/photon/3.0/Rev3/ova/photon-hw13_uefi-3.0-a383732.ova  ( don't use a photon 4.0 ova )
+Download a recent version of a `photon 3.0 ova`. For example, from: https://packages.vmware.com/photon/3.0/Rev3/ova/Update1/photon-hw13_uefi-3.0-913b49438.ova  ( don't use a photon `4.0` ova )
 
 ---
 

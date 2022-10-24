@@ -196,6 +196,18 @@ Apply a license under `Administration` -> `Licensing`.
 
 ---
 ### Step 11
+Add static routes to `frontend` and `workload` network.
+
+Go to `Infrastructure` -> `Cloud Resources` -> `VRF Context`
+
+Edit the `global` entry ( pencil icon )
+
+Under `Static Route`, add routes to the `frontend` and `workload` subnets.
+
+![](images/avi-static-route.png)
+
+---
+### Step 11
 Configure a `tkgm` cluster to use `avi`.
 
 Take a known good `.yaml` configuration file for both a `Management` cluster as well as a `Workload` cluster which is not using `avi` ( yet ).
