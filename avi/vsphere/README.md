@@ -207,7 +207,7 @@ Under `Static Route`, add routes to the `frontend` and `workload` subnets.
 ![](images/avi-static-route.png)
 
 ---
-### Step 11
+### Step 12
 Configure a `tkgm` cluster to use `avi`.
 
 Take a known good `.yaml` configuration file for both a `Management` cluster as well as a `Workload` cluster which is not using `avi` ( yet ).
@@ -230,7 +230,7 @@ Add the following configuration properties:
 - `AVI_USERNAME`: `admin`
 
 ---
-### Step 12
+### Step 13
 Deploy the `management` cluster.
 
 `tanzu management-cluster create --file /path/to/mgmt-avi.yaml -v 9`
@@ -248,7 +248,7 @@ In the `avi` console, the `Service Engine` for the `virtual service` appears und
 ![](images/service-engine.png)
 
 ---
-### Step 13
+### Step 14
 Deploy the `workload` cluster.
 
 Make a copy of the `.yaml` used in the previous step to deploy the management cluster. In the copy, update the `CLUSTER_NAME` property to the name of the workload cluster.
@@ -260,7 +260,7 @@ After creating the workload cluster, in the `avi` console, an additional `virtua
 ![](images/se-additional-virt-service.png)
 
 ---
-### Step 14
+### Step 15
 Deploy a workload using a `LoadBalancer` service.
 
 `kubectl apply -f nginx-deployment.yaml`
