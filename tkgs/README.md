@@ -149,6 +149,11 @@ Instead, i went the gui/wizard route which worked out-of-the-box for me when i e
 
 It takes approx 30 minutes for the configuration phase to complete.
 
+For reference, below are the parameters when using an `avi` loadbalancer ( for instructions on how to set-up an `avi` loadbalancer, click [here](../avi/vsphere) ).
+
+![](images/enable-workloadmgmt-params-avi.png)
+
+
 The Control Plane Node first gets `192.168.1.15` as ip, after approx 15 mins this should change to `10.10.0.65`
 When the configuration completes you should see something like this ( *your* controlplane IP might be different from screenshot ):
 
