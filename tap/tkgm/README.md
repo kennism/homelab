@@ -134,7 +134,7 @@ Check installation status for the core CLI by running:
 
 ![](images/tanzu-cli-version.png)
 
-Expected output: version: `v0.11.6`
+Expected output: version: `v0.25.4`
 
 Navigate to the tanzu directory by running:
 
@@ -153,6 +153,12 @@ Verify the current installed plugins
 Make sure the generic tanzu plugins are properly installed
 
 `tanzu plugin sync`
+
+![](images/tap-tanzu-plugin-sync.png)
+
+Verify the installed plugins
+
+`tanzu plugin list`
 
 ![](images/tap-tanzu-plugin-list-sync.png)
 
