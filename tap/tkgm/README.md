@@ -1,6 +1,6 @@
 # Install/Configure Tanzu Application Platform `tap` on `tkgm`
 
-### This document describes how to install/configure `tap` ( [Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform) ) version `1.2.0` ( in a _single_ cluster setup ( for a _multi_ cluster setup, see: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-multicluster-installing-multicluster.html ) ) on a `tkgm` version `1.5.4` cluster ( and run a demo workload ).
+### This document describes how to install/configure `tap` ( [Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform) ) version `1.4.0` ( in a _single_ cluster setup ( for a _multi_ cluster setup, see: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/GUID-multicluster-installing-multicluster.html ) ) on a `tkgm` version `1.6.1` cluster ( and run a demo workload ).
 
 ---
 
@@ -112,7 +112,7 @@ To accept EULAs:
 ### Step 7
 Add/update the `Tanzu Application Platform` specific `Tanzu CLI` plugins.
 
-Sign in to `Tanzu Network` and Navigate to `Tanzu Application Platform`. Click the `tanzu-cli-tap-1.2.0-b3` directory and download the CLI bundle corresponding to your operating system. For example, if your client operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
+Sign in to `Tanzu Network` and Navigate to `Tanzu Application Platform` ( https://network.tanzu.vmware.com/products/tanzu-application-platform ). Click the `tanzu-cli-tap-1.4.0` directory and download the CLI bundle corresponding to your operating system. For example, if your client operating system is Linux, download the `tanzu-framework-linux-amd64.tar` bundle.
 
 ---
 
@@ -122,11 +122,11 @@ If they exist, delete any CLI files from previous installs by running:
 
 `rm -rf ~/tanzu-cli/cli`
 
-Unpack the TAR file in the tanzu directory by running:
+Unpack the `tar` file in the `tanzu` directory by running:
 
-`tar -xvf tanzu-framework-linux-amd64.tar -C ~/tanzu-cli`
+`tar -xvf tanzu-framework-linux-amd64-v0.25.4.1.tar -C ~/tanzu-cli`
 
-Copy the file `~/tanzu-cli/cli/core/v0.11.6/tanzu-core-linux_amd64` to a location in the system path and rename it to `tanzu`.
+Copy the file `~/tanzu-cli/cli/core/v0.25.4/tanzu-core-linux_amd64` to a location in the system path and rename it to `tanzu`.
 
 Check installation status for the core CLI by running:
 
