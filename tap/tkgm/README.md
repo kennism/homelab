@@ -188,7 +188,7 @@ Create a `secret` for `tap-registry` ( replace `[USERNAME]` and `[PASSWORD]` wit
 
 Add the `Tanzu Application Platform` package repository to the cluster
 
-`tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.2.0 --namespace tap-install`
+`tanzu package repository add tanzu-tap-repository --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.4.0 --namespace tap-install`
 
 Get the status of the `Tanzu Application Platform` package repository, and ensure the status updates to `Reconcile succeeded`
 
