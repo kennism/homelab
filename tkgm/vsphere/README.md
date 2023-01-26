@@ -24,9 +24,9 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 Download the following Tanzu Kubernetes components ( https://my.vmware.com/en/web/vmware/downloads/info/slug/infrastructure_operations_management/vmware_tanzu_kubernetes_grid/1_x )
 
 - VMware Tanzu CLI for Linux ( `tanzu-cli-bundle-linux-amd64.tar.gz` )
-- Photon v3 Kubernetes `v1.23.8` OVA ( `photon-3-kube-v1.23.10+vmware.1-tkg.1-efe12079f22627aa1246398eba077476.ova` )
-- Ubuntu 2004 Kubernetes `v1.23.8` OVA ( `ubuntu-2004-kube-v1.23.10+vmware.1-tkg.2-b53d41690f8742e7388f2c553fd9a181.ova` )
-- kubectl cluster cli `v1.23.8` for Linux ( `kubectl-linux-v1.23.10+vmware.1.gz` )
+- Photon v3 Kubernetes `v1.23.10` OVA ( `photon-3-kube-v1.23.10+vmware.1-tkg.1-efe12079f22627aa1246398eba077476.ova` )
+- Ubuntu 2004 Kubernetes `v1.23.10` OVA ( `ubuntu-2004-kube-v1.23.10+vmware.1-tkg.2-b53d41690f8742e7388f2c553fd9a181.ova` )
+- kubectl cluster cli `v1.23.10` for Linux ( `kubectl-linux-v1.23.10+vmware.1.gz` )
 
 ---
 
