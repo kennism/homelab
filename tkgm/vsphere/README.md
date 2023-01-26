@@ -42,7 +42,7 @@ Import the kubernetes base image(s) template into `vsphere`.
 
 *NOTE: Do not power on the VM*
 
-When the OVA deployment finishes, right-click the VM ( `photon-3-kube-v1.23.8+vmware.2` and/or `ubuntu-2004-kube-v1.23.8+vmware.2` ) and select `Template` -> `Convert to Template`.
+When the OVA deployment finishes, right-click the VM ( `photon-3-kube-v1.23.10+vmware.1` and/or `ubuntu-2004-kube-v1.23.10+vmware.1` ) and select `Template` -> `Convert to Template`.
 
 ---
 
