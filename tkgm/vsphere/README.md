@@ -1,4 +1,4 @@
-# Install/Configure Tanzu Kubernetes Grid `tkgm` ( standalone / multicloud `tkg` ) version `1.6.0` on `vsphere 8`
+# Install/Configure Tanzu Kubernetes Grid `tkgm` ( standalone / multicloud `tkg` ) version `1.6.1` on `vsphere 8`
 
 This document describes how to install/configure the *standalone / multicloud* variant of `tkg` ( [Tanzu Kubernetes Grid](https://tanzu.vmware.com/kubernetes-grid) ) on `vsphere 8`.
 
