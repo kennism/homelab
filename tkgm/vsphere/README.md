@@ -117,7 +117,7 @@ Copy the downloaded kubectl cluster cli for Linux ( `kubectl-linux-v1.23.10+vmwa
 ---
 
 ### Step 9
-`gunzip` the kubectl cluster cli ( `kubectl-linux-v1.23.8+vmware.2.gz` )
+`gunzip` the kubectl cluster cli ( `kubectl-linux-v1.23.10+vmware.1.gz` )
 
 Move the extracted file to a location which is in the system path, for example: `/usr/local/bin` ( `mv /path/to/kubectl-linux-v1.23.8+vmware.2 /usr/local/bin/kubectl` ).
 
