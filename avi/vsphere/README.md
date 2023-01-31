@@ -176,7 +176,7 @@ On the `Create` dropdown buttom, select `IPAM Profile`
 
 ![](images/ipam-profile-menu.png)
 
-Enter the requested data
+Enter the requested data ( NOTE: *Make sure to add all the relevant `Usable Networks` for the selected `Cloud`* )
 
 ![](images/ipam-profile-data.png)
 
