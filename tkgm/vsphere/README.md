@@ -1,4 +1,4 @@
-# Install/Configure Tanzu Kubernetes Grid `tkgm` ( standalone / multicloud `tkg` ) version `1.6.1` on `vsphere 8`
+# Install/Configure Tanzu Kubernetes Grid `tkgm` ( standalone / multicloud `tkg` ) version `2.1.0` on `vsphere 8`
 
 This document describes how to install/configure the *standalone / multicloud* variant of `tkg` ( [Tanzu Kubernetes Grid](https://tanzu.vmware.com/kubernetes-grid) ) on `vsphere 8`.
 
@@ -21,12 +21,12 @@ _This is by no means an offical walkthrough and/or ( reference ) documentation a
 ---
 
 ### Step 1
-Download the following Tanzu Kubernetes components ( https://my.vmware.com/en/web/vmware/downloads/info/slug/infrastructure_operations_management/vmware_tanzu_kubernetes_grid/1_x )
+Download the following Tanzu Kubernetes components ( https://customerconnect.vmware.com/en/downloads/info/slug/infrastructure_operations_management/vmware_tanzu_kubernetes_grid/2_x )
 
 - VMware Tanzu CLI for Linux ( `tanzu-cli-bundle-linux-amd64.tar.gz` )
-- Photon v3 Kubernetes `v1.23.10` OVA ( `photon-3-kube-v1.23.10+vmware.1-tkg.1-efe12079f22627aa1246398eba077476.ova` )
-- Ubuntu 2004 Kubernetes `v1.23.10` OVA ( `ubuntu-2004-kube-v1.23.10+vmware.1-tkg.2-b53d41690f8742e7388f2c553fd9a181.ova` )
-- kubectl cluster cli `v1.23.10` for Linux ( `kubectl-linux-v1.23.10+vmware.1.gz` )
+- Photon v3 Kubernetes `v1.24.9` OVA ( `photon-3-kube-v1.24.9+vmware.1-tkg.1-f5e94dab9dfbb9988aeb94f1ffdc6e5e.ova` )
+- Ubuntu 2004 Kubernetes `v1.24.9` OVA ( `ubuntu-2004-kube-v1.24.9+vmware.1-tkg.1-b030088fe71fea7ff1ecb87a4d425c93.ova` )
+- kubectl cluster cli `v1.24.9` for Linux ( `kubectl-linux-v1.24.9+vmware.1.gz` )
 
 ---
 
