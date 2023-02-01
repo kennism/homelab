@@ -186,7 +186,7 @@ Create the *management* cluster by running the following command ( takes approx 
 
 After completion, check if the *management* cluster is deployed correctly.
 
-`tanzu cluster list --include-management-cluster`
+`tanzu cluster list --include-management-cluster -A`
 
 ![](images/tanzu-cluster-list-mgmt.png)
 
