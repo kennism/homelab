@@ -178,9 +178,7 @@ In particular, the values of the following keys:
 ### Step 13
 Deployment of *management* cluster.
 
-On the linux (virtual)machine where the `tanzu CLI` and `docker` are installed run: `export DEPLOY_TKG_ON_VSPHERE7=true`
-
-Create the *management* cluster by running the following command ( takes approx 15 mins to complete ):
+Create the *management* cluster by running the following command ( takes approx 20 mins to complete ):
 
 `tanzu management-cluster create --file /path/to/mgmt-cluster-vpshere-local.yaml -v 9` 
 
