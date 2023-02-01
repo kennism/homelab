@@ -34,7 +34,7 @@ Download the following Tanzu Kubernetes components ( https://customerconnect.vmw
 Import the kubernetes base image(s) template into `vsphere`.
 
 - In the `vsphere` Client, go to `Inventory`, right-click on `Tanzu-Datacenter` and select `Deploy OVF template`.
-- Select `Local file`, click the button to upload files, and navigate to the downloaded OVA file on your local machine ( `photon-3-kube-v1.23.10+vmware.1-tkg.1-efe12079f22627aa1246398eba077476.ova` and/or `ubuntu-2004-kube-v1.23.10+vmware.1-tkg.2-b53d41690f8742e7388f2c553fd9a181.ova` ).
+- Select `Local file`, click the button to upload files, and navigate to the downloaded OVA file on your local machine ( `photon-3-kube-v1.24.9+vmware.1-tkg.1-f5e94dab9dfbb9988aeb94f1ffdc6e5e.ova` and/or `ubuntu-2004-kube-v1.24.9+vmware.1-tkg.1-b030088fe71fea7ff1ecb87a4d425c93.ova` ).
 - Step through the wizard accepting all the defaults for `Name and folder`, `Compute resource`, `Review details` and accept the `license agreement`.
 - At `Select storage`, make sure to select the correct `datastore` and set `Select virtual disk format` to `Thin Provision`.
 - At `Select networks`, select the destination network `Management`.
@@ -42,7 +42,7 @@ Import the kubernetes base image(s) template into `vsphere`.
 
 *NOTE: Do not power on the VM*
 
-When the OVA deployment finishes, right-click the VM ( `photon-3-kube-v1.23.10+vmware.1` and/or `ubuntu-2004-kube-v1.23.10+vmware.1` ) and select `Template` -> `Convert to Template`.
+When the OVA deployment finishes, right-click the VM ( `photon-3-kube-v1.24.9+vmware.1` and/or `ubuntu-2004-efi-kube-v1.24.9+vmware.1` ) and select `Template` -> `Convert to Template`.
 
 ---
 
