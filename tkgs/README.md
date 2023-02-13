@@ -89,6 +89,8 @@ The powershell scripts needs the PowerCLI powershell module ( `Install-Module -N
 
 Also, run `Set-PowerCLIConfiguration -InvalidCertificateAction Ignore -Confirm:$false` to disable invalid certificate errors.
 
+( when there's no `PowerShell` available, follow the links for intructions on how to do this through the `vSphere client` ( See: https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-storage/GUID-D025AA68-BF00-4FC2-9C7E-863E5787E743.html )
+
 ---
 
 ### Step 11
