@@ -153,8 +153,9 @@ It takes approx 30 minutes for the configuration phase to complete.
 
 For reference, below are the parameters when using an `avi` loadbalancer ( for instructions on how to set-up an `avi` loadbalancer, click [here](../avi/vsphere) ).
 
-![](images/enable-workloadmgmt-params-avi.png)
+*NOTE: When running both `tkgs` and `tkgm` ( or another service outside `tkgs` utilizing `avi`) on the same network on `avi`, make sure that the `ip-address range` for the `Workload Network` does not overlap with the range set as the `Static IP pool` for the `workload network` in `avi`. For example, if the `workload` network in `avi` is defined as `10.20.0.0/24` with a static ip pool of `10.20.0.20-10.20.0.39`, make sure that the `ip-address range` for the `Workload Network` does not overlap ( as can been seen in the screenshot below )*
 
+![](images/enable-workloadmgmt-params-avi.png)
 
 The Control Plane Node first gets `192.168.1.15` as ip, after approx 15 mins this should change to `10.10.0.65`
 When the configuration completes you should see something like this ( *your* controlplane IP might be different from screenshot ):
